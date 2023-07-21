@@ -1,6 +1,6 @@
 import cn from 'classnames'
 import Link from 'next/link'
-import { CldImage } from 'next-cloudinary'
+import { CldVideoPlayer } from 'next-cloudinary'
 
 type Props = {
   title: string
@@ -8,29 +8,29 @@ type Props = {
   slug?: string
 }
 
-const CoverImage = ({ title, src, slug }: Props) => {
-  const image = (
-    <CldImage
+const Reel = ({ title, src, slug }: Props) => {
+  const reel = (
+    <CldVideoPlayer
       src={src}
-      width={1300}
-      height={630}
+      width={1080}
+      height={1920}
       className={cn('shadow-sm w-full', {
           'hover:shadow-lg transition-shadow duration-200': slug,
       })}
-      alt={`Cover Image for ${title}`}
+      quality={1080}
     />
   )
   return (
     <div className="sm:mx-0">
       {slug ? (
         <Link as={`/posts/${slug}`} href="/posts/[slug]" aria-label={title}>
-          {image}
+          {reel}
         </Link>
       ) : (
-        image
+        reel
       )}
     </div>
   )
 }
 
-export default CoverImage
+export default Reel

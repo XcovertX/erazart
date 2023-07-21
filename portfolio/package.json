@@ -7,10 +7,13 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@p5-wrapper/next": "^0.2.0",
+    "@p5-wrapper/react": "^4.2.0",
     "classnames": "^2.3.1",
     "date-fns": "^2.28.0",
     "gray-matter": "^4.0.3",
     "next": "latest",
+    "next-cloudinary": "^4.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "remark": "^14.0.2",
