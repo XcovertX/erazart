@@ -14,16 +14,14 @@ export default function Index({ allPosts }: Props) {
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
   return (
-    <>
-      <HomeLayout>
-        <Head>
-          <title>{`ErazArt. ${CMS_NAME}`}</title>
-        </Head>
-        <Container>
-          <Home />
-        </Container>
-      </HomeLayout>
-    </>
+    <HomeLayout>
+      <Head>
+        <title>{`ErazArt. ${CMS_NAME}`}</title>
+      </Head>
+      <Container>
+        <Home />
+      </Container>
+    </HomeLayout>
   )
 }
 
