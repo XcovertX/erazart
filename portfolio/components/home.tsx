@@ -3,15 +3,15 @@ import Background from './generative-background'
 
 const Home = () => {
   return (
-    <div className="flex-col flex h-screen">
+    <div className="flex-col flex h-screen text-zinc-100">
         <Background />
         <section className="flex-col md:flex-row flex items-center md:justify-between mt-16 mb-16 md:mb-12">
             <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
                 ErazArt.
             </h1>
         </section>
-        <div className="justify-end items-end flex-col grow flex">
-            <h2 className=" text-center m-10 md:text-left text-lg mt-5 md:pl-8">
+        <div className="justify-end items-end flex-col grow flex font-bold">
+            <h2 className=" text-center m-10 md:text-left text-2xl mt-5 md:pl-8">
             <Link href="/" className="hover:underline px-3">
                 Interactive Art
             </Link>
