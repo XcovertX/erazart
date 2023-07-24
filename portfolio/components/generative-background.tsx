@@ -4,6 +4,8 @@ import { NextReactP5Wrapper } from "@p5-wrapper/next";
 import type CartType from "../interfaces/cart";
 import type PartType from "../interfaces/part";
 import type PositionType from "../interfaces/position";
+import type Color from "../interfaces/color";
+
 
 
 type MySketchProps = SketchProps & {
@@ -35,22 +37,22 @@ function drawGrid(p5: P5CanvasInstance<MySketchProps>, w:number, h: number) {
 }
 
 function drawX(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
-    const halfWidth = part.width * 1/4;
-    const halfHeight= part.height * 1/4;
+    const halfWidth = part.width * 1/2;
+    const halfHeight= part.height * 1/2;
     const x1 = part.position.x + cartPosition.x - halfWidth;
     const y1 = cartPosition.y - halfHeight;
     const y2 = cartPosition.y + halfHeight;
     const x2 = part.position.x + cartPosition.x + halfWidth;
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.line(x1, y1, x2, y2);
     p5.line(x1, y2, x2, y1);
     p5.pop();
 }
 
 function drawDiamond(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
-    const halfWidth = part.width * 1/2;
-    const halfHeight= part.height * 1/2;
+    const halfWidth = part.width * 1/3;
+    const halfHeight= part.height * 1/3;
     const x1 = part.position.x + cartPosition.x - halfWidth;
     const y1 = cartPosition.y - halfHeight;
     const y2 = cartPosition.y + halfHeight;
@@ -58,7 +60,7 @@ function drawDiamond(p5: P5CanvasInstance<MySketchProps>, cartPosition: Position
     const xHalf = x1 + halfWidth;
     const yHalf = y1 + halfHeight;
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.line(xHalf, y1, x2, yHalf);
     p5.line(x2, yHalf, xHalf, y2);
     p5.line(xHalf, y2, x1, yHalf);
@@ -67,8 +69,8 @@ function drawDiamond(p5: P5CanvasInstance<MySketchProps>, cartPosition: Position
 }
 
 function drawSmallDiamond(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
-    const halfWidth = part.width * 1/4;
-    const halfHeight= part.height * 1/4;
+    const halfWidth = part.width * 1/9;
+    const halfHeight= part.height * 1/9;
     const x1 = part.position.x + cartPosition.x - halfWidth;
     const y1 = cartPosition.y - halfHeight;
     const y2 = cartPosition.y + halfHeight;
@@ -76,7 +78,7 @@ function drawSmallDiamond(p5: P5CanvasInstance<MySketchProps>, cartPosition: Pos
     const xHalf = x1 + halfWidth;
     const yHalf = y1 + halfHeight;
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.line(xHalf, y1, x2, yHalf);
     p5.line(x2, yHalf, xHalf, y2);
     p5.line(xHalf, y2, x1, yHalf);
@@ -92,7 +94,7 @@ function drawDiagLeft(p5: P5CanvasInstance<MySketchProps>, cartPosition: Positio
     const y2 = cartPosition.y + halfHeight;
     const x2 = part.position.x + cartPosition.x + halfWidth;
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.line(x1, y1, x2, y2);
     p5.pop();
 }
@@ -105,14 +107,14 @@ function drawDiagRight(p5: P5CanvasInstance<MySketchProps>, cartPosition: Positi
     const y2 = cartPosition.y + halfHeight;
     const x2 = part.position.x + cartPosition.x + halfWidth;
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.line(x1, y2, x2, y1);
     p5.pop();
 }
 
 function drawDiagCleft(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType) {
-    const halfWidth = part.width * 1/8;
-    const halfHeight= part.height * 1/8;
+    const halfWidth = part.width * 1/2;
+    const halfHeight= part.height * 1/2;
     const x1 = part.position.x + cartPosition.x - halfWidth;
     const y1 = cartPosition.y - halfHeight;
     const y2 = cartPosition.y + halfHeight;
@@ -120,11 +122,11 @@ function drawDiagCleft(p5: P5CanvasInstance<MySketchProps>, cartPosition: Positi
     const xHalf = x1 + halfWidth;
     const yHalf = y1 + halfHeight;
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
+    p5.line(xHalf, y1, x2, y1 - halfHeight);
     p5.line(xHalf, y1, x2, yHalf);
-    p5.line(x2, yHalf, xHalf, y2);
     p5.line(xHalf, y2, x1, yHalf);
-    p5.line(x1, yHalf, xHalf, y1);
+    p5.line(xHalf, y2, x1, y2 + halfHeight);
     p5.pop();
 }
 
@@ -136,7 +138,7 @@ function drawLargeBox(p5: P5CanvasInstance<MySketchProps>, cartPosition: Positio
     const y2 = cartPosition.y + halfHeight;
     const x2 = part.position.x + cartPosition.x + halfWidth;
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.line(x1, y1, x2, y1);
     p5.line(x2, y1, x2, y2);
     p5.line(x2, y2, x1, y2);
@@ -145,8 +147,8 @@ function drawLargeBox(p5: P5CanvasInstance<MySketchProps>, cartPosition: Positio
 }
 
 function drawCross(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
-    const halfWidth = part.width * 1/3;
-    const halfHeight= part.height * 1/3;
+    const halfWidth = part.width * 1/2;
+    const halfHeight= part.height * 1/2;
     const x1 = part.position.x + cartPosition.x - halfWidth;
     const y1 = cartPosition.y - halfHeight;
     const y2 = cartPosition.y + halfHeight;
@@ -154,21 +156,21 @@ function drawCross(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionTy
     const xHalf = x1 + halfWidth;
     const yHalf = y1 + halfHeight;
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.line(xHalf, y1, xHalf, y2);
     p5.line(x1, yHalf, x2, yHalf);
     p5.pop();
 }
 
 function drawSmallBox(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
-    const quarterWidth = part.width * 1/4;
-    const quarterHeight= part.height * 1/4;
+    const quarterWidth = part.width * 1/6;
+    const quarterHeight= part.height * 1/6;
     const x1 = part.position.x + cartPosition.x - quarterWidth;
     const y1 = cartPosition.y - quarterHeight;
     const y2 = cartPosition.y + quarterHeight;
     const x2 = part.position.x + cartPosition.x + quarterWidth;
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.line(x1, y1, x2, y1);
     p5.line(x2, y1, x2, y2);
     p5.line(x2, y2, x1, y2);
@@ -185,7 +187,7 @@ function drawTripleLinesVertical(p5: P5CanvasInstance<MySketchProps>, cartPositi
     const y1 = cartPosition.y - quarterHeight;
     const y2 = cartPosition.y + quarterHeight;
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.line(x1, y1, x1, y2);
     p5.line(x2, y1, x2, y2);
     p5.line(x3, y1, x3, y2);
@@ -201,7 +203,7 @@ function drawTripleLinesHorizontal(p5: P5CanvasInstance<MySketchProps>, cartPosi
     const x1 = cartPosition.x - quarterWidth;
     const x2 = cartPosition.x + quarterWidth;
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.line(x1, y1, x2, y1);
     p5.line(x1, y2, x2, y2);
     p5.line(x1, y3, x2, y3);
@@ -210,69 +212,73 @@ function drawTripleLinesHorizontal(p5: P5CanvasInstance<MySketchProps>, cartPosi
 
 function drawDot(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
     p5.push();
-    p5.stroke(part.color, 360, 360);
-    p5.fill(part.color, 360, 360)
-    p5.ellipse((cartPosition.x + part.position.x), cartPosition.y, (part.width * 1/32), (part.width * 1/32))
+    p5.stroke(part.color.h, part.color.s, part.color.b);
+    p5.fill(part.color.h, part.color.s, part.color.b);
+    p5.ellipse((cartPosition.x + part.position.x), cartPosition.y, (part.width * 1/32), (part.width * 1/32));
     p5.pop();
 }
 
 function drawXDots(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
-    const quarterHeight = part.height * 0.25;
-    const quarterWidth  = part.width  * 0.25;
+    const quarterHeight = part.height * 1/3;
+    const quarterWidth  = part.width  * 1/2;
     const y1 = cartPosition.y  - quarterHeight;
     const y2 = cartPosition.y  + quarterHeight;
     const x1 = part.position.x + cartPosition.x - quarterWidth;
     const x2 = part.position.x + cartPosition.x + quarterWidth;
     p5.push();
-    p5.stroke(part.color, 360, 360);
-    p5.fill(part.color, 360, 360);
-    p5.ellipse(x1, y1, (part.width * 1/32), (part.width * 1/32));
-    p5.ellipse(x1, y2, (part.width * 1/32), (part.width * 1/32));
-    p5.ellipse(x2, y1, (part.width * 1/32), (part.width * 1/32));
-    p5.ellipse(x2, y2, (part.width * 1/32), (part.width * 1/32));
+    p5.stroke(part.color.h, part.color.s, part.color.b);
+    p5.fill(part.color.h, part.color.s, part.color.b);
+    p5.ellipse(x1, y1, (part.width * 1/64), (part.width * 1/64));
+    p5.ellipse(x1, y2, (part.width * 1/64), (part.width * 1/64));
+    p5.ellipse(x2, y1, (part.width * 1/64), (part.width * 1/64));
+    p5.ellipse(x2, y2, (part.width * 1/64), (part.width * 1/64));
     p5.pop();
 }
 
 function drawDoubleVerticalDots(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
-    const quarterHeight = part.height * 1/8;
+    const quarterHeight = part.height * 1/6;
     const x = part.position.x + cartPosition.x;
-    const y1 = cartPosition.y  - quarterHeight;
-    const y2 = cartPosition.y  + quarterHeight;
+    const y1 = cartPosition.y  - quarterHeight*3;
+    const y2 = cartPosition.y  - quarterHeight*2;
+    const y3 = cartPosition.y  + quarterHeight*2;
+    const y4 = cartPosition.y  + quarterHeight*3;
     p5.push();
-    p5.stroke(part.color, 360, 360);
-    p5.fill(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
+    p5.fill(part.color.h, part.color.s, part.color.b);
     p5.ellipse(x, y1, (part.width * 1/32), (part.width * 1/32));
     p5.ellipse(x, y2, (part.width * 1/32), (part.width * 1/32));
+    p5.ellipse(x, y3, (part.width * 1/32), (part.width * 1/32));
+    p5.ellipse(x, y4, (part.width * 1/32), (part.width * 1/32));
     p5.pop();
 }
 
 function drawDoubleHorizontalDots(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
-    const quarterWidth  = part.width  * 1/8;
+    const quarterWidth  = part.width  * 1/6;
     const x1 = part.position.x + cartPosition.x - quarterWidth;
     const x2 = part.position.x + cartPosition.x + quarterWidth;
     const y = cartPosition.y;
     p5.push();
-    p5.stroke(part.color, 360, 360);
-    p5.fill(part.color, 360, 360);
-    p5.ellipse(x1, y, (part.width * 1/32), (part.width * 1/32));
-    p5.ellipse(x2, y, (part.width * 1/32), (part.width * 1/32));
+    p5.stroke(part.color.h, part.color.s, part.color.b);
+    p5.fill(part.color.h, part.color.s, part.color.b);
+    p5.ellipse(x1, y, (part.width * 1/64), (part.width * 1/64));
+    p5.ellipse(x2, y, (part.width * 1/64), (part.width * 1/64));
     p5.pop();
 }
 
 function drawSmallCircle(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.noFill();
     p5.ellipse((cartPosition.x + part.position.x), 
                 cartPosition.y, 
-               (part.width * 0.25), 
-               (part.width * 0.25))
+               (part.width * 1/4), 
+               (part.width * 1/4))
     p5.pop();
 }
 
 function drawLargeCircle(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.noFill();
     p5.ellipse((cartPosition.x + part.position.x), 
                 cartPosition.y, 
@@ -283,12 +289,23 @@ function drawLargeCircle(p5: P5CanvasInstance<MySketchProps>, cartPosition: Posi
 
 function drawExtraLargeCircle(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
     p5.push();
-    p5.stroke(part.color, 360, 360);
+    p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.noFill();
     p5.ellipse((cartPosition.x + part.position.x), 
                 cartPosition.y, 
                (part.width * 1.25), 
                (part.width * 1.25))
+    p5.pop();
+}
+
+function drawSuperExtraLargeCircle(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
+    p5.push();
+    p5.stroke(part.color.h, part.color.s, part.color.b);
+    p5.noFill();
+    p5.ellipse((cartPosition.x + part.position.x), 
+                cartPosition.y, 
+               (part.width * 3), 
+               (part.width * 3))
     p5.pop();
 }
 
@@ -326,16 +343,13 @@ function drawCarts(p5: P5CanvasInstance<MySketchProps>, props){
         if (grid) {
             drawGrid(p5, carts[0].width, carts[0].height);
         }
-        p5.push();
-        p5.strokeWeight(5);
-        p5.stroke(155, 360, 0)
-        p5.fill(0, 360, 360);
+
         for (let i = 0; i < carts.length; i++) {
             var c = carts[i];
 
             for (let j = 0; j < c.parts.length; j++) {
                 var p = c.parts[j];
-
+                
                 switch (p.shape) {
                     case "X":                      drawX(p5, c.position, p);
                         break;
@@ -381,12 +395,16 @@ function drawCarts(p5: P5CanvasInstance<MySketchProps>, props){
                         break;
                     case "DIAG-CLEFT":             drawDiagCleft(p5, c.position, p);
                         break;
+                    case "EXTRA-LG-CIRCLE":        drawExtraLargeCircle(p5, c.position, p);
+                        break;
+                    case "SUPER-EXTRA-LG-CIRCLE":  drawSuperExtraLargeCircle(p5, c.position, p);
+                        break;
                     default: drawX(p5, c.position, p);
                 }
                 
             }
         }
-        p5.pop();
+        
     }
 }
 
@@ -407,10 +425,10 @@ function getRandomPosition(minW: number, maxW: number, minH: number, maxH: numbe
 }
 
 function getRandomDirection() {
-    const dir = getRandomInt(0, 15);
+    const dir = getRandomInt(0, 7);
     switch(dir) {
         case 0:  return "NORTH";
-        case 1:  return "NORTH";
+        case 1:  return "EAST";
         // case 2:  return "EAST";
         // case 3:  return "EAST";
         default: return "EAST"
@@ -433,11 +451,11 @@ function getRandomContainerPosition(partW: number, partH: number, cartPosition: 
     const selection = getRandomInt(0, 3);
     var partX: number;
     switch(selection) {
-        case 0:  partX = (partW * 0.5)  + cartPosition.x;
+        case 0:  partX = (partW * 1/2)  + cartPosition.x;
             break;
         case 1:  partX = cartPosition.x;
             break;
-        case 2:  partX = (partW * -0.5) + cartPosition.x;
+        case 2:  partX = (partW * -1/2) + cartPosition.x;
             break;
         default: partX = cartPosition.x;
     }
@@ -452,21 +470,21 @@ function getRandomAccentPosition(partW: number, partH: number, cartPosition: Pos
     const selection = getRandomInt(0, 8);
     var partX: number;
     switch(selection) {
-        case 0:  partX = partW * 0.125  + cartPosition.x;
+        case 0:  partX = partW * 1/9  + cartPosition.x;
             break;
-        case 1:  partX = partW * 0.25   + cartPosition.x;
+        case 1:  partX = partW * 1/4   + cartPosition.x;
             break;
-        case 2:  partX = partW * 0.5    + cartPosition.x;
+        case 2:  partX = partW * 1/3    + cartPosition.x;
             break;
         case 3:  partX = partW + cartPosition.x;
             break;
-        case 4:  partX = partW - cartPosition.x;;
+        case 4:  partX = partW - cartPosition.x;
             break;
-        case 5:  partX = partW * -0.5   + cartPosition.x;
+        case 5:  partX = partW * -1/3   + cartPosition.x;
             break;
-        case 6:  partX = partW * -0.25  + cartPosition.x;
+        case 6:  partX = partW * -1/4  + cartPosition.x;
             break;
-        case 7:  partX = partW * -0.125 + cartPosition.x;
+        case 7:  partX = partW * -1/9 + cartPosition.x;
             break;
         default: partX = partW * cartPosition.x;
     }
@@ -506,9 +524,12 @@ function getRandomPartShape() {
      }
 }
 
-function changeCartColor(cart: CartType, color: number) {
+function changeCartColor(cart: CartType, h: number, s: number, b: number, bw: boolean) {
     for (let index = 0; index < cart.parts.length; index++) {
-        cart.parts[index].color = color;
+        cart.parts[index].color.h  = h;
+        cart.parts[index].color.s  = s;
+        cart.parts[index].color.b  = b;
+        cart.parts[index].color.bw = bw;
     }
 }
 
@@ -527,16 +548,16 @@ function moveCart(cart: CartType, edgeExtend: number, continuation: number) {
     }
 
     switch (cart.direction) {
-        case "NORTH": changeCartColor(cart, 165);
+        case "NORTH": changeCartColor(cart, 40, 360, 360, false);
                         cart.position.y = cart.position.y - 2;
                         break;
-        case "SOUTH": changeCartColor(cart, 23);
+        case "SOUTH": changeCartColor(cart, 0, 0, 140, true);
                         cart.position.y = cart.position.y + 2;
                         break;
-        case  "EAST": changeCartColor(cart, 30);
+        case  "EAST": changeCartColor(cart, 165, 360, 360, false);
                         cart.position.x = cart.position.x + 2;
                         break;
-        case  "WEST": changeCartColor(cart, 0);
+        case  "WEST": changeCartColor(cart, 0, 0, 140, true);
                         cart.position.x = cart.position.x - 2;
                         break;
         default: (console.error('Failed to move cart'));
@@ -576,21 +597,24 @@ function moveCart(cart: CartType, edgeExtend: number, continuation: number) {
     return cart;
 }
 
-function buildNewPart(cartPosition: PositionType, color: number, partW: number, partH: number) {
+function buildNewPart(cartPosition: PositionType, color: Color, partW: number, partH: number) {
     var shape: string = getRandomPartShape();
     var position: PositionType;
 
     if (shape == "BOX-LG"     ||
         shape == "BOX-SM"     ||
-        shape == "CIRCLE-SM"  ||
-        shape == "CIRCLE-LG"  ||
-        shape == "CIRCLE-DOT" ||
+        // shape == "CIRCLE-SM"  ||
+        // shape == "CIRCLE-LG"  ||
+        // shape == "CIRCLE-DOT" ||
+        shape == "DIAG-CLEFT" ||
         shape == "BOX-SM-X"   ||
         shape == "BOX-LG-X"   ||
         shape == "X"          ||
         shape == "DIAG-LEFT"  ||
         shape == "DIAG-RIGHT" ||
         shape == "BOX-CROSS"  ||
+        shape == "SUPER-EXTRA-LG-CIRCLE"  ||
+        shape == "EXTRA-LG-CIRCLE"  ||
         shape == "DIAMOND") {
             position = getRandomContainerPosition(partW, partH, cartPosition)
         } else {
@@ -606,7 +630,7 @@ function buildNewPart(cartPosition: PositionType, color: number, partW: number, 
     return p;
 }
 
-function buildRandomEtraLargePart(cartPosition: PositionType, color: number, partW: number, partH: number) {
+function buildRandomEtraLargePart(cartPosition: PositionType, color: Color, partW: number, partH: number) {
     var shape: string = "EXTRA-LG-CIRCLE";
     var position: PositionType = getRandomContainerPosition(partW, partH, cartPosition);
     var p: PartType = {
@@ -619,15 +643,30 @@ function buildRandomEtraLargePart(cartPosition: PositionType, color: number, par
     return p;
 }
 
-// generates a give number of uniques carts
-function generateCarts(cartCount: number, partCount: number, w: number, h: number, cartColor: number) {
-    let carts = new Array(cartCount);
+function buildRandomSuperEtraLargePart(cartPosition: PositionType, color: Color, partW: number, partH: number) {
+    var shape: string = "SUPER-EXTRA-LG-CIRCLE";
+    var position: PositionType = getRandomContainerPosition(partW, partH, cartPosition);
+    var p: PartType = {
+        shape: shape,
+        color: color,
+        position: position,
+        width: partW,
+        height: partH
+    };
+    return p;
+}
 
+// generates a give number of uniques carts
+function generateCarts(cartCount: number, partCount: number, w: number, h: number) {
+    let carts = new Array(cartCount);
     for (let i = 0; i < cartCount; i++) {
+        var cartColor: Color = {h: 0, s: 0, b: 100, bw: true};
         var cartPosition: PositionType = getRandomPosition(0, window.innerWidth, 0, window.innerHeight, w, h);
         var parts = new Array(partCount);
         for (let j = 0; j < partCount; j++) {
-            if (j == partCount - 1 && i == cartCount - 1) {
+            if (j == partCount - 1 && i == cartCount - 2) {
+                parts[j] = buildRandomSuperEtraLargePart(cartPosition, cartColor, w, h);
+            } else if (j == partCount - 1 && i == cartCount - 1) {
                 parts[j] = buildRandomEtraLargePart(cartPosition, cartColor, w, h);
             } else {
                 parts[j] = buildNewPart(cartPosition, cartColor, w, h);
@@ -651,7 +690,7 @@ function generateCarts(cartCount: number, partCount: number, w: number, h: numbe
     return carts;
 }
 
-function sketch(p5: P5CanvasInstance<MySketchProps>) {
+function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
     let state = {
         carts: [],
         grid: false
@@ -679,9 +718,8 @@ function sketch(p5: P5CanvasInstance<MySketchProps>) {
 
 export default function Background() {
     const [rotation,     setRotation] = useState(0);
-    const [cartCount,   setCartCount] = useState(250);
+    const [cartCount,   setCartCount] = useState(150);
     const [carts,           setCarts] = useState(Array<CartType>(cartCount));
-    const [cartColor,   setCartColor] = useState(0);
     const [maxSpeed,     setMaxSpeed] = useState(0);
     const [minSpeed,     setMinSpeed] = useState(0);
     const [partWidth,   setPartWidth] = useState(0);
@@ -694,14 +732,13 @@ export default function Background() {
     useEffect(() => {
         setRotation(2);
         // const cartCount: number = (Math.floor(Math.random()*500));
-        const partCount: number = 2;
+        const partCount: number = 4;
         const w: number = 130;
         const h: number = 130;
-        var cartColor = 25; //getRandomColor();
-        const c: Array<CartType> = generateCarts(cartCount, partCount, w, h, cartColor);
+        var cartColor: Color = {h: 0, s: 0, b: 140, bw: true};
+        const c: Array<CartType> = generateCarts(cartCount, partCount, w, h);
         setCarts(c);
         setCartCount(cartCount);
-        setCartColor(cartColor);
         setPartWidth(w);
         setPartHeight(h);
         setMaxSpeed(500);
@@ -713,18 +750,19 @@ export default function Background() {
             let cts = new Array<CartType>(carts.length);
             for (let i = 0; i < carts.length; i++) {
                 cts[i] = carts[i];
-                if (carts[i].isTransitioning || carts[i].age >= carts[i].speed) {
-                    cts[i] = moveCart(carts[i], edgeExtend, continuation);
+                if (cts[i].isTransitioning || cts[i].age >= cts[i].speed) {
+                    moveCart(cts[i], edgeExtend, continuation);
                 } else {
                     cts[i].age++;
-                    for (let j = 0; j < carts[i].parts.length; j++) {
-                        if (!cts[i].isTransitioning){
-                            if (carts[i].parts[j].color == 165) {
-                                cts[i].parts[j].color = carts[i].parts[j].color = 30;
-                            }
-                            if (carts[i].parts[j].color > 0) {
-                                cts[i].parts[j].color = carts[i].parts[j].color - 1/8;
-                            }
+                    for (let j = 0; j < cts[i].parts.length; j++) {
+                        if (cts[i].parts[j].color.h < 200) {
+                            cts[i].parts[j].color.h = cts[i].parts[j].color.h + cts[i].parts[j].color.h * 1/200;
+                        }
+                        if (cts[i].parts[j].color.s > 0) {
+                            cts[i].parts[j].color.s = cts[i].parts[j].color.s - cts[i].parts[j].color.s * 1/200;
+                        }
+                        if (cts[i].parts[j].color.b > 100) {
+                            cts[i].parts[j].color.b = cts[i].parts[j].color.b - cts[i].parts[j].color.b * 1/200;
                         }
                     }
                 }
@@ -738,6 +776,6 @@ export default function Background() {
         }, [dGrid]);
 
     return (
-        <NextReactP5Wrapper sketch={sketch} rotation={rotation} carts={carts} grid={dGrid} />
+        <NextReactP5Wrapper sketch={backgroundSketch} rotation={rotation} carts={carts} grid={dGrid} />
     )
 }

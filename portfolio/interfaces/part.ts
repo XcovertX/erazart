@@ -1,8 +1,9 @@
+import Color from "./color"
 import type PositionType from "./position"
 
 type PartType = {
     shape: string
-    color: number
+    color: Color
     position: PositionType
     width: number
     height: number
