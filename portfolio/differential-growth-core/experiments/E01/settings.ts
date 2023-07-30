@@ -1,0 +1,31 @@
+import Settings from "../../interfaces/settings";
+
+export const E01Settings: Settings = 
+  {
+    border:                .05,
+    brownianScalar:        .1,
+    attractionScalar:      .2,
+    repulsionScalar:       .5,
+    repulsionRadius:       10,
+    alignmentScalar:       .5,
+    minDistance:           1,
+    maxDistance:           5,
+    maxVelocity:           .1,
+    movingNodeRadius:      1,
+    fixedNodeRadius:       1,
+    nodeInjectionRate:     1,
+    drawNodesMode:         false,
+    traceMode:             false,
+    debugMode:             false,
+    fillMode:              false,
+    brownianMode:          true,
+    isClosed:              false,
+    showBoundsMode:        false,
+    paused:                true,
+    restart:               false,
+    strokeColor:          {h: 360, s: 360, b: 360, a: 100},
+    backgroundColor:      {h: 360, s: 0,   b: 0,   a: 100},
+    fillColor:            {h: 0,   s: 360, b: 360, a: 100},
+    fixedColor:           {h: 360, s: 360, b: 360, a: 100},
+    movingColor:          {h: 250, s: 360, b: 360, a: 100},
+  }

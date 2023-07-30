@@ -16,5 +16,5 @@
     "incremental": true
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/home/generative-background.js"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/home/generative-background.js", "differential-growth-core/CustomRBush.js"]
 }

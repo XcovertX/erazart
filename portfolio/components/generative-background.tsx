@@ -343,7 +343,6 @@ function drawCarts(p5: P5CanvasInstance<MySketchProps>, props){
         if (grid) {
             drawGrid(p5, carts[0].width, carts[0].height);
         }
-
         for (let i = 0; i < carts.length; i++) {
             var c = carts[i];
 

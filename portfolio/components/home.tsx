@@ -12,21 +12,18 @@ const Home = () => {
         </section>
         <div className="justify-end items-end flex-col grow flex font-bold">
             <h2 className=" text-center pb-20 md:text-left text-2xl mt-5 md:pl-8">
-            <Link href="/" className="hover:underline hover:pb-5 hover:px-10 ease-in duration-300 hover:border-emerald-400 hover:border hover:pt-44 hover:text-emerald-400 hover:bg-neutral-800 px-3">
-                Interactive Art
-            </Link>
-            <Link href="/generative-art/" className="hover:underline hover:pb-5 hover:px-10 ease-in duration-300 hover:border-emerald-400 hover:border hover:pt-44 hover:text-emerald-400 hover:bg-neutral-800 px-3">
-                Generative Art
-            </Link>
-            <Link href="/posts/" className="hover:underline hover:pb-5 hover:px-10 ease-in duration-300 hover:border-emerald-400 hover:border hover:pt-44 hover:text-emerald-400 hover:bg-neutral-800 px-3">
-                Digital Art
-            </Link>
-            <Link href="/physical-art/" className="hover:underline hover:pb-5 hover:px-10 ease-in duration-300 hover:border-emerald-400 hover:border hover:pt-44 hover:text-emerald-400 hover:bg-neutral-800 px-3">
-                Physical Art
-            </Link>
-            <Link href="/projects/" className="hover:underline hover:pb-5 hover:px-10 ease-in duration-300 hover:border-emerald-400 hover:border hover:pt-44 hover:text-emerald-400 hover:bg-neutral-800 px-3">
-                Project Portfolio
-            </Link>
+                <Link href="/generative-art/" className="hover:underline hover:pb-5 hover:px-10 ease-in duration-300 hover:border-emerald-400 hover:border hover:pt-44 hover:text-emerald-400 hover:bg-neutral-800 px-3">
+                    Generative Art Experiments
+                </Link>
+                <Link href="/posts/" className="hover:underline hover:pb-5 hover:px-10 ease-in duration-300 hover:border-emerald-400 hover:border hover:pt-44 hover:text-emerald-400 hover:bg-neutral-800 px-3">
+                    Traditional Art
+                </Link>
+                <Link href="/projects/" className="hover:underline hover:pb-5 hover:px-10 ease-in duration-300 hover:border-emerald-400 hover:border hover:pt-44 hover:text-emerald-400 hover:bg-neutral-800 px-3">
+                    Coding Portfolio
+                </Link>
+                <Link href="/projects/" className="hover:underline hover:pb-5 hover:px-10 ease-in duration-300 hover:border-emerald-400 hover:border hover:pt-44 hover:text-emerald-400 hover:bg-neutral-800 px-3">
+                    About
+                </Link>
             </h2>
         </div>
     </div>

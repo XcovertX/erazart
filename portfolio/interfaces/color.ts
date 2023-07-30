@@ -1,8 +1,9 @@
-type Color = {
+type Color = 
+  {
     h: number,
     s: number,
     b: number,
-    bw: boolean
+    a: number
   }
   
   export default Color
