@@ -1,4 +1,4 @@
-import DifferentialGrowthContainer from '../differential-growth-core/experiments/E01/entry'
+import DifferentialGrowthContainer from '../differential-growth-core/art'
 
 const CanvasHolder = () => {
   return (

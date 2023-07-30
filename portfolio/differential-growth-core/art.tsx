@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useRef } from "react";
-import { type Sketch, SketchProps, P5CanvasInstance, P5WrapperClassName } from "@p5-wrapper/react";
+import React, { useEffect, useState } from "react";
+import {  SketchProps, P5CanvasInstance } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
-import Node from "../../node";
-import Path from "../../path";
-import World from "../../world";
+import Node from "./node";
+import Path from "./path";
+import World from "./world";
 import { E01Settings } from "./settings";
-import PositionType from "../../../interfaces/position";
-import PolygonBounds from "../../polygon-bounds";
-import Settings from "../../interfaces/settings";
-import { CustomSlider } from "../../../components/slider";
-import { Toggle } from "../../../components/toggle";
+import PositionType from "../interfaces/position";
+import PolygonBounds from "./polygon-bounds";
+import Settings from "./interfaces/settings";
+import { CustomSlider } from "../components/slider";
+import { Toggle } from "../components/toggle";
 
 
 let nodecount: number = 0;
@@ -17,8 +17,6 @@ export function getID() {
   nodecount++;
   return nodecount;
 }
-
-
 
 type MySketchProps = SketchProps & {
     settings: Settings;
@@ -32,7 +30,7 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
   var border: number = 0;
 
   p5.setup = function () {
-    canvas = p5.createCanvas(600, 500, p5.P2D);
+    canvas = p5.createCanvas(600, 600, p5.P2D);
     p5.colorMode(p5.HSB, 360);
     p5.ellipseMode(p5.RADIUS);
     setBorderWidth();
@@ -102,12 +100,9 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
   }
 }
 
-
-
 export default function DifferentialGrowthContainer() 
 {
   const [setting, setSetting] = useState(E01Settings);
-  const [restart, setRestart] = useState(false);
 
   function handleChangeBrown(event) {
     let s = setting;
@@ -259,14 +254,10 @@ export default function DifferentialGrowthContainer()
 
     return (
       <div className="flex flex-row">
-        <div className="flex flex-col">
+        <div className="flex flex-col justify-around">
           <NextReactP5Wrapper sketch={sketch} settings={{...setting}} />
-          <div className="flex flex-row justify-start m-3 ">
-            <button className="py-3 px-5 mr-3 bg-emerald-300" onClick={handleChangeRun}>{setting.paused ? 'run' : 'pause'}</button>
-            <button className="py-3 px-5 mr-3 bg-emerald-300" onClick={handleChangeRestart}>restart</button>
-          </div>
         </div>
-        <div className='text-sm flex-col flex ml-3 justify-content'>
+        <div className='text-sm flex-col flex ml-3 justify-between'>
           <div className="flex flex-col mb-3 border-2 px-2 justify-between">
             <div className="flex flex-row justify-between items-center">
               <h6>Min Node Distance</h6>
@@ -305,7 +296,7 @@ export default function DifferentialGrowthContainer()
             <CustomSlider title={''}  id={'ALF'} min={0}  max={2} 
                         step={.01} value={setting.alignmentScalar} onChange={handleChangeAlign}/>
           </div>
-          <div className="flex flex-col border-2 px-2 justify-between">
+          <div className="flex flex-col mb-3 border-2 px-2 justify-between">
             <div className="flex flex-row justify-between items-center">
               <h6>Brownian Force</h6>
               <Toggle title={'Browinan Mode'} onChange={handleChangeBrownMode} currentState={setting.brownianMode} />
@@ -313,8 +304,12 @@ export default function DifferentialGrowthContainer()
             <CustomSlider title={''}   id={'ALF'} min={0}  max={2} 
                           step={.01} value={setting.brownianScalar} onChange={handleChangeBrown}/>
           </div>
+          <div className="flex flex-row justify-around">
+            <button className="flex-grow py-3 px-5 mr-3 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRun}>{setting.paused ? 'run' : 'pause'}</button>
+            <button className="flex-grow py-3 px-5 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRestart}>restart</button>
+          </div>
         </div>
-        <div className=" flex flex-col ml-3">
+        <div className=" flex flex-col justify-between ml-3">
           <div className="border-2 px-2 mb-3">
             <h6 className="flex justify-center">Stroke Color</h6>
             <CustomSlider title={'H'} id={'ALF'} min={0} max={360} 
@@ -337,7 +332,7 @@ export default function DifferentialGrowthContainer()
             <CustomSlider title={'A'} id={'ALF'} min={0} max={360} 
                           step={.1} value={setting.backgroundColor.a} onChange={handleChangeBGColorA}/>
           </div>
-          <div className="border-2 px-2 mb-3">
+          <div className="border-2 px-2">
             <div className="flex flex-row justify-between items-center">
               <h6>Draw Nodes</h6>
               <Toggle title={''} onChange={handleChangeNodesMode} currentState={setting.drawNodesMode} />

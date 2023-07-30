@@ -3,7 +3,7 @@ import PolygonBounds from './polygon-bounds'
 import { P5CanvasInstance, SketchProps } from '@p5-wrapper/react';
 import PositionType from '../interfaces/position';
 var knn = require('rbush-knn');
-import { getID } from './experiments/E01/entry';
+import { getID } from './art';
 import Settings from './interfaces/settings';
 
 type MySketchProps = SketchProps & {
