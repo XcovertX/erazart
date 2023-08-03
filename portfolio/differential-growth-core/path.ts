@@ -3,7 +3,7 @@ import PolygonBounds from './polygon-bounds'
 import { P5CanvasInstance, SketchProps } from '@p5-wrapper/react';
 import PositionType from '../interfaces/position';
 var knn = require('rbush-knn');
-import { getID } from './art';
+import { getID } from './demo-1/dif-gro-example-1';
 import Settings from './interfaces/settings';
 
 type MySketchProps = SketchProps & {
@@ -283,7 +283,9 @@ export default class Path {
           } else {
             this.p5.stroke(this.p5.map(i, 0, nodes.length-1, 0, 360, true), 360, 360, 2);
           }
+
           this.p5.line(nodes[i-1].x, nodes[i-1].y, nodes[i].x, nodes[i].y);
+
         }
       }
     }

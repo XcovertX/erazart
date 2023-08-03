@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import {  SketchProps, P5CanvasInstance } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
-import Node from "./node";
-import Path from "./path";
-import World from "./world";
+import Node from "../node";
+import Path from "../path";
+import World from "../world";
 import { E01Settings } from "./settings";
-import PositionType from "../interfaces/position";
-import PolygonBounds from "./polygon-bounds";
-import Settings from "./interfaces/settings";
-import { CustomSlider } from "../components/slider";
-import { Toggle } from "../components/toggle";
+import PositionType from "../../interfaces/position";
+import PolygonBounds from "../polygon-bounds";
+import Settings from "../interfaces/settings";
+import { CustomSlider } from "../../components/slider";
+import { Toggle } from "../../components/toggle";
 
 
 let nodecount: number = 0;
@@ -24,10 +24,10 @@ type MySketchProps = SketchProps & {
 
 const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
 
-  let world: World = undefined;
+  let world:    World    = undefined;
   let settings: Settings = E01Settings;
+  var border:   number   = 0;
   var canvas;
-  var border: number = 0;
 
   p5.setup = function () {
     canvas = p5.createCanvas(600, 600, p5.P2D);
@@ -67,8 +67,8 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
   function createLine() {
     let nodes = new Array<Node>;
 
-    const p1: PositionType = {x: border, y: p5.height / 2 };
-    const p2: PositionType = {x: p5.width - border, y: p5.height / 2 };
+    const p1: PositionType = {x: border, y: 135 };
+    const p2: PositionType = {x: p5.width - border, y: 135 };
 
     nodes.push(new Node(getID(), p5, p1, settings, true));
     nodes.push(new Node(getID(), p5, p2, settings, true));
@@ -76,31 +76,60 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
     return nodes;
   }
 
+  function createLetter(letter: string) {
+    switch (letter) {
+
+        case 'R': return [[30,   30], [115,  30], [135,  45], [135, 110], [115, 125], [135, 140], 
+                          [135, 210], [100, 210], [100, 140], [60, 140], [60, 210], 
+                          [30,  210], [30,  30]]
+        case 'A': return [[30,   30], [130,  30], [130, 210], [100, 210], [100, 140], [60, 140], [60, 210], 
+                          [30,  210], [30,  30]]
+        case 'Z': return [[30, 30],   [130, 30],  [130, 100], [80, 160],  [130, 160], [130, 210], 
+                          [30, 210],  [30, 150],  [80, 80],   [30, 80],   [30, 30]]
+        case 'B': return [[30,   30], [115, 30],  [135,  45], [135, 110], [115, 125], [135, 140], 
+                          [135, 210], [135, 195], [115, 210], [30,  210], [30,  30]]
+        case 'C': return [[30,   30], [130,  30], [130, 60], [60,  60],   [60, 180],  [130, 180], 
+                          [130, 210], [30,  210], [30,  30]]
+        case 'D': return [[30,   30], [115, 30],  [135,  45],  
+                          [135, 210], [135, 195], [115, 210], [30,  210], [30,  30]]
+        case 'E': return [[30,   30], [130,  30], [130, 60], [60,  60], [60,  100], 
+                          [110, 100], [110, 130], [60, 130], [60, 180], [130, 180], 
+                          [130, 210], [30,  210], [30,  30]]
+        case 'F': return [[30,   30], [130,  30], [130, 60], [60,  60], [60,  100], 
+                          [110, 100], [110, 130], [60, 130], [60, 210], [30,  210], [30,  30]]
+        case 'G': return [[30,   30], [135,  30], [135, 60], [60,  60], [60,  180], 
+                          [110, 180], [110, 100], [135, 100], [135, 210], [30, 210], [30,  30]]
+        case 'H': return [[30,   30], [60,   30], [60, 110], [100, 110], [100, 30], [130,  30], [130, 210], [100, 210], [100, 140], [60, 140], [60, 210], 
+                          [30,  210], [30,  30]]
+    }
+  }
+
   function restartWorld() {
     
     world.clearPaths();
-    let nodes: Node[]      = createLine();
-    var pol:   number[][]  = [];
+    const word: string[] = ['E', 'E', 'E', 'E']
 
-    const p1: PositionType = { x: border, y: border }
-    const p2: PositionType = { x: p5.width - border, y: border }
-    const p3: PositionType = { x: p5.width - border, y: p5.height - border }
-    const p4: PositionType = { x: border, y: p5.height - border }
+    for (let i = 0; i < word.length; i++) {
+        const l: string = word.at(i);
+        let letter = createLetter(l);
+        let nodes = new Array<Node>;
+        const p1: PositionType = { x: (border + i * 135 + 25)/2,  y: 45 };
+        const p2: PositionType = { x: (border + i * 135 + 55)/2, y: 45 };
+        nodes.push(new Node(getID(), p5, p1, settings, true));
+        nodes.push(new Node(getID(), p5, p2, settings, true));
+        for (let j = 0; j < letter.length; j++) {
+            letter[j][0] = (letter[j][0]  + (140 * i)) * 1/2;
+        };
 
-    pol.push([p1.x, p1.y])
-    pol.push([p2.x, p2.y])
-    pol.push([p3.x, p3.y])
-    pol.push([p4.x, p4.y])
+        world.addPath(new Path(p5, nodes, new PolygonBounds(p5, letter), settings));
+    }
 
-    let path: Path = new Path(p5, nodes, new PolygonBounds(p5, pol), settings);
-    
-    world.addPath(path);
     world.drawBackground();
     world.draw();
   }
 }
 
-export default function DifferentialGrowthContainer() 
+export default function DifferentialLetters() 
 {
   const [setting, setSetting] = useState(E01Settings);
 
@@ -262,31 +291,31 @@ export default function DifferentialGrowthContainer()
             <div className="flex flex-row justify-between items-center">
               <h6>Min Node Distance</h6>
             </div>
-            <CustomSlider title={''} id={'ALF'} min={.1} max={30} 
-                        step={.1} value={setting.minDistance} onChange={handleChangeMin}/>
+            <CustomSlider title={''} id={'ALF'} min={1} max={30} 
+                        step={.01} value={setting.minDistance} onChange={handleChangeMin}/>
             <div className="flex flex-row justify-between items-center">
               <h6>Max Node Distance</h6>
             </div>
-            <CustomSlider title={''} id={'ALF'} min={.1} max={30} 
-                        step={.1} value={setting.maxDistance} onChange={handleChangeMax}/>
+            <CustomSlider title={''} id={'ALF'} min={1} max={30} 
+                        step={.01} value={setting.maxDistance} onChange={handleChangeMax}/>
           </div>
           <div className="flex flex-col mb-3 border-2 px-2 justify-between">
             <div className="flex flex-row justify-between items-center">
               <h6>Repulsion Force</h6>
             </div>
-            <CustomSlider title={''}  id={'ALF'} min={.01} max={1} 
+            <CustomSlider title={''}  id={'ALF'} min={.01} max={5} 
                         step={.01} value={setting.repulsionScalar} onChange={handleChangeRepulse}/>
             <div className="flex flex-row justify-between items-center">
               <h6>Repulsion Radius</h6>
             </div>
-            <CustomSlider title={''} id={'ALF'} min={1} max={10} 
-                        step={1}  value={setting.repulsionRadius} onChange={handleChangeRepulseRad}/>
+            <CustomSlider title={''} id={'ALF'} min={1} max={15} 
+                        step={.01}  value={setting.repulsionRadius} onChange={handleChangeRepulseRad}/>
           </div>
           <div className="flex flex-col mb-3 border-2 px-2 justify-between">
             <div className="flex flex-row justify-between items-center">
               <h6>Attraction Force</h6>
             </div>
-            <CustomSlider title={''} id={'ALF'} min={1}  max={30} 
+            <CustomSlider title={''} id={'ALF'} min={0}  max={30} 
                         step={.1} value={setting.attractionScalar} onChange={handleChangeAttract}/>
           </div>
           <div className="flex flex-col mb-3 border-2 px-2 justify-between">

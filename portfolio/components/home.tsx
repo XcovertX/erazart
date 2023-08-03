@@ -21,7 +21,7 @@ const Home = () => {
                 <Link href="/projects/" className="hover:underline hover:pb-5 hover:px-10 ease-in duration-300 hover:border-emerald-400 hover:border hover:pt-44 hover:text-emerald-400 hover:bg-neutral-800 px-3">
                     Coding Portfolio
                 </Link>
-                <Link href="/projects/" className="hover:underline hover:pb-5 hover:px-10 ease-in duration-300 hover:border-emerald-400 hover:border hover:pt-44 hover:text-emerald-400 hover:bg-neutral-800 px-3">
+                <Link href="/about/" className="hover:underline hover:pb-5 hover:px-10 ease-in duration-300 hover:border-emerald-400 hover:border hover:pt-44 hover:text-emerald-400 hover:bg-neutral-800 px-3">
                     About
                 </Link>
             </h2>

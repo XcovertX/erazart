@@ -1,4 +1,4 @@
-import Settings from "./interfaces/settings";
+import Settings from "../interfaces/settings";
 
 export const E01Settings: Settings = 
   {

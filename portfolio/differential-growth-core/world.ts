@@ -27,7 +27,8 @@ export default class World {
         this.paths.length > 0 && 
        !this.settings.paused) 
     {
-      for (let path of this.paths) {
+      for (let i = 0; i < this.paths.length; i++) {
+        const path = this.paths[i];
         path.iterate(this.tree);
       }
     }
