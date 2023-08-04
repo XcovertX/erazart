@@ -97,8 +97,8 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
             letter[j][1] = letter[j][1] *1.25
         };
         let nodes = new Array<Node>;
-        const p1: PositionType = { x: (border + (p5.width/word.length * i)),  y: 50 };
-        const p2: PositionType = { x: (border + (p5.width/word.length  * i)) + 30, y: 50 };
+        const p1: PositionType = { x: letter[0][0],  y: 50 };
+        const p2: PositionType = { x: letter[0][0] + 5, y: 50 };
         nodes.push(new Node(getID(), p5, p1, settings, true));
         nodes.push(new Node(getID(), p5, p2, settings, true));
         world.addPath(new Path(p5, nodes, new PolygonBounds(p5, letter), settings));

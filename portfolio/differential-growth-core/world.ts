@@ -9,12 +9,15 @@ export default class World {
   paths: Array<Path>;
   settings: Settings;
   p5: P5CanvasInstance<Props>;
+  currentPath: number;
+
   tree;
   constructor(settings: Settings) {
     this.paths = new Array<Path>;
     this.settings = settings;
     this.tree = new CustomRBush(9);
     this.buildTree();
+    this.currentPath = 0;
   }
 
   // iterates over every path
@@ -27,9 +30,17 @@ export default class World {
         this.paths.length > 0 && 
        !this.settings.paused) 
     {
-      for (let i = 0; i < this.paths.length; i++) {
-        const path = this.paths[i];
+      if(this.settings.indiPathMode) {
+        const path = this.paths[this.currentPath];
         path.iterate(this.tree);
+        if(path.iterationCount == path.settings.iterationCount){
+          this.currentPath++;
+        }
+      } else {
+        for (let i = 0; i < this.paths.length; i++) {
+          const path = this.paths[i];
+          path.iterate(this.tree);
+        }
       }
     }
   }

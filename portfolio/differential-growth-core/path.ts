@@ -15,6 +15,7 @@ export default class Path {
   p5: P5CanvasInstance<MySketchProps>;
   nodes: Array<Node>;
   settings: Settings;
+  iterationCount: number;
   polygonBounds: PolygonBounds;
   lastNodeInjection: number;
   constructor(p5: P5CanvasInstance<MySketchProps>, 
@@ -26,26 +27,32 @@ export default class Path {
                 this.settings = settings;
                 this.polygonBounds = polygonBounds;
                 this.lastNodeInjection = 0;
+                this.iterationCount = 0
               }
 
   // iterates over every node in this path
   iterate(tree) {
-    for (let i = 0; i < this.nodes.length; i++) {
-      if(this.settings.brownianMode && !this.nodes[i].isFixed) {
-        this.applyBrownianMotion(i);
+    if(!this.settings.finiteIterations || this.iterationCount < this.settings.iterationCount) {
+      for (let i = 0; i < this.nodes.length; i++) {
+        if(this.settings.brownianMode && !this.nodes[i].isFixed) {
+          this.applyBrownianMotion(i);
+        }
+        if(!this.nodes[i].isFixed){
+          this.applyAttraction(i);
+          this.applyRepulsion(i, tree);
+          this.applyAlignment(i);
+          this.applyBounds(i);
+          this.nodes[i].iterateNode();
+        }
       }
-      this.applyAttraction(i);
-      this.applyRepulsion(i, tree);
-      this.applyAlignment(i);
-      this.applyBounds(i);
-      this.nodes[i].iterateNode();
-    }
-    this.splitEdges();
-    this.pruneNodes();
+      this.splitEdges();
+      this.pruneNodes();
 
-    if (this.p5.millis() - this.lastNodeInjection >= this.settings.nodeInjectionRate) {
-      this.injectNode();
-      this.lastNodeInjection = this.p5.millis();
+      if (this.p5.millis() - this.lastNodeInjection >= this.settings.nodeInjectionRate) {
+        this.injectNode();
+        this.lastNodeInjection = this.p5.millis();
+      }
+      this.iterationCount++;
     }
   }
 

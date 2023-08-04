@@ -9,6 +9,8 @@ export default class Node extends Vec2  {
   settings: Settings;
   p5: P5CanvasInstance<SketchProps>;
   isFixed: boolean;
+  age:number;
+  lastPosition: Array<number>
   constructor(id:number, p5: P5CanvasInstance<SketchProps>, position: PositionType, settings: Settings, fixed: boolean) {
     super(position.x, position.y)
     this.id = id;
@@ -16,14 +18,19 @@ export default class Node extends Vec2  {
     this.settings = settings;
     this.p5 = p5;
     this.isFixed = fixed;
+    this.age = 0;
   }
 
   // Moves Node by a single step
   iterateNode() {
+    // if(this.age == this.settings.iterationCount) {
+    //   this.isFixed = true;
+    // }
     if(!this.isFixed) {
         this.x = this.p5.lerp(this.x, this.nextPosition.x, this.settings.maxVelocity);
         this.y = this.p5.lerp(this.y, this.nextPosition.y, this.settings.maxVelocity);
     }
+    this.age++;
   }
 
   drawNode() {

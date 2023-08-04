@@ -30,7 +30,7 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
   var border: number = 0;
 
   p5.setup = function () {
-    canvas = p5.createCanvas(300, 533, p5.P2D);
+    canvas = p5.createCanvas(500, 500, p5.P2D);
     p5.colorMode(p5.HSB, 360);
     p5.ellipseMode(p5.RADIUS);
     setBorderWidth();
