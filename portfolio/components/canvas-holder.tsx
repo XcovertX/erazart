@@ -1,5 +1,5 @@
 import DifferentialGrowthContainer from '../differential-growth-core/demo-1/dif-gro-example-1'
-import DifferentialLetters from '../differential-growth-core/demo-2/differential-letters'
+import DifferentialLetters from '../differential-growth-core/demo-2/dif-gro-example-2'
 import Header from './header'
 
 const CanvasHolder = () => {

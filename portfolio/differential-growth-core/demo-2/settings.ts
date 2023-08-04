@@ -1,16 +1,16 @@
 import Settings from "../interfaces/settings";
 
-export const E01Settings: Settings = 
+export const E02Settings: Settings = 
   {
     border:                .05,
-    brownianScalar:        .1,
+    brownianScalar:        .3,
     attractionScalar:      .2,
-    repulsionScalar:       .5,
-    repulsionRadius:       10,
+    repulsionScalar:       1,
+    repulsionRadius:       5,
     alignmentScalar:       .5,
     minDistance:           1,
-    maxDistance:           5,
-    maxVelocity:           .1,
+    maxDistance:           2,
+    maxVelocity:           .15,
     movingNodeRadius:      1,
     fixedNodeRadius:       1,
     nodeInjectionRate:     1,
@@ -24,8 +24,8 @@ export const E01Settings: Settings =
     paused:                true,
     restart:               false,
     strokeColor:          {h: 360, s: 360, b: 360, a: 100},
-    backgroundColor:      {h: 360, s: 0,   b: 0,   a: 100},
-    fillColor:            {h: 0,   s: 360, b: 360, a: 100},
+    backgroundColor:      {h: 160, s: 360, b: 200,   a: 100},
+    fillColor:            {h: 40, s: 360, b: 360, a: 100},
     fixedColor:           {h: 360, s: 360, b: 360, a: 100},
     movingColor:          {h: 250, s: 360, b: 360, a: 100},
   }

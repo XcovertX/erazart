@@ -20,7 +20,7 @@ export const E01Settings: Settings =
     fillMode:              false,
     brownianMode:          true,
     isClosed:              false,
-    showBoundsMode:        false,
+    showBoundsMode:        true,
     paused:                true,
     restart:               false,
     strokeColor:          {h: 360, s: 360, b: 360, a: 100},
