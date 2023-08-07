@@ -28,9 +28,21 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
   let settings: Settings = E01Settings;
   var canvas;
   var border: number = 0;
+  const smWidth: number = 500;
+  const smHeight: number = 500;
+  const lgWidth: number = 800;
+  const lgHeight: number = 800;
 
   p5.setup = function () {
-    canvas = p5.createCanvas(500, 500, p5.P2D);
+    let w: number, h: number;
+    if(window.innerWidth < 1200) {
+      w = smWidth;
+      h = smHeight;
+    } else {
+      w = lgWidth;
+      h = lgHeight;
+    }
+    canvas = p5.createCanvas(w, h, p5.P2D);
     p5.colorMode(p5.HSB, 360);
     p5.ellipseMode(p5.RADIUS);
     setBorderWidth();
@@ -46,9 +58,13 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
     restartWorld();
   }
 
-  // p5.windowResized = () => {
-  //   p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
-  // }
+  p5.windowResized = () => {
+    if(window.innerWidth < 1200) {
+      p5.resizeCanvas(smWidth, smHeight);
+    } else {
+      p5.resizeCanvas(lgWidth, lgHeight);
+    }
+  }
 
   let t = 0;
   p5.draw = () => {
@@ -88,7 +104,7 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
     pol.push([p2.x, p2.y])
     pol.push([p3.x, p3.y])
     pol.push([p4.x, p4.y])
-    // const p1: PositionType = {x: p5.width/2-100, y: p5.height*3/4 };
+    // const p1: PositionType = {x: p5.width/3-100, y: p5.height*3/4 };
     // const p2: PositionType = {x: p5.width/2, y: p5.height*1/4};
     // const p3: PositionType = {x: p5.width/2+100, y: p5.height*3/4 };
     // pol.push([p1.x, p1.y])
@@ -112,6 +128,13 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
       nodes.push(new Node(getID(), p5, pa1, settings, true));
       nodes.push(new Node(getID(), p5, pa2, settings, true));
       nodes.push(new Node(getID(), p5, pa3, settings, true));
+      
+      // const pa1: PositionType = {x: p5.width/3 - 100, y: p5.height *2/3 +50 };
+      // const pa2: PositionType = {x: p5.width/2, y: p5.height *1/3 -50 };
+      // const pa3: PositionType = {x: p5.width*2/3 +100, y: p5.height *2/3 +50 };
+      // nodes.push(new Node(getID(), p5, pa1, settings, true))
+      // nodes.push(new Node(getID(), p5, pa2, settings, true));
+      // nodes.push(new Node(getID(), p5, pa3, settings, true));
       paths.push(new Path(p5, nodes, pb, settings))
     return paths;
   }
@@ -295,10 +318,7 @@ export default function DifferentialGrowthContainer()
 
     return (
       <div className="flex flex-row">
-        <div className="flex flex-col justify-around">
-          <NextReactP5Wrapper sketch={sketch} settings={{...setting}} />
-        </div>
-        <div className='text-sm flex-col flex ml-3 justify-between'>
+        <div className='text-sm flex-col flex mr-3 justify-between'>
           <div className="flex flex-col mb-3 border-2 px-2 justify-between">
             <div className="flex flex-row justify-between items-center">
               <h6>Min Node Distance</h6>
@@ -350,7 +370,10 @@ export default function DifferentialGrowthContainer()
             <button className="flex-grow py-3 px-5 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRestart}>restart</button>
           </div>
         </div>
-        <div className=" flex flex-col justify-between ml-3">
+        <div className="flex flex-col justify-around">
+          <NextReactP5Wrapper sketch={sketch} settings={{...setting}} />
+        </div>
+        <div className=" flex flex-col ml-3 justify-between">
           <div className="border-2 px-2 mb-3">
             <h6 className="flex justify-center">Stroke Color</h6>
             <CustomSlider title={'H'} id={'ALF'} min={0} max={360} 

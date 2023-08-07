@@ -238,17 +238,16 @@ function drawXDots(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionTy
 function drawDoubleVerticalDots(p5: P5CanvasInstance<MySketchProps>, cartPosition: PositionType, part: PartType){
     const quarterHeight = part.height * 1/6;
     const x = part.position.x + cartPosition.x;
-    const y1 = cartPosition.y  - quarterHeight*3;
+    const y1 = cartPosition.y  - quarterHeight*2;
     const y2 = cartPosition.y  - quarterHeight*2;
-    const y3 = cartPosition.y  + quarterHeight*2;
+    const y3 = cartPosition.y  + quarterHeight*3;
     const y4 = cartPosition.y  + quarterHeight*3;
+    const rand: number = Math.random();
     p5.push();
     p5.stroke(part.color.h, part.color.s, part.color.b);
     p5.fill(part.color.h, part.color.s, part.color.b);
     p5.ellipse(x, y1, (part.width * 1/32), (part.width * 1/32));
     p5.ellipse(x, y2, (part.width * 1/32), (part.width * 1/32));
-    p5.ellipse(x, y3, (part.width * 1/32), (part.width * 1/32));
-    p5.ellipse(x, y4, (part.width * 1/32), (part.width * 1/32));
     p5.pop();
 }
 
@@ -338,7 +337,7 @@ function drawCarts(p5: P5CanvasInstance<MySketchProps>, props){
 
    return () => {
         const { carts, grid} = props;
-        p5.clear();
+        // p5.clear();
         p5.background(30, 30, 70)
         if (grid) {
             drawGrid(p5, carts[0].width, carts[0].height);
@@ -523,12 +522,12 @@ function getRandomPartShape() {
      }
 }
 
-function changeCartColor(cart: CartType, h: number, s: number, b: number, bw: boolean) {
+function changeCartColor(cart: CartType, h: number, s: number, b: number, bw: number) {
     for (let index = 0; index < cart.parts.length; index++) {
         cart.parts[index].color.h  = h;
         cart.parts[index].color.s  = s;
         cart.parts[index].color.b  = b;
-        cart.parts[index].color.bw = bw;
+        cart.parts[index].color.a = bw;
     }
 }
 
@@ -547,16 +546,16 @@ function moveCart(cart: CartType, edgeExtend: number, continuation: number) {
     }
 
     switch (cart.direction) {
-        case "NORTH": changeCartColor(cart, 40, 360, 360, false);
+        case "NORTH": changeCartColor(cart, 40, 360, 360, 100);
                         cart.position.y = cart.position.y - 2;
                         break;
-        case "SOUTH": changeCartColor(cart, 0, 0, 140, true);
+        case "SOUTH": changeCartColor(cart, 0, 0, 140, 100);
                         cart.position.y = cart.position.y + 2;
                         break;
-        case  "EAST": changeCartColor(cart, 165, 360, 360, false);
+        case  "EAST": changeCartColor(cart, 165, 360, 360, 100);
                         cart.position.x = cart.position.x + 2;
                         break;
-        case  "WEST": changeCartColor(cart, 0, 0, 140, true);
+        case  "WEST": changeCartColor(cart, 0, 0, 140, 100);
                         cart.position.x = cart.position.x - 2;
                         break;
         default: (console.error('Failed to move cart'));
@@ -659,7 +658,7 @@ function buildRandomSuperEtraLargePart(cartPosition: PositionType, color: Color,
 function generateCarts(cartCount: number, partCount: number, w: number, h: number) {
     let carts = new Array(cartCount);
     for (let i = 0; i < cartCount; i++) {
-        var cartColor: Color = {h: 0, s: 0, b: 100, bw: true};
+        var cartColor: Color = {h: 0, s: 0, b: 100, a: 100};
         var cartPosition: PositionType = getRandomPosition(0, window.innerWidth, 0, window.innerHeight, w, h);
         var parts = new Array(partCount);
         for (let j = 0; j < partCount; j++) {
@@ -671,11 +670,11 @@ function generateCarts(cartCount: number, partCount: number, w: number, h: numbe
                 parts[j] = buildNewPart(cartPosition, cartColor, w, h);
             }
         }
-        const speed = getRandomInt(3000, 10000);
+        const speed = getRandomInt(2000, 10000);
         var cart: CartType = {
             id: i,
             position: cartPosition,
-            age: getRandomInt(3000, speed),
+            age: getRandomInt(2000, speed),
             height: w,
             width: h,
             isTransitioning: false,
@@ -706,6 +705,7 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         canvas.style('z-index', '-1');
         p5.colorMode(p5.HSB, 360);
         p5.ellipseMode(p5.RADIUS);
+        p5.strokeWeight(2)
     }
 
     p5.updateWithProps = props => {
@@ -717,7 +717,7 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
 
 export default function Background() {
     const [rotation,     setRotation] = useState(0);
-    const [cartCount,   setCartCount] = useState(150);
+    const [cartCount,   setCartCount] = useState(100);
     const [carts,           setCarts] = useState(Array<CartType>(cartCount));
     const [maxSpeed,     setMaxSpeed] = useState(0);
     const [minSpeed,     setMinSpeed] = useState(0);
@@ -731,17 +731,17 @@ export default function Background() {
     useEffect(() => {
         setRotation(2);
         // const cartCount: number = (Math.floor(Math.random()*500));
-        const partCount: number = 4;
+        const partCount: number = 3;
         const w: number = 130;
         const h: number = 130;
-        var cartColor: Color = {h: 0, s: 0, b: 140, bw: true};
+        var cartColor: Color = {h: 0, s: 0, b: 140, a: 100};
         const c: Array<CartType> = generateCarts(cartCount, partCount, w, h);
         setCarts(c);
         setCartCount(cartCount);
         setPartWidth(w);
         setPartHeight(h);
-        setMaxSpeed(500);
-        setMinSpeed(5000);
+        setMaxSpeed(50);
+        setMinSpeed(1000);
         setPartCount(partCount);
         setEdgeExtend(w);
 

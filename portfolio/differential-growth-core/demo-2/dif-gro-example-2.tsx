@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {  SketchProps, P5CanvasInstance } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
 import Node from "../node";
@@ -33,7 +33,7 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
   var canvas;
 
   p5.setup = function () {
-    canvas = p5.createCanvas(600, 300, p5.P2D);
+    canvas = p5.createCanvas(800, 450, p5.P2D);
     p5.colorMode(p5.HSB, 360);
     p5.ellipseMode(p5.RADIUS);
     setBorderWidth();
@@ -93,12 +93,12 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
         let letter = getLetter(l);
 
         for (let j = 0; j < letter.length; j++) {
-            letter[j][0] = (letter[j][0]/word.length*3.5  + (p5.width/word.length  * i) + 5);
-            letter[j][1] = letter[j][1] *1.25
+            letter[j][0] = (letter[j][0]/word.length*4.7  + (p5.width/word.length  * i) + 5);
+            letter[j][1] = p5.height/4 + letter[j][1]
         };
         let nodes = new Array<Node>;
-        const p1: PositionType = { x: letter[0][0],  y: 50 };
-        const p2: PositionType = { x: letter[0][0] + 5, y: 50 };
+        const p1: PositionType = { x: letter[0][0],  y: letter[0][1] };
+        const p2: PositionType = { x: letter[0][0] + 5, y: letter[0][1]+5 };
         nodes.push(new Node(getID(), p5, p1, settings, true));
         nodes.push(new Node(getID(), p5, p2, settings, true));
         world.addPath(new Path(p5, nodes, new PolygonBounds(p5, letter), settings));
@@ -117,6 +117,7 @@ export default function DifferentialLetters()
 
   function handleChangeEnter() {
     setWord(w);
+    handleChangeRun();
   }
 
   function handleChangeRun() {
@@ -133,6 +134,19 @@ export default function DifferentialLetters()
 
   useEffect(() => {
     setSetting(setting);
+
+    const keyPressEvent = (e) => {
+      if (e.keyCode === 13) {
+        console.log("keypressed")
+        setWord(w);
+      }
+    };
+
+    window.addEventListener('click', keyPressEvent)
+
+    return () => {
+      window.removeEventListener('click', keyPressEvent)
+    }
   }, [{...setting}, word]);
 
     return (
