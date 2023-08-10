@@ -1,5 +1,5 @@
 
-export const CustomSlider = ({title, id, min, max, step, value, onChange}) => {
+export const CustomSlider = ({title, id, min, max, step, value, onChange, ref}) => {
   return (
     <div className="p-2 flex flex-row justify-between items-center">
       <input
@@ -11,6 +11,7 @@ export const CustomSlider = ({title, id, min, max, step, value, onChange}) => {
         id        = {id}
         value     = {value} 
         onChange  = {onChange}
+        ref       = {ref}
       />
       <div className="ml-3 pl-3 relative h-5 w-10">
         <label className="mx-2 absolute start-0">

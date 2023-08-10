@@ -6,7 +6,7 @@ type Props = {
 
 const SocialLinks = ({dark}: Props) => {
   return (
-    <div className="flex flex-row sm:mt-5">
+    <div className="flex flex-row mt-5">
         <div className="md:mx-10 mx-5">
             <div className="flex items-center relative justify-center">
                 <a href="http://github.com/xcovertx" 
