@@ -1,7 +1,7 @@
 ---
 title: 'Pixel Averaging'
 excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.'
-coverImage: 'rectangular-pixels/rectangle-mapping-6_mjf5ti'
+coverImage: 'rectangular-pixels/rectangle4'
 date: '2020-03-16T05:35:07.322Z'
 live: '/about/'
 author:
@@ -9,6 +9,21 @@ author:
   picture: 'triangle-mapping/tonybw-triangles'
 ogImage:
   url: 'rectangular-pixels/rectangle-mapping-6_mjf5ti'
+images: [
+  {
+    name: triangle1,
+    picture: rectangular-pixels/rectangle1
+  },
+  {
+    name: triangle2,
+    picture: rectangular-pixels/rectangle2
+  },
+  {
+    name: triangle3,
+    picture: rectangular-pixels/rectangle3
+  },
+]
+repo: ''
 ---
 
 While exploring the

@@ -1,4 +1,5 @@
 import type Author from './author'
+import Image from './image'
 
 type PostType = {
   slug: string
@@ -12,6 +13,8 @@ type PostType = {
     url: string
   }
   content: string
+  images: Image[]
+  repo: string
 }
 
 export default PostType

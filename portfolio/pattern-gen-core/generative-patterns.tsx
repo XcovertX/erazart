@@ -450,9 +450,9 @@ function getRandomColor() {
     const color = getRandomInt(0, 6);
     switch(color) {
         case 0:  return {h: 150, s: 360, b: 360, a: 100};
-        // case 1:  return {h: 30,  s: 360, b: 360, a: 100};
-        // case 2:  return {h: 20, s: 360, b: 360, a: 100};
-        // case 3:  return {h: 10, s: 360, b: 360, a: 100};
+        case 1:  return {h: 30,  s: 360, b: 360, a: 100};
+        case 2:  return {h: 20, s: 360, b: 360, a: 100};
+        case 3:  return {h: 10, s: 360, b: 360, a: 100};
         default: return {h: 0,   s: 360, b: 360, a: 100};
     }
 }
@@ -716,7 +716,7 @@ function gridSketch(p5: P5CanvasInstance<MySketchProps>) {
         partWidth: 0,
         partHeight: 0,
         run: false,
-        strokeWeight: 3
+        strokeWeight: 5
     }
     var canvas
 
@@ -771,11 +771,11 @@ export default function GridPattern() {
     const [cols,                 setCols] = useState(1);
     const [canvasWidth,   setCanvasWidth] = useState(337.5);
     const [canvasHeight, setCanvasHeight] = useState(600);
-    const [minPartCount, setMinPartCount] = useState(2);
-    const [maxPartCount, setMaxPartCount] = useState(4);
+    const [minPartCount, setMinPartCount] = useState(1);
+    const [maxPartCount, setMaxPartCount] = useState(3);
     const [dGrid,               setDGrid] = useState(true);
     const [run,                   setRun] = useState(false);
-    const [strokeWeight, setStrokeWeight] = useState(3);
+    const [strokeWeight, setStrokeWeight] = useState(5);
 
 
     function handleChangeRows(event) {

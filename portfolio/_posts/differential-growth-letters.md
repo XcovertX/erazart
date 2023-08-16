@@ -9,7 +9,8 @@ author:
   picture: 'triangle-mapping/tonybw-triangles'
 ogImage:
   url: 'differential-growth/difgrow-james.png'
-bodyimages: ['differential-growth/difgrow-james.png',          'triangle-mapping/tonybw-triangles']
+images: []
+repo: 'https://github.com/XcovertX/erazart/tree/main/portfolio/differential-growth-core/demo-2'
 ---
 
 While exploring the

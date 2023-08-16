@@ -12,6 +12,7 @@ import Head from 'next/head'
 import { CMS_NAME } from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
 import type PostType from '../../interfaces/post'
+import PostExampleImages from '../../components/post-example-images'
 
 type Props = {
   post: PostType
@@ -45,7 +46,8 @@ export default function Post({ post, morePosts, preview }: Props) {
                 author={post.author}
                 live={post.live}
               />
-              <PostBody content={post.content} />
+              <PostBody content={post.content} live={post.live} repo={post.repo} />
+              <PostExampleImages images={post.images} />
             </article>
           </>
         )}
@@ -70,6 +72,8 @@ export async function getStaticProps({ params }: Params) {
     'ogImage',
     'coverImage',
     'live',
+    'images',
+    'repo'
   ])
   const content = await markdownToHtml(post.content || '')
 

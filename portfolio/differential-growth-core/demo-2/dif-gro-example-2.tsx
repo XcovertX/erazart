@@ -8,9 +8,8 @@ import { E02Settings } from "./settings";
 import PositionType from "../../interfaces/position";
 import PolygonBounds from "../polygon-bounds";
 import Settings from "../interfaces/settings";
-import { CustomSlider } from "../../components/slider";
-import { Toggle } from "../../components/toggle";
 import { getLetter } from "./letters";
+import Popup from "reactjs-popup";
 
 
 let nodecount: number = 0;
@@ -112,8 +111,11 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
 export default function DifferentialLetters() 
 {
   const [setting, setSetting] = useState(E02Settings);
-  const [w, setW] = useState('');
-  const [word, setWord] =useState('');
+  const [w,             setW] = useState('');
+  const [word,       setWord] = useState('');
+  const [error,     setError] = useState(false)
+
+  const resetError = () => setError(false);
 
   function handleChangeEnter() {
     setWord(w);
@@ -130,6 +132,10 @@ export default function DifferentialLetters()
     let s = setting;
     s.restart = !s.restart;
     setSetting({...Object.assign(setting, s)});
+  }
+
+  function handleChangeError(e: boolean) {
+    setError(e);
   }
 
   useEffect(() => {
@@ -150,23 +156,38 @@ export default function DifferentialLetters()
   }, [{...setting}, word]);
 
     return (
-      <div className="flex flex-col">
-        <div className="flex justify-around">
-          <NextReactP5Wrapper sketch={sketch} settings={{...setting}} word={word} />
+      <>            
+        <Popup open={error} 
+               position="right center"
+               closeOnDocumentClick 
+               onClose={resetError}>
+          <div className="modal bg-slate-300 p-5 rounded-sm">
+            <a className="close" onClick={resetError}>
+              
+            </a>
+            {`'${w}' contains a non-implemented character. Please only letters a-zA-Z`}
+          </div>
+        </Popup>
+        <div className="flex flex-col">
+          <div className="flex justify-around">
+            <NextReactP5Wrapper sketch={sketch} settings={{...setting}} word={word} />
+          </div>
+          <div className="flex-col">
+            <label className="flex-row justify-start flex items-center">
+              Type a word:
+              <input className="border-2 m-3 flex-grow" 
+                    onChange={(e) => {setW(e.target.value)}}
+                    value={w}
+                    placeholder="Enter a word to be transformed (a-z A-Z)"/>
+            </label>
+            <div className="flex flex-row justify-around">
+                <button className="flex-grow py-3 px-5 mr-3 bg-slate-900 font-bold text-zinc-300" onClick={() => /^[a-zA-Z]+$/.test(w)? handleChangeEnter() : handleChangeError(true)}>Enter</button>
+                <button className="flex-grow py-3 px-5 mr-3 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRun}>{setting.paused ? 'run' : 'pause'}</button>
+                <button className="flex-grow py-3 px-5 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRestart}>restart</button>
+              </div>
+          </div>
         </div>
-        <div className="flex-col">
-          <label className="flex-row justify-start flex items-center">
-            Type a word:
-            <input className="border-2 m-3 flex-grow" 
-                   onChange={(e) => {setW(e.target.value)}}
-                   value={w}/>
-          </label>
-          <div className="flex flex-row justify-around">
-              <button className="flex-grow py-3 px-5 mr-3 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeEnter}>Enter</button>
-              <button className="flex-grow py-3 px-5 mr-3 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRun}>{setting.paused ? 'run' : 'pause'}</button>
-              <button className="flex-grow py-3 px-5 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRestart}>restart</button>
-            </div>
-        </div>
-      </div>
+      </>
+
     )
 }

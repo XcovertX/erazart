@@ -9,6 +9,21 @@ author:
   picture: 'triangle-mapping/tonybw-triangles'
 ogImage:
   url: 'triangle-mapping/triangle-mapping-1'
+images: [
+  {
+    name: triangle1,
+    picture: triangle-mapping/triangle1
+  },
+  {
+    name: triangle2,
+    picture: triangle-mapping/triangle2
+  },
+  {
+    name: triangle3,
+    picture: triangle-mapping/triangle3
+  }
+]
+repo: https://github.com/XcovertX/erazart/blob/main/portfolio/pattern-gen-core/generative-patterns.tsx
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.

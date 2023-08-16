@@ -20,7 +20,7 @@ type Props = {
 
 export default function Post({ post, morePosts, preview }: Props) {
   const router = useRouter()
-  const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`
+  const title = `${post.title} | Coding Projects ${CMS_NAME}`
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
   }
@@ -44,7 +44,7 @@ export default function Post({ post, morePosts, preview }: Props) {
                 author={post.author}
                 live={post.live}
               />
-              <PostBody content={post.content} />
+              <PostBody content={post.content} live={post.live} repo={post.repo}/>
             </article>
           </>
         )}
@@ -69,6 +69,7 @@ export async function getStaticProps({ params }: Params) {
     'ogImage',
     'coverImage',
     'live',
+    'repo'
   ])
   const content = await markdownToHtml(post.content || '')
 

@@ -17,23 +17,26 @@ const PostHeader = ({ title, coverImage, date, author, live }: Props) => {
   return (
     <>
       <PostTitle>{title}</PostTitle>
-      <div className="flex flex-row justify-between">
-        <div className="hidden md:block md:mb-12">
+      <div className="flex flex-row justify-between items-center">
+        <div className="hidden md:block md:mb-6 ">
           <Avatar name={author.name} picture={author.picture} />
         </div>
-        <Link href={live} className="hover:underline hover:text-emerald-400 text-3xl">
-            Try Live Version
+        <Link href={live} className="hidden md:block md:mb-6 hover:underline hover:text-green-500 text-xl font-bold">
+          Try Live Version
         </Link>
       </div>
 
-      <div className="mb-8 md:mb-16 sm:mx-0">
+      <div className="mb-8 md:mb-16 sm:mx-0 px-16">
         <CoverImage title={title} src={coverImage} />
       </div>
       <div className="max-w-2xl mx-auto">
-        <div className="block md:hidden mb-6">
+        <div className="block md:hidden mb-6 flex flex-row justify-between items-center">
           <Avatar name={author.name} picture={author.picture} />
+          <Link href={live} className="hover:underline hover:text-green-500 text-xl font-bold">
+            Try Live Version
+          </Link>
         </div>
-        <div className="mb-6 text-lg">
+        <div className="mb-2 text-lg">
           <DateFormatter dateString={date} />
         </div>
       </div>

@@ -8,34 +8,34 @@ const Home = () => {
         <Background />
         <section className="flex-col md:flex-row flex items-center md:items-start md:justify-between mt-16 mb-16 md:mb-12">
             <div className="flex-col">
-                <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
+                <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-4">
                     ErazArt.
                 </h1>
             </div>
 
             <SocialLinks dark={false}/>
         </section>
-        <div className="justify-end p-20 mb-5 grow items-end flex flex-row">
+        <div className="lg:justify-end md:p-5 justify-center p-5 mb-5 grow items-end flex flex-row">
             <div className="flex-row flex font-bold text-2xl">
             <div className="mx-2">
                     <div className="group relative px-1 pt-2 h-12 w-50 overflow-hidden">
-                        <span className="absolute inset-0 w-2 bg-emerald-400 transition-all rounded-sm duration-[250ms] ease-out group-hover:w-full"></span>
+                        <span className="absolute inset-0 w-2 bg-orange-500 transition-all rounded-sm duration-[250ms] ease-out group-hover:w-full"></span>
                         <Link href="/posts/" className="relative px-3 text-zinc-100 text-end group-hover:">
                             Art
                         </Link>
                     </div>
                 </div>
                 <div className="mx-2 ">
-                    <div className="group relative px-1 pt-2 h-12 w-50 overflow-hidden">
-                        <span className="absolute inset-0 w-2 bg-emerald-400 transition-all rounded-sm duration-[250ms] ease-out group-hover:w-full"></span>
+                    <div className="group relative px-1 pt-2 h-12 w-50 whitespace-nowrap overflow-hidden">
+                        <span className="absolute inset-0 w-2 bg-fuchsia-700 transition-all rounded-sm duration-[250ms] ease-out group-hover:w-full"></span>
                         <Link href="/projects/" className="relative px-3 text-zinc-100 text-end group-hover:">
-                        Coding Portfolio
+                            Coding Portfolio
                         </Link>
                     </div>
                 </div>
                 <div className="mx-2">
                     <div className="group relative px-1 pt-2 h-12 w-50 overflow-hidden">
-                        <span className="absolute inset-0 w-2 bg-emerald-400 transition-all rounded-sm duration-[250ms] ease-out group-hover:w-full"></span>
+                        <span className="absolute inset-0 w-2 bg-fuchsia-700 transition-all rounded-sm duration-[250ms] ease-out group-hover:w-full"></span>
                         <Link href="/about/" className="relative px-3 text-zinc-100 text-end group-hover:">
                             About
                         </Link>

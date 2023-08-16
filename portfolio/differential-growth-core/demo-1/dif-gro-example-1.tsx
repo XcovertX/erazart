@@ -28,10 +28,10 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
   let settings: Settings = E01Settings;
   var canvas;
   var border: number = 0;
-  const smWidth: number = 500;
-  const smHeight: number = 500;
-  const lgWidth: number = 800;
-  const lgHeight: number = 800;
+  const smWidth: number = 300;
+  const smHeight: number = 300;
+  const lgWidth: number = 500;
+  const lgHeight: number = 500;
 
   p5.setup = function () {
     let w: number, h: number;
@@ -319,55 +319,55 @@ export default function DifferentialGrowthContainer()
     return (
       <div className="flex flex-row">
         <div className='text-sm flex-col flex mr-3 justify-between'>
+          <div className="flex flex-row justify-around mb-3">
+            <button className="flex-grow py-3 px-5 mr-3 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRun}>{setting.paused ? 'run' : 'pause'}</button>
+            <button className="flex-grow py-3 px-5 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRestart}>restart</button>
+          </div>
           <div className="flex flex-col mb-3 border-2 px-2 justify-between">
             <div className="flex flex-row justify-between items-center">
               <h6>Min Node Distance</h6>
             </div>
-            <CustomSlider title={''} id={'ALF'} min={.1} max={30} 
-                        step={.1} value={setting.minDistance} onChange={handleChangeMin}/>
+            <CustomSlider title={''} id={''} min={.1} max={30} 
+                        step={.1} value={setting.minDistance} onChange={handleChangeMin} ref={null}/>
             <div className="flex flex-row justify-between items-center">
               <h6>Max Node Distance</h6>
             </div>
-            <CustomSlider title={''} id={'ALF'} min={.1} max={30} 
-                        step={.1} value={setting.maxDistance} onChange={handleChangeMax}/>
+            <CustomSlider title={''} id={''} min={.1} max={30} 
+                        step={.1} value={setting.maxDistance} onChange={handleChangeMax} ref={null}/>
           </div>
           <div className="flex flex-col mb-3 border-2 px-2 justify-between">
             <div className="flex flex-row justify-between items-center">
               <h6>Repulsion Force</h6>
             </div>
-            <CustomSlider title={''}  id={'ALF'} min={.01} max={3} 
-                        step={.01} value={setting.repulsionScalar} onChange={handleChangeRepulse}/>
+            <CustomSlider title={''}  id={''} min={.01} max={3} 
+                        step={.01} value={setting.repulsionScalar} onChange={handleChangeRepulse} ref={null}/>
             <div className="flex flex-row justify-between items-center">
               <h6>Repulsion Radius</h6>
             </div>
-            <CustomSlider title={''} id={'ALF'} min={1} max={10} 
-                        step={.1}  value={setting.repulsionRadius} onChange={handleChangeRepulseRad}/>
+            <CustomSlider title={''} id={''} min={1} max={10} 
+                        step={.1}  value={setting.repulsionRadius} onChange={handleChangeRepulseRad} ref={null}/>
           </div>
           <div className="flex flex-col mb-3 border-2 px-2 justify-between">
             <div className="flex flex-row justify-between items-center">
               <h6>Attraction Force</h6>
             </div>
-            <CustomSlider title={''} id={'ALF'} min={1}  max={30} 
-                        step={.1} value={setting.attractionScalar} onChange={handleChangeAttract}/>
+            <CustomSlider title={''} id={''} min={1}  max={30} 
+                        step={.1} value={setting.attractionScalar} onChange={handleChangeAttract} ref={null}/>
           </div>
           <div className="flex flex-col mb-3 border-2 px-2 justify-between">
             <div className="flex flex-row justify-between items-center">
               <h6>Alignment Force</h6>
             </div>
-            <CustomSlider title={''}  id={'ALF'} min={0}  max={2} 
-                        step={.01} value={setting.alignmentScalar} onChange={handleChangeAlign}/>
+            <CustomSlider title={''}  id={''} min={0}  max={2} 
+                        step={.01} value={setting.alignmentScalar} onChange={handleChangeAlign} ref={null}/>
           </div>
-          <div className="flex flex-col mb-3 border-2 px-2 justify-between">
+          <div className="flex flex-col border-2 px-2 justify-between">
             <div className="flex flex-row justify-between items-center">
               <h6>Brownian Force</h6>
               <Toggle title={'Browinan Mode'} onChange={handleChangeBrownMode} currentState={setting.brownianMode} />
             </div>
-            <CustomSlider title={''}   id={'ALF'} min={0}  max={2} 
-                          step={.01} value={setting.brownianScalar} onChange={handleChangeBrown}/>
-          </div>
-          <div className="flex flex-row justify-around">
-            <button className="flex-grow py-3 px-5 mr-3 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRun}>{setting.paused ? 'run' : 'pause'}</button>
-            <button className="flex-grow py-3 px-5 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRestart}>restart</button>
+            <CustomSlider title={''}   id={''} min={0}  max={2} 
+                          step={.01} value={setting.brownianScalar} onChange={handleChangeBrown} ref={null}/>
           </div>
         </div>
         <div className="flex flex-col justify-around">
@@ -376,25 +376,25 @@ export default function DifferentialGrowthContainer()
         <div className=" flex flex-col ml-3 justify-between">
           <div className="border-2 px-2 mb-3">
             <h6 className="flex justify-center">Stroke Color</h6>
-            <CustomSlider title={'H'} id={'ALF'} min={0} max={360} 
-                          step={.1} value={setting.fillColor.h} onChange={handleChangeFillColorH}/>
-            <CustomSlider title={'S'} id={'ALF'} min={0} max={360} 
-                          step={.1} value={setting.fillColor.s} onChange={handleChangeFillColorS}/>
-            <CustomSlider title={'B'} id={'ALF'} min={0} max={360} 
-                          step={.1} value={setting.fillColor.b} onChange={handleChangeFillColorB}/>
-            <CustomSlider title={'A'} id={'ALF'} min={0} max={360} 
-                          step={.1} value={setting.fillColor.a} onChange={handleChangeFillColorA}/>
+            <CustomSlider title={'H'} id={''} min={0} max={360} 
+                          step={.1} value={setting.fillColor.h} onChange={handleChangeFillColorH} ref={null}/>
+            <CustomSlider title={'S'} id={''} min={0} max={360} 
+                          step={.1} value={setting.fillColor.s} onChange={handleChangeFillColorS} ref={null}/>
+            <CustomSlider title={'B'} id={''} min={0} max={360} 
+                          step={.1} value={setting.fillColor.b} onChange={handleChangeFillColorB} ref={null}/>
+            <CustomSlider title={'A'} id={''} min={0} max={360} 
+                          step={.1} value={setting.fillColor.a} onChange={handleChangeFillColorA} ref={null}/>
           </div>
           <div className="border-2 px-2 mb-3">
             <h6 className="flex justify-center">Background Color</h6>
-            <CustomSlider title={'H'} id={'ALF'} min={0} max={360} 
-                          step={.1} value={setting.backgroundColor.h} onChange={handleChangeBGColorH}/>
-            <CustomSlider title={'S'} id={'ALF'} min={0} max={360} 
-                          step={.1} value={setting.backgroundColor.s} onChange={handleChangeBGColorS}/>
-            <CustomSlider title={'B'} id={'ALF'} min={0} max={360} 
-                          step={.1} value={setting.backgroundColor.b} onChange={handleChangeBGColorB}/>
-            <CustomSlider title={'A'} id={'ALF'} min={0} max={360} 
-                          step={.1} value={setting.backgroundColor.a} onChange={handleChangeBGColorA}/>
+            <CustomSlider title={'H'} id={''} min={0} max={360} 
+                          step={.1} value={setting.backgroundColor.h} onChange={handleChangeBGColorH} ref={null}/>
+            <CustomSlider title={'S'} id={''} min={0} max={360} 
+                          step={.1} value={setting.backgroundColor.s} onChange={handleChangeBGColorS} ref={null}/>
+            <CustomSlider title={'B'} id={''} min={0} max={360} 
+                          step={.1} value={setting.backgroundColor.b} onChange={handleChangeBGColorB} ref={null}/>
+            <CustomSlider title={'A'} id={''} min={0} max={360} 
+                          step={.1} value={setting.backgroundColor.a} onChange={handleChangeBGColorA} ref={null}/>
           </div>
           <div className="border-2 px-2">
             <div className="flex flex-row justify-between items-center">
