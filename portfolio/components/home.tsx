@@ -6,15 +6,23 @@ const Home = () => {
   return (
     <div className="flex-col flex h-screen text-zinc-100">
         <Background />
-        <section className="flex-col md:flex-row flex items-center md:items-start md:justify-between mt-16 mb-16 md:mb-12">
-            <div className="flex-col">
-                <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-4">
-                    ErazArt.
-                </h1>
-            </div>
+        <div className="flex justify-center">
+            <section className="flex-col flex items-center justify-between mt-16 mb-16 md:mb-12">
+                <SocialLinks dark={false}/>
+                <div className="flex-col flex justify-center md:pt-36 pt-6">
+                    <h1 className="pl-1 text-center text-5xl lg:text-9xl md:text-7xl font-bold tracking-tighter leading-tight">
+                        JAMES COVERT
+                    </h1>
+                    <div className="text-center hidden md:block text-xl lg:text-3xl font-bold tracking-tighter leading-tight">
+                        SOFTWARE ENGINEER \\ FULL STACK \\ WEB DEV
+                    </div>
+                    <h3 className="text-center md:hidden text-lg font-bold tracking-tighter leading-tight">
+                        SE \\ WD \\ GAE
+                    </h3>
+                </div>
+            </section>
+        </div>
 
-            <SocialLinks dark={false}/>
-        </section>
         <div className="lg:justify-end md:p-5 justify-center p-5 mb-5 grow items-end flex flex-row">
             <div className="flex-row flex font-bold text-2xl">
             <div className="mx-2">
