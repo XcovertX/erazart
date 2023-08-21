@@ -5,7 +5,6 @@ import type CartType from "../interfaces/cart";
 import type PartType from "../interfaces/part";
 import type PositionType from "../interfaces/position";
 import type Color from "../interfaces/color";
-import { stat } from "fs";
 
 type MySketchProps = SketchProps & {
     rotation: number;
@@ -325,7 +324,7 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
     p5.push();
     p5.drawingContext.fillStyle = gradient;
     p5.noStroke();
-    p5.ellipse(window.innerWidth/2, window.innerHeight/2, 1000);
+    p5.ellipse(window.innerWidth/2, window.innerHeight, 1000);
     p5.pop();
 }
 
@@ -453,8 +452,6 @@ function getRandomDirection() {
     switch(dir) {
         case 0:  return "EAST";
         case 1:  return "WEST";
-        // case 2:  return "SOUTH";
-        // case 3:  return "WEST";
         default: return "NORTH"
     }
 }
@@ -573,14 +570,14 @@ function moveCart(cart: CartType, edgeExtend: number, continuation: number) {
         cart.transitionCount = -1;
         cart.isTransitioning = true;
     }
-    if (cart.position.y > (window.innerHeight + cart.height)) {
+    if (cart.position.y > (window.innerHeight*5 + cart.height)) {
         cart.position.y = 0 - cart.height;
         cart.position.x = cart.position.x + cart.width
         cart.transitionCount = -1;
         cart.isTransitioning = true;
     }
     if (cart.position.y < 0 - cart.height) {
-        cart.position.y = window.innerHeight + cart.height - (window.innerHeight % cart.height);
+        cart.position.y = window.innerHeight*5 + cart.height - (window.innerHeight*5 % cart.height);
         cart.position.x = cart.position.x - cart.width
         cart.transitionCount = -1;
         cart.isTransitioning = true;
@@ -624,7 +621,7 @@ function buildRandomExtraLargePart(cartPosition: PositionType, color: Color, par
 
 function buildRandomSuperExtraLargePart(cartPosition: PositionType, color: Color, partW: number, partH: number) {
     var shape: string = "SUPER-EXTRA-LG-CIRCLE";
-    var position: PositionType = {x: window.innerWidth/2, y: window.innerHeight}
+    var position: PositionType = {x: window.innerWidth/2, y: window.innerHeight*5}
     var p: PartType = {
         shape: shape,
         color: color,
@@ -641,7 +638,7 @@ function generateCarts(cartCount: number, partCount: number, w: number, h: numbe
     let carts = new Array(cartCount);
     for (let i = 0; i < cartCount; i++) {
         var cartColor: Color = {h: 140, s: 300, b: 270, a: 100};
-        var cartPosition: PositionType = getRandomPosition(0, window.innerWidth, 0, window.innerHeight, w, h);
+        var cartPosition: PositionType = getRandomPosition(0, window.innerWidth, 0, window.innerHeight*5, w, h);
         var parts = new Array(getRandomInt(0, partCount) + 1);
         for (let j = 0; j < partCount; j++) {
             parts[j] = buildNewPart(cartPosition, cartColor, w, h);
@@ -677,22 +674,22 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
     var canvas, cartLayer;
 
     p5.windowResized = () => {
-        p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
+        p5.resizeCanvas(p5.windowWidth, p5.windowHeight*5);
         cartLayer.w = p5.windowWidth;
-        cartLayer.h = p5.windowHeight;
+        cartLayer.h = p5.windowHeight*5;
         state.orbX = window.innerWidth/2;
         state.orbY = window.innerHeight/2;
         state.orbBounce = Math.PI;
     }
 
     p5.setup = () => {
-        canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight, p5.P2D);
+        canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight*5, p5.P2D);
         canvas.position(0,0);
         canvas.style('z-index', '-1');
         p5.colorMode(p5.HSB, 360);
         p5.ellipseMode(p5.RADIUS);
         
-        cartLayer = p5.createGraphics(window.innerWidth, window.innerHeight)
+        cartLayer = p5.createGraphics(window.innerWidth, window.innerHeight*5)
         cartLayer.position(0,0);
         cartLayer.colorMode(p5.HSB, 360)
         cartLayer.strokeWeight(3);
@@ -723,7 +720,7 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
 
 export default function Background() {
     const [rotation,     setRotation] = useState(0);
-    const [cartCount,   setCartCount] = useState(50);
+    const [cartCount,   setCartCount] = useState(100);
     const [carts,           setCarts] = useState(Array<CartType>(cartCount));
     const [maxSpeed,     setMaxSpeed] = useState(500);
     const [minSpeed,     setMinSpeed] = useState(10000);
