@@ -62,7 +62,7 @@ const Home = () => {
                     <ScrollButton top={1} direction={false}/>
                 </div>
             </div>
-            <Expertise width={w}/>
+            <Expertise width={w} dark={false}/>
         </div>
     </>
   )
