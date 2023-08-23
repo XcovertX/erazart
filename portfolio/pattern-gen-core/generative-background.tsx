@@ -20,11 +20,11 @@ function drawGrid(p5: P5CanvasInstance<MySketchProps>, w:number, h: number) {
     p5.stroke(0, 360, 360);
 
     const xCount = window.innerWidth  / w;
-    const yCount = window.innerHeight / h;
+    const yCount = window.innerHeight*5 / h;
 
     for (let index = 0; index < xCount; index++) {
         let x = index * w;
-        p5.line(x, 0, x, window.innerHeight);
+        p5.line(x, 0, x, window.innerHeight*5);
     }
     for (let index = 0; index < yCount; index++) {
         let y = index * h;
@@ -324,7 +324,7 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
     p5.push();
     p5.drawingContext.fillStyle = gradient;
     p5.noStroke();
-    p5.ellipse(window.innerWidth/2, window.innerHeight, 1000);
+    p5.rect(0, 0, window.innerWidth, window.innerHeight*5);
     p5.pop();
 }
 
@@ -438,8 +438,8 @@ function getRandomInt(min: number, max: number) {
 function getRandomPosition(minW: number, maxW: number, minH: number, maxH: number, w: number, h: number) {
     const colCount = maxW / w;
     const rowCount = maxH / h;
-    const x = getRandomInt(minW, rowCount) * w;
-    const y = getRandomInt(minH, colCount) * h;
+    const x = getRandomInt(minW, colCount) * w;
+    const y = getRandomInt(minH, rowCount) * h;
     var p: PositionType = {
         x: x,
         y: y
@@ -661,8 +661,6 @@ function generateCarts(cartCount: number, partCount: number, w: number, h: numbe
     return carts;
 }
 
-
-
 function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
     let state = {
         carts: [],
@@ -720,7 +718,7 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
 
 export default function Background() {
     const [rotation,     setRotation] = useState(0);
-    const [cartCount,   setCartCount] = useState(100);
+    const [cartCount,   setCartCount] = useState(200);
     const [carts,           setCarts] = useState(Array<CartType>(cartCount));
     const [maxSpeed,     setMaxSpeed] = useState(500);
     const [minSpeed,     setMinSpeed] = useState(10000);
@@ -736,7 +734,6 @@ export default function Background() {
 
     useEffect(() => {
 
-        console.log(window.innerHeight % partHeight)
         const c: Array<CartType> = generateCarts(cartCount, partCount, partWidth, partHeight, minSpeed, maxSpeed);
         setCarts(c);
         if(partWidth > partHeight) {
@@ -753,24 +750,6 @@ export default function Background() {
                 cts[i] = carts[i];
                 if (cts[i].isTransitioning || cts[i].age >= cts[i].speed) {
                     moveCart(cts[i], edgeExtend, continuation);
-                } else {
-                    cts[i].age++;
-                    for (let j = 0; j < cts[i].parts.length; j++) {
-                        if (cts[i].parts[j].color.h < 130 || cts[i].parts[j].color.h > 141) {
-                            cts[i].parts[j].color.h = 130;
-                        }
-                        if (cts[i].parts[j].color.h < 140) {
-                            cts[i].parts[j].color.h = cts[i].parts[j].color.h + cts[i].parts[j].color.h * 1/200;
-                        }
-                        cts[i].parts[j].color.s = 300;
-
-                        if (cts[i].parts[j].color.b < 269) {
-                            cts[i].parts[j].color.b = 360;
-                        }
-                        if (cts[i].parts[j].color.b > 270) {
-                            cts[i].parts[j].color.b = cts[i].parts[j].color.b - cts[i].parts[j].color.b * 1/200;
-                        }
-                    }
                 }
             }
             return cts;
