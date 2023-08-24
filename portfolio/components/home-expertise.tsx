@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import { SoftwareDevChart } from "./charts";
 
 
 const Expertise = (props: {width: number, dark: boolean}) => {
@@ -10,12 +11,13 @@ const handleSelect = (n: number) => {
 }
 
 // tailwind css
-const buttonSelected     = "p-2 m-1 border-4 flex border-green-600 bg-green-600/[.06]";
+const buttonSelected     = "bg-indigo-500 w-full px-1 m-1 border-4 flex flex-col grow justify-between border-green-600 bg-green-600/[.06]";
 const buttonNotSelected  = "p-3 m-1 border-4 flex flex-col justify-center border-red-600 bg-red-600/[.06]";
 const headingSelected    = "text-xl font-bold";
 const headingNotSelected = "text-2xl font-bold break-normal rotate-180 mb-5";
-const descriptionHolder  = "flex flex-col mx-5 mt-5";
+const descriptionHolder  = "flex flex-col grow justify-between bg-red-300" ;
 const description        = "";
+const chartHolder        = "bg-blue-500 w-full relative grow";
 
 // icon assets
 const reactWhite        = '/assets/react_icon_white.png';
@@ -34,18 +36,18 @@ const clojureWhite      = '/assets/clojure_icon_white.png';
 const clojureBlack      = '/assets/clojure_icon_black.png';
 
     return(
-        <div className="flex-col h-screen items-center justify-start flex text-zinc-100">
+        <div className="bg-green-900 w-full flex-col h-screen items-center justify-start flex text-zinc-100">
                 <h1 className="pt-16 text-center text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
                     My Expertise
                 </h1>
-                <div className="flex grow flex-row my-6">
+                <div className="w-full flex grow flex-row my-6">
                     <button className={selected == 0? buttonSelected : buttonNotSelected}
                             onClick={() => handleSelect(0)}>
-                        <div className="flex grow flex-col items-center justify-between">
+                        <div className="bg-blue-700 flex grow flex-col items-center justify-between w-full">
                             
                             <Image
                                 src={selected == 0? sofDevGreen : (props.dark? sofDevBlack : sofDevWhite)}
-                                className="my-5" 
+                                className="my-2" 
                                 alt={'softwaredev'} 
                                 width ={selected != 0? 50 : (props.width < 1024? 75 : 100)} 
                                 height={selected != 0? 50 : (props.width < 1024? 75 : 100)}/>
@@ -60,20 +62,9 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                                     Well versed in both 
                                     OOP and Functional programming.
                                 </h3>
-                                <h3>
-                                    OOP
-                                </h3>
-                                <ul>
-                                    <li className="flex flex-row justify-between items-center">
-                                        <Image
-                                            src={props.dark? clojureBlack : clojureWhite}
-                                            className="my-5" 
-                                            alt={'clojure'} 
-                                            width ={50} 
-                                            height={50}/>
-                                        <h3 >Clojure</h3>
-                                    </li>
-                                </ul>
+                            </div>
+                            <div className={selected == 0? chartHolder : "hidden w-0" }>
+                                <SoftwareDevChart />
                             </div>
                         </div>
                     </button>

@@ -45,7 +45,7 @@ const Home = () => {
                 <></>
             }
         </div>
-        <div className="">
+        <div className="bg-red-900">
             <div className="flex-col h-screen items-center justify-between flex text-zinc-100">
                 <div className="items-center flex flex-col pt-5">
                     <div className="py-10">
@@ -62,7 +62,10 @@ const Home = () => {
                     <ScrollButton top={1} direction={false}/>
                 </div>
             </div>
-            <Expertise width={w} dark={false}/>
+            <div  className="flex-col h-screen bg-blue-900 items-center justify-between flex text-zinc-100">
+                <Expertise width={w} dark={false}/>
+            </div>
+            
         </div>
     </>
   )
