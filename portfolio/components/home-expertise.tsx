@@ -1,6 +1,8 @@
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import { SoftwareDevChart } from "./charts";
+import { SoftwareDevChart } from "./expertise-sofdev-chart";
+import { FrontendChart } from "./expertise-frontend-chart";
+import { BackendChart } from "./expertise-backend-chart";
 
 
 const Expertise = (props: {width: number, dark: boolean}) => {
@@ -11,13 +13,13 @@ const handleSelect = (n: number) => {
 }
 
 // tailwind css
-const buttonSelected     = "bg-indigo-500 w-full px-1 m-1 border-4 flex flex-col grow justify-between border-green-600 bg-green-600/[.06]";
+const buttonSelected     = "w-full px-1 m-1 border-4 flex flex-col grow justify-between border-green-600 bg-green-600/[.06]";
 const buttonNotSelected  = "p-3 m-1 border-4 flex flex-col justify-center border-red-600 bg-red-600/[.06]";
 const headingSelected    = "text-xl font-bold";
 const headingNotSelected = "text-2xl font-bold break-normal rotate-180 mb-5";
-const descriptionHolder  = "flex flex-col grow justify-between bg-red-300" ;
+const descriptionHolder  = "flex flex-col grow justify-between" ;
 const description        = "";
-const chartHolder        = "bg-blue-500 w-full relative grow";
+const chartHolder        = "w-full relative grow";
 
 // icon assets
 const reactWhite        = '/assets/react_icon_white.png';
@@ -36,18 +38,18 @@ const clojureWhite      = '/assets/clojure_icon_white.png';
 const clojureBlack      = '/assets/clojure_icon_black.png';
 
     return(
-        <div className="bg-green-900 w-full flex-col h-screen items-center justify-start flex text-zinc-100">
+        <div className="w-full flex-col h-screen items-center justify-start flex text-zinc-100">
                 <h1 className="pt-16 text-center text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
                     My Expertise
                 </h1>
                 <div className="w-full flex grow flex-row my-6">
                     <button className={selected == 0? buttonSelected : buttonNotSelected}
                             onClick={() => handleSelect(0)}>
-                        <div className="bg-blue-700 flex grow flex-col items-center justify-between w-full">
+                        <div className="flex grow flex-col items-center justify-between w-full">
                             
                             <Image
                                 src={selected == 0? sofDevGreen : (props.dark? sofDevBlack : sofDevWhite)}
-                                className="my-2" 
+                                className="my-5" 
                                 alt={'softwaredev'} 
                                 width ={selected != 0? 50 : (props.width < 1024? 75 : 100)} 
                                 height={selected != 0? 50 : (props.width < 1024? 75 : 100)}/>
@@ -59,8 +61,8 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                             </h2>
                             <div className={selected == 0? descriptionHolder : "hidden"}>
                                 <h3 className={description}>
-                                    Well versed in both 
-                                    OOP and Functional programming.
+                                    Well versed in a wide array of programming languages as well as designing in both 
+                                    OOP and Functional paradigms.
                                 </h3>
                             </div>
                             <div className={selected == 0? chartHolder : "hidden w-0" }>
@@ -70,7 +72,7 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                     </button>
                     <button className={selected == 1? buttonSelected : buttonNotSelected}
                             onClick={() => handleSelect(1)}>
-                        <div className="flex grow flex-col items-center justify-between">
+                        <div className="flex grow flex-col items-center justify-between w-full">
                             <Image
                                 src={selected == 1? reactGreen : (props.dark? reactBlack : reactWhite)}
                                 className="my-5" 
@@ -86,11 +88,14 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                                     Over 3 years of development experience in HTML, CSS, JS, React, and NextJS frameworks.
                                 </h3>
                             </div>
+                            <div className={selected == 1? chartHolder : "hidden w-0" }>
+                                <FrontendChart />
+                            </div>
                         </div>
                     </button>
                     <button className={selected == 2? buttonSelected : buttonNotSelected}
                             onClick={() => handleSelect(2)}>
-                        <div className="flex grow flex-col items-center justify-between">
+                        <div className="flex grow flex-col items-center justify-between w-full">
                             <Image
                                 src={selected == 2? nodeGreen : (props.dark? nodeBlack : nodeWhite)}
                                 className="my-5"
@@ -106,11 +111,14 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                                     Over 3 years of development experience in HTML, CSS, JS, React, and NextJS frameworks.
                                 </h3>
                             </div>
+                            <div className={selected == 2? chartHolder : "hidden w-0" }>
+                                <BackendChart />
+                            </div>
                         </div>
                     </button>
                     <button className={selected == 3? buttonSelected : buttonNotSelected}
                             onClick={() => handleSelect(3)}>
-                        <div className="flex grow flex-col items-center justify-between">
+                        <div className="flex grow flex-col items-center justify-between w-full">
                             <Image
                                 src={selected == 3? emDevGreen : (props.dark? emDevBlack : emDevWhite)}
                                 className="my-5" 

@@ -1,40 +1,36 @@
-import { PolarArea } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, 
-    RadialLinearScale, 
-    ArcElement,
+    CategoryScale, 
+    LinearScale,
+    BarElement,
     Title,
     Tooltip,
     Legend } from 'chart.js'
 
 ChartJS.register(
-    RadialLinearScale,
-    ArcElement,
+    CategoryScale, 
+    LinearScale,
+    BarElement,
     Title,
     Tooltip,
     Legend
 )
 
-
-
-const softwareDevData = {
+const backendData = {
     labels: [
-        'Java',
-        'C',
-        'Python',
-        'Clojure',
-        'Rust',
-        'Prolog',
-        'C++',
+        'NodeJS',
+        'ExpressJS',
+        'Spring',
+        'Django'
     ],
     datasets: [{
         label: 'Language Skill Levels',
-        data: [90, 55, 50, 70, 20, 35, 45],
+        data: [85, 90, 50, 40],
         backgroundColor: [
             '#dc2626',
             '#ea580c',
             '#16a34a',
             '#0d9488',
-            '#0284c7',
             '#4f46e5',
             '#db2777',
         ],
@@ -49,11 +45,21 @@ const softwareDevData = {
 
 
 
-export const SoftwareDevChart = () => {
+export const BackendChart = () => {
     
     return (
-            <PolarArea data={softwareDevData}  
+            <Bar data={backendData}  
                        options={{
+                        animations: {
+                            x: {
+                                duration: 0,
+                                
+                            },
+                            y: {
+                                from: 0,
+                            },
+                            
+                        },
                         plugins: {
                             legend: {
                                 display: false,
@@ -66,20 +72,14 @@ export const SoftwareDevChart = () => {
                                 }
                             }
                         },
-                        datasets: {
-                            polarArea: {
-                                
-                            }
-                        },
                         layout: {
-                            padding: 0
+                            padding: 10
                         },
                         responsive: true,
                         maintainAspectRatio: false,
-                        
                         scales: {
-                            
-                            r: {
+                            y: {
+                                beginAtZero: true,
                                 ticks: {
                                     backdropColor: 'rgba(0,0,0,0)',
                                     color: 'rgba(255, 255, 255, .35)',
@@ -90,29 +90,16 @@ export const SoftwareDevChart = () => {
                                 },
                                 min: 0,
                                 max: 100,
-                                pointLabels: {
-                                    display: true,
-                                    centerPointLabels: true,
-                                    color: 'white',
-                                    font: {
-                                        size: 14
-                                    },
-                                    padding: 0
-                                },
                                 grid: {
                                     display: false,
                                     color: 'rgba(255, 255, 255, .35)',
                                     z: 50,
                                     
                                 },
-                                
-                                angleLines: {
-                                    display: false,
-                                    color: 'rgba(255, 255, 255, .35)'
-                                }
                             } 
                         }
-                        }} 
+                    }
+                } 
             />
         
     );
