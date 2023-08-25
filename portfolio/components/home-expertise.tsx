@@ -14,8 +14,8 @@ const handleSelect = (n: number) => {
 }
 
 // tailwind css
-const buttonSelected     = "w-full p-3 m-1 border-4 flex flex-row grow justify-between border-green-600 bg-green-600/[.06]";
-const buttonNotSelected  = "p-3 m-1 border-4 flex flex-col justify-center border-red-600 bg-red-600/[.06]";
+const buttonSelected     = `w-full p-3 m-1 border-4 flex flex-row grow justify-between border-green-600 bg-green-600/[.06]`;
+const buttonNotSelected  = "p-3 m-1 border-4 flex flex-col justify-center border-zinc-600 bg-zinc-600/[.06]";
 const headingSelected    = "text-4xl font-bold";
 const headingNotSelected = "text-2xl font-bold break-normal rotate-180 mb-5";
 const descriptionHolder  = "flex flex-col grow justify-between p-5" ;
@@ -67,8 +67,7 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                         </div>
                         <div className={(selected == 0 && props.width >= 1024)? chartHolder: 'hidden'}>
                             <SoftwareDevChart hidden={(selected == 0 && props.width >= 1024)? false : true}/>
-                        </div>
-                        
+                        </div>    
                     </button>
                     <button className={selected == 1? buttonSelected : buttonNotSelected}
                             onClick={() => handleSelect(1)}>
@@ -94,7 +93,6 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                         <div className={(selected == 1 && props.width >= 1024)? chartHolder: 'hidden'}>
                             <FrontendChart hidden={(selected == 1 && props.width >= 1024)? false : true}/>
                         </div>
-                        
                     </button>
                     <button className={selected == 2? buttonSelected : buttonNotSelected}
                             onClick={() => handleSelect(2)}>

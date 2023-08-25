@@ -673,8 +673,13 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
 
     p5.windowResized = () => {
         p5.resizeCanvas(p5.windowWidth, p5.windowHeight*5);
-        cartLayer.w = p5.windowWidth;
-        cartLayer.h = p5.windowHeight*5;
+        // cartLayer.w = p5.windowWidth;
+        // cartLayer.h = p5.windowHeight*5;
+        cartLayer = p5.createGraphics(window.innerWidth, window.innerHeight*5);
+        cartLayer.position(0,0);
+        cartLayer.colorMode(p5.HSB, 360)
+        cartLayer.strokeWeight(3);
+        cartLayer.ellipseMode(p5.RADIUS);
         state.orbX = window.innerWidth/2;
         state.orbY = window.innerHeight/2;
         state.orbBounce = Math.PI;
@@ -718,7 +723,7 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
 
 export default function Background() {
     const [rotation,     setRotation] = useState(0);
-    const [cartCount,   setCartCount] = useState(200);
+    const [cartCount,   setCartCount] = useState(100);
     const [carts,           setCarts] = useState(Array<CartType>(cartCount));
     const [maxSpeed,     setMaxSpeed] = useState(500);
     const [minSpeed,     setMinSpeed] = useState(10000);

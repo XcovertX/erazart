@@ -11,10 +11,34 @@ import Expertise from './home-expertise'
 const Home = () => {
     const [scrollYPosition, setScrollYPosition] = useState(0);
     const [w, setW] = useState(0);
+    const [headingColor, setHeadingColor] = useState('bg-green-600');
+
+    const getHeadingColor = (section: number) => {
+        switch(section) {
+            case  0: return 'bg-green-600';
+            case  1: return 'bg-sky-600';
+            case  2: return 'bg-indigo-700';
+            case  3: return 'bg-fuchsia-600';
+            default: return 'bg-red-500';
+        }
+    }
+
+    const scrollTo = (section: number) => {
+        window.scrollTo({
+            top: window.innerHeight * section,
+            behavior: 'smooth',
+        });
+    };
+
     useEffect(() => {
+
+        function getSection() {
+            return Math.floor((window.scrollY+100)/window.innerHeight);
+        }
 
         function updateYScrollPos() {
             setScrollYPosition(window.scrollY);
+            setHeadingColor(getHeadingColor(getSection()));
         }
 
         function updateW() {
@@ -39,7 +63,7 @@ const Home = () => {
         <div className="fixed right-5 bottom-0 z-50">
             {
                 scrollYPosition > 500?
-                <ScrollButton top={0} direction={true}/>
+                <ScrollButton top={0} direction={true} scrollTo={scrollTo}/>
                 :
                 <></>
             }
@@ -48,7 +72,7 @@ const Home = () => {
             <div className="flex-col h-screen items-center justify-between flex text-zinc-100">
                 <div className="items-center flex flex-col pt-5">
                     <div className="py-10">
-                        <HomeNav />
+                        <HomeNav headingColor={headingColor} scrollTo={scrollTo}/>
                     </div>
                     <div className="pt-10">
                         <SocialLinks dark={false}/>
@@ -58,7 +82,7 @@ const Home = () => {
                     <HomeTitle />
                 </div>
                 <div className="pb-10">
-                    <ScrollButton top={1} direction={false}/>
+                    <ScrollButton top={1} direction={false} scrollTo={scrollTo}/>
                 </div>
             </div>
             <div  className="flex-col h-screen items-center justify-between flex text-zinc-100">

@@ -155,26 +155,19 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
 
 
 
-export default function ScrollButton(props: {top: number, direction: boolean}) {
+export default function ScrollButton(props: {top: number, direction: boolean, scrollTo}) {
     const [hover,   setHover] =  useState(false);
     const [sectionTop, setSectionTop] = useState(props.top);
     const onMouseEnter  = () =>   setHover(true);
     const onMouseLeave  = () =>  setHover(false);
 
-    useEffect(() => setSectionTop(props.top * window.innerHeight), [sectionTop]);
-
-    const scrollTo = () => {
-        window.scrollTo({
-            top: sectionTop,
-            behavior: 'smooth',
-        });
-    };
+    useEffect(() => setSectionTop(props.top), [sectionTop]);
 
     return (
         <button className="flex items-center relative justify-center"
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
-                onClick={scrollTo}>
+                onClick={() => props.scrollTo(sectionTop)}>
             <NextReactP5Wrapper sketch={buttonSketch} hover={hover} toTop={props.direction}/>
         </button>
         
