@@ -16,37 +16,34 @@ ChartJS.register(
     Legend
 )
 
-const backendData = {
-    labels: [
-        'NodeJS',
-        'ExpressJS',
-        'Spring',
-        'Django'
-    ],
-    datasets: [{
-        label: 'Language Skill Levels',
-        data: [85, 90, 50, 40],
-        backgroundColor: [
-            '#dc2626',
-            '#ea580c',
-            '#16a34a',
-            '#0d9488',
-            '#4f46e5',
-            '#db2777',
+export const BackendChart = (props: {hidden: boolean}) => {
+    const backendData = {
+        labels: [
+            'ExpressJS/Node',
+            'Spring',
+            'Django'
         ],
-        borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, .35)',
-        hoverBorderWidth: 1.5,
-        hoverBorderColor: 'white',
-        hoverOffset: 5,
-
-    }]
-}
-
-
-
-export const BackendChart = () => {
+        datasets: [{
+            label: 'Language Skill Levels',
+            hidden: props.hidden,
+            data: [90, 70, 40],
+            backgroundColor: [
+                '#dc2626',
+                '#ea580c',
+                '#16a34a',
+                '#4f46e5',
+                '#db2777',
+            ],
+            borderWidth: 1,
+            borderColor: 'rgba(255, 255, 255, .35)',
+            hoverBorderWidth: 1.5,
+            hoverBorderColor: 'white',
+            hoverOffset: 5,
     
+        }]
+    }
+    
+    if(props.hidden) { return <></>}
     return (
             <Bar data={backendData}  
                        options={{

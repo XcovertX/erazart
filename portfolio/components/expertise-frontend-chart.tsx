@@ -17,45 +17,38 @@ ChartJS.register(
     Legend
 )
 
-const frontendData = {
-    labels: [
-        'React',
-        'NextJS',
-        'HTML',
-        'CSS',
-        'Typescript'
-    ],
-    datasets: [{
-        label: 'Language Skill Levels',
-        data: [85, 90, 70, 85, 85],
-        backgroundColor: [
-            '#dc2626',
-            '#ea580c',
-            '#16a34a',
-            '#0d9488',
-            '#4f46e5',
-            '#db2777',
-        ],
-        borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, .35)',
-        hoverBorderWidth: 1.5,
-        hoverBorderColor: 'white',
-        hoverOffset: 5,
-        
-        
-
-    }]
-}
-
-
-
-export const FrontendChart = () => {
+export const FrontendChart = (props: {hidden: boolean}) => {
     
-    const [y, setY] = useState(0);
+    const frontendData = {
+        labels: [
+            'React',
+            'NextJS',
+            'HTML',
+            'CSS',
+            'Typescript'
+        ],
+        datasets: [{
+            label: 'Language Skill Levels',
+            hidden: props.hidden,
+            data: [75, 80, 50, 65, 45],
+            backgroundColor: [
+                '#dc2626',
+                '#ea580c',
+                '#16a34a',
+                '#0d9488',
+                '#4f46e5',
+                '#db2777',
+            ],
+            borderWidth: 1,
+            borderColor: 'rgba(255, 255, 255, .35)',
+            hoverBorderWidth: 1.5,
+            hoverBorderColor: 'white',
+            hoverOffset: 5,
+        }]
+    }
 
-    useEffect(() => {
+    if(props.hidden) { return <></>}
 
-    })
     return (
             <Bar data={frontendData}  
                        options={{

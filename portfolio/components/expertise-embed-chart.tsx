@@ -22,28 +22,23 @@ ChartJS.register(
 
 
 
-export const SoftwareDevChart = (props:{hidden: boolean}) => {
+export const EmbedDevChart = (props:{hidden: boolean}) => {
 
-    const softwareDevData = {
+    const embedDevData = {
         labels: [
-            'Java',
-            'C',
-            'Python',
-            'Clojure',
-            'Prolog',
-            'C++',
+            'Embedded C',
+            'Assembly',
+            'Rust'
         ],
         datasets: [{
             label: 'Language Skill Levels',
             hidden: props.hidden,
-            data: [90, 55, 50, 70,  35, 45],
+            data: [80, 35, 20],
             backgroundColor: [
                 '#dc2626',
-                '#ea580c',
                 '#16a34a',
-                '#0284c7',
                 '#4f46e5',
-                '#db2777',
+
             ],
             borderWidth: 1,
             borderColor: 'rgba(255, 255, 255, .35)',
@@ -56,7 +51,7 @@ export const SoftwareDevChart = (props:{hidden: boolean}) => {
     if(props.hidden) { return <></>}
     
     return (
-        <Bar data={softwareDevData}  
+        <Bar data={embedDevData}  
                        options={{
                         
                         animations: {

@@ -19,7 +19,6 @@ const Home = () => {
 
         function updateW() {
             setW(window.innerWidth)
-            console.log(w)
         }
 
         window.addEventListener('scroll', updateYScrollPos);

@@ -750,6 +750,8 @@ export default function Background() {
                 cts[i] = carts[i];
                 if (cts[i].isTransitioning || cts[i].age >= cts[i].speed) {
                     moveCart(cts[i], edgeExtend, continuation);
+                } else {
+                    cts[i].age++;
                 }
             }
             return cts;
