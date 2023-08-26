@@ -1,5 +1,5 @@
 import Container from '../components/container'
-import Home from '../components/home'
+import Home from '../pages/home/home'
 import HomeLayout from '../components/home-layout'
 import { getAllPosts } from '../lib/api'
 import Head from 'next/head'
@@ -16,10 +16,10 @@ export default function Index({ allPosts }: Props) {
   return (
     <HomeLayout>
       <Head>
-        <title>{`ErazArt. ${CMS_NAME}`}</title>
+        <title>{`${CMS_NAME}`}</title>
       </Head>
       <Container>
-        <Home />
+        <Home allPosts={allPosts}/>
       </Container>
     </HomeLayout>
   )

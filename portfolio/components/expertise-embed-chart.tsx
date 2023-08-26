@@ -16,12 +16,6 @@ ChartJS.register(
     Legend
 )
 
-
-
-
-
-
-
 export const EmbedDevChart = (props:{hidden: boolean}) => {
 
     const embedDevData = {

@@ -6,7 +6,7 @@ date: '2020-03-16T05:35:07.322Z'
 live: '/about/'
 author:
   name: J.A. Covert
-  picture: 'triangle-mapping/tonybw-triangles'
+  picture: assets/james_gray.jpg
 ogImage:
   url: 'rectangular-pixels/rectangle-mapping-6_mjf5ti'
 images: [

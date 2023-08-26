@@ -3,6 +3,7 @@ import DateFormatter from './date-formatter'
 import CoverImage from './cover-image'
 import Link from 'next/link'
 import type Author from '../interfaces/author'
+import { useState } from 'react'
 
 type Props = {
   title: string
@@ -23,29 +24,31 @@ const HeroPost = ({
   slug,
   live
 }: Props) => {
+  const [hover,   setHover] =  useState(false);
+  const onMouseEnter  = () =>   setHover(true);
+  const onMouseLeave  = () =>  setHover(false);
   return (
-    <section>
-      <div className="mb-8 md:mb-16">
-        <CoverImage title={title} src={coverImage} slug={slug} />
+    <section onMouseEnter={onMouseEnter}
+             onMouseLeave={onMouseLeave}
+             className=''>
+      <h1 className={`text-2xl md:text-3xl mx-2 ${hover? 'text-indigo-300' :'text-indigo-600'} font-bold tracking-tighter leading-tight my-5`}>
+        Featured Project
+      </h1>
+      <div className="">
+        <CoverImage title={title} src={coverImage} slug={slug} mouseHover={hover}/>
       </div>
-      <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
+      <div className={`grid grid-cols-1 pt-5 pb-20 md:pb-28 ${hover? 'text-indigo-300' :'text-indigo-600'} px-2 `}>
         <div>
-          <h3 className="mb-4 text-4xl lg:text-5xl leading-tight">
+          <h3 className="mb-4 text-xl lg:text-3xl leading-tight">
             <Link
-              as={`/posts/${slug}`}
-              href="/posts/[slug]"
-              className="hover:underline"
+              as={`/home/${slug}`}
+              href="/home/[slug]"
+              className={hover? "underline": ""}
             >
               {title}
             </Link>
           </h3>
-          <div className="mb-4 md:mb-0 text-lg">
-            <DateFormatter dateString={date} />
-          </div>
-        </div>
-        <div>
-          <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
-          <Avatar name={author.name} picture={author.picture} />
+          <p className="text-lg leading-relaxed">{excerpt}</p>
         </div>
       </div>
     </section>

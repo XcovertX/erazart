@@ -6,7 +6,7 @@ date: '2023-03-28T05:35:07.322Z'
 live: '/pattern-gen-1/'
 author:
   name: J.A. Covert
-  picture: 'triangle-mapping/tonybw-triangles'
+  picture: assets/james_gray.jpg
 ogImage:
   url: 'pattern-generation/patgen1'
 images: [

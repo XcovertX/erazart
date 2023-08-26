@@ -64,20 +64,27 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
             state.arrowY = state.arrowY + p5.sin(state.arrowBounce)/5;
 
             p5.push();
-            p5.strokeWeight(1);
-            p5.noFill();
+            
+            
 
             if (state.hover){
-                p5.stroke(p5.color(310,  360, 360));
+                p5.fill(p5.color(310,  360, 100, 50))
+                p5.strokeWeight(2.5);
+                p5.stroke(p5.color(310,  200, 360));
+                p5.drawingContext.shadowColor = p5.color(310, 360, 360);
+                p5.drawingContext.shadowBlur = 5;
             } else {
+                p5.noFill();
+                p5.strokeWeight(2);
                 p5.stroke(p5.color(160,  360, 360));
+                p5.drawingContext.shadowColor = p5.color(0, 360, 360);
+                let offsetX = p5.map(p5.mouseX, 0, p5.width, 1, -1);
+                let offsetY = p5.map(p5.mouseY, 0, p5.height, 1, -1);
+                p5.drawingContext.shadowOffsetX = offsetX;
+                p5.drawingContext.shadowOffsetY = offsetY;
             }
 
-            let offsetX = p5.map(p5.mouseX, 0, p5.width, 1, -1);
-            let offsetY = p5.map(p5.mouseY, 0, p5.height, 1, -1);
-            p5.drawingContext.shadowColor = p5.color(0, 360, 360);
-            p5.drawingContext.shadowOffsetX = offsetX
-            p5.drawingContext.shadowOffsetY = offsetY;
+
 
             if(state.toTop) {
                 p5.beginShape();

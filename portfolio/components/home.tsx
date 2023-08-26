@@ -7,19 +7,24 @@ import ScrollButton from './scroll-button'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Expertise from './home-expertise'
+import MyWork from './home-my-work'
+import { Toggle } from './toggle'
+import Index from '../pages/projects'
 
 const Home = () => {
     const [scrollYPosition, setScrollYPosition] = useState(0);
     const [w, setW] = useState(0);
     const [headingColor, setHeadingColor] = useState('bg-green-600');
+    const [currentSection, setCurrentSection] = useState(0);
+    const [darkMode, setDarkMode] = useState(true);
 
     const getHeadingColor = (section: number) => {
         switch(section) {
             case  0: return 'bg-green-600';
-            case  1: return 'bg-sky-600';
-            case  2: return 'bg-indigo-700';
-            case  3: return 'bg-fuchsia-600';
-            default: return 'bg-red-500';
+            case  1: return 'bg-teal-600';
+            case  2: return 'bg-blue-600';
+            case  3: return 'bg-violet-600';
+            default: return 'bg-rose-600';
         }
     }
 
@@ -30,6 +35,10 @@ const Home = () => {
         });
     };
 
+    const handleDarkMode = () => {
+        setDarkMode(!darkMode);
+    }
+
     useEffect(() => {
 
         function getSection() {
@@ -38,7 +47,9 @@ const Home = () => {
 
         function updateYScrollPos() {
             setScrollYPosition(window.scrollY);
-            setHeadingColor(getHeadingColor(getSection()));
+            const s = getSection();
+            setCurrentSection(s);
+            setHeadingColor(getHeadingColor(s));
         }
 
         function updateW() {
@@ -60,7 +71,7 @@ const Home = () => {
     <>  
         <Background />
 
-        <div className="fixed right-5 bottom-0 z-50">
+        <div className="fixed right-5 bottom-0 z-36">
             {
                 scrollYPosition > 500?
                 <ScrollButton top={0} direction={true} scrollTo={scrollTo}/>
@@ -68,6 +79,8 @@ const Home = () => {
                 <></>
             }
         </div>
+
+        
         <div className="">
             <div className="flex-col h-screen items-center justify-between flex text-zinc-100">
                 <div className="items-center flex flex-col pt-5">
@@ -75,7 +88,7 @@ const Home = () => {
                         <HomeNav headingColor={headingColor} scrollTo={scrollTo}/>
                     </div>
                     <div className="pt-10">
-                        <SocialLinks dark={false}/>
+                        <SocialLinks dark={darkMode}/>
                     </div>
                 </div>
                 <div className=" pt-6">
@@ -86,9 +99,17 @@ const Home = () => {
                 </div>
             </div>
             <div  className="flex-col h-screen items-center justify-between flex text-zinc-100">
-                <Expertise width={w} dark={false}/>
+                <Expertise width={w} dark={darkMode}/>
+            </div> 
+            <div  className="flex-col h-screen items-center justify-between flex text-zinc-100">
+                <Index />
+            </div>   
+        </div>
+        <div className="fixed right-5 top-5 z-50">
+            <div className="flex flex-row">
+                <h3 className="pt-1 pr-3">{darkMode? 'DARK MODE' : 'LIGHT MODE'}</h3>
+                <Toggle title={'light/dark mode'} color={headingColor} onChange={handleDarkMode} currentState={darkMode} />
             </div>
-            
         </div>
     </>
   )

@@ -20,11 +20,11 @@ function drawGrid(p5: P5CanvasInstance<MySketchProps>, w:number, h: number) {
     p5.stroke(0, 360, 360);
 
     const xCount = window.innerWidth  / w;
-    const yCount = window.innerHeight*5 / h;
+    const yCount = window.innerHeight*7 / h;
 
     for (let index = 0; index < xCount; index++) {
         let x = index * w;
-        p5.line(x, 0, x, window.innerHeight*5);
+        p5.line(x, 0, x, window.innerHeight*7);
     }
     for (let index = 0; index < yCount; index++) {
         let y = index * h;
@@ -324,7 +324,7 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
     p5.push();
     p5.drawingContext.fillStyle = gradient;
     p5.noStroke();
-    p5.rect(0, 0, window.innerWidth, window.innerHeight*5);
+    p5.rect(0, 0, window.innerWidth, window.innerHeight*7);
     p5.pop();
 }
 
@@ -364,7 +364,7 @@ function drawCarts(layer, props){
     layer.erase()
     for (let i = 0; i < carts.length; i++) {
         var c = carts[i];
-
+        if(c == undefined) break;
         for (let j = 0; j < c.parts.length; j++) {
             var p = c.parts[j];
             
@@ -570,14 +570,14 @@ function moveCart(cart: CartType, edgeExtend: number, continuation: number) {
         cart.transitionCount = -1;
         cart.isTransitioning = true;
     }
-    if (cart.position.y > (window.innerHeight*5 + cart.height)) {
+    if (cart.position.y > (window.innerHeight*7 + cart.height)) {
         cart.position.y = 0 - cart.height;
         cart.position.x = cart.position.x + cart.width
         cart.transitionCount = -1;
         cart.isTransitioning = true;
     }
     if (cart.position.y < 0 - cart.height) {
-        cart.position.y = window.innerHeight*5 + cart.height - (window.innerHeight*5 % cart.height);
+        cart.position.y = window.innerHeight*7 + cart.height - (window.innerHeight*7 % cart.height);
         cart.position.x = cart.position.x - cart.width
         cart.transitionCount = -1;
         cart.isTransitioning = true;
@@ -621,7 +621,7 @@ function buildRandomExtraLargePart(cartPosition: PositionType, color: Color, par
 
 function buildRandomSuperExtraLargePart(cartPosition: PositionType, color: Color, partW: number, partH: number) {
     var shape: string = "SUPER-EXTRA-LG-CIRCLE";
-    var position: PositionType = {x: window.innerWidth/2, y: window.innerHeight*5}
+    var position: PositionType = {x: window.innerWidth/2, y: window.innerHeight*7}
     var p: PartType = {
         shape: shape,
         color: color,
@@ -629,7 +629,6 @@ function buildRandomSuperExtraLargePart(cartPosition: PositionType, color: Color
         width: 700,
         height: 700
     };
-    console.log("here")
     return p;
 }
 
@@ -638,7 +637,7 @@ function generateCarts(cartCount: number, partCount: number, w: number, h: numbe
     let carts = new Array(cartCount);
     for (let i = 0; i < cartCount; i++) {
         var cartColor: Color = {h: 140, s: 300, b: 270, a: 100};
-        var cartPosition: PositionType = getRandomPosition(0, window.innerWidth, 0, window.innerHeight*5, w, h);
+        var cartPosition: PositionType = getRandomPosition(0, window.innerWidth, 0, window.innerHeight*7, w, h);
         var parts = new Array(getRandomInt(0, partCount) + 1);
         for (let j = 0; j < partCount; j++) {
             parts[j] = buildNewPart(cartPosition, cartColor, w, h);
@@ -672,10 +671,8 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
     var canvas, cartLayer;
 
     p5.windowResized = () => {
-        p5.resizeCanvas(p5.windowWidth, p5.windowHeight*5);
-        // cartLayer.w = p5.windowWidth;
-        // cartLayer.h = p5.windowHeight*5;
-        cartLayer = p5.createGraphics(window.innerWidth, window.innerHeight*5);
+        p5.resizeCanvas(p5.windowWidth, p5.windowHeight*7);
+        cartLayer = p5.createGraphics(window.innerWidth, window.innerHeight*7);
         cartLayer.position(0,0);
         cartLayer.colorMode(p5.HSB, 360)
         cartLayer.strokeWeight(3);
@@ -686,13 +683,13 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
     }
 
     p5.setup = () => {
-        canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight*5, p5.P2D);
+        canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight*7, p5.P2D);
         canvas.position(0,0);
         canvas.style('z-index', '-1');
         p5.colorMode(p5.HSB, 360);
         p5.ellipseMode(p5.RADIUS);
         
-        cartLayer = p5.createGraphics(window.innerWidth, window.innerHeight*5)
+        cartLayer = p5.createGraphics(window.innerWidth, window.innerHeight*7)
         cartLayer.position(0,0);
         cartLayer.colorMode(p5.HSB, 360)
         cartLayer.strokeWeight(3);
@@ -741,6 +738,7 @@ export default function Background() {
 
         const c: Array<CartType> = generateCarts(cartCount, partCount, partWidth, partHeight, minSpeed, maxSpeed);
         setCarts(c);
+        
         if(partWidth > partHeight) {
             setEdgeExtend(partWidth);
         } else {
