@@ -16,6 +16,7 @@ import MoreStories from '../../components/more-stories'
 import { getAllPosts } from '../../lib/api'
 import Post from '../../interfaces/post'
 import HeroPost from '../../components/hero-post'
+import DarkModeToggle from '../../components/dark-mode'
 
 type Props = {
     allPosts: Post[]
@@ -110,7 +111,7 @@ const Home = ({ allPosts }: Props) => {
                     <ScrollButton top={1} direction={false} scrollTo={scrollTo}/>
                 </div>
             </div>
-            <div  className="flex-col h-screen items-center justify-between flex text-zinc-100">
+            <div  className="flex-col h-screen items-center justify-center flex text-zinc-100">
                 <Expertise width={w} dark={darkMode}/>
             </div> 
             <div  className="flex-col h-screen items-center justify-between flex text-zinc-100">
@@ -145,7 +146,7 @@ const Home = ({ allPosts }: Props) => {
                                 </h3>
                             </div>
                     </div>
-                    <div className="flex flex-col justify-center">
+                    <div className="h-full">
                         {heroPost && (
                                 <HeroPost
                                     title={heroPost.title}
@@ -159,21 +160,19 @@ const Home = ({ allPosts }: Props) => {
                             )}
                     </div>
                 </div>
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight my-10">
+
+            </div> 
+            <div  className="flex-col h-screen items-center justify-between flex text-zinc-100">
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-5">
                     Projects
                 </h1>
                 {morePosts.length > 1 && <MoreStories posts={morePosts} />}
-                <Link href={'/projects/'} className="hover:underline text-3xl md:text-4xl font-bold tracking-tighter leading-tight my-10">
+                <Link href={'/projects/'} className="hover:underline text-3xl md:text-4xl font-bold tracking-tighter leading-tight ">
                     More Projects
                 </Link>
-            </div>   
+            </div>  
         </div>
-        <div className="fixed right-5 top-5 z-50">
-            <div className="flex flex-row">
-                <h3 className="pt-1 pr-3">{darkMode? 'DARK MODE' : 'LIGHT MODE'}</h3>
-                <Toggle title={'light/dark mode'} color={headingColor} onChange={handleDarkMode} currentState={darkMode} />
-            </div>
-        </div>
+        <DarkModeToggle headingColor={headingColor} darkMode={darkMode} handleDarkMode={handleDarkMode}/>
     </>
   )
 }
