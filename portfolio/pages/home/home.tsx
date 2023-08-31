@@ -17,6 +17,7 @@ import { getAllPosts } from '../../lib/api'
 import Post from '../../interfaces/post'
 import HeroPost from '../../components/hero-post'
 import DarkModeToggle from '../../components/dark-mode'
+import Experience from '../../components/home-experience'
 
 type Props = {
     allPosts: Post[]
@@ -28,9 +29,6 @@ const Home = ({ allPosts }: Props) => {
     const [headingColor, setHeadingColor] = useState('bg-green-600');
     const [currentSection, setCurrentSection] = useState(0);
     const [darkMode, setDarkMode] = useState(true);
-
-    const heroPost = allPosts[0]
-    const morePosts = allPosts.slice(1)
     
     const getHeadingColor = (section: number) => {
         switch(section) {
@@ -85,92 +83,44 @@ const Home = ({ allPosts }: Props) => {
 
   return (
     <>  
-        <Background />
+        <Background dark={darkMode}/>
         <div className="fixed right-5 bottom-0 z-36">
             {
                 scrollYPosition > 500?
-                <ScrollButton top={0} direction={true} scrollTo={scrollTo}/>
+                <ScrollButton top={0} direction={true} scrollTo={scrollTo} darkMode={darkMode} color={headingColor}/>
                 :
                 <></>
             }
         </div>
-        <div className="">
+        <div className="flex flex-col">
             <div className="flex-col h-screen items-center justify-between flex text-zinc-100">
                 <div className="items-center flex flex-col pt-5">
                     <div className="py-10">
-                        <HomeNav headingColor={headingColor} scrollTo={scrollTo}/>
+                        <HomeNav headingColor={headingColor} scrollTo={scrollTo} dark={darkMode}/>
                     </div>
                     <div className="pt-10">
                         <SocialLinks dark={darkMode}/>
                     </div>
                 </div>
                 <div className=" pt-6">
-                    <HomeTitle />
+                    <HomeTitle dark={darkMode}/>
                 </div>
                 <div className="pb-10">
-                    <ScrollButton top={1} direction={false} scrollTo={scrollTo}/>
+                    <ScrollButton top={1} direction={false} scrollTo={scrollTo} darkMode={darkMode} color={headingColor}/>
                 </div>
             </div>
             <div  className="flex-col h-screen items-center justify-center flex text-zinc-100">
                 <Expertise width={w} dark={darkMode}/>
             </div> 
-            <div  className="flex-col h-screen items-center justify-between flex text-zinc-100">
-                <div className="pt-20 flex flex-row">
-                    <div className="flex flex-col justify-start px-10">
-                        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
-                            My Work
-                        </h1>
-                        <div className="w-96 lg:w-[550px] flex flex-col justify-between p-5 mt-5 bg-indigo-600/[.1] border-indigo-600 border-4">
-                            Over the years, I have worked on a variety of projects with the following goals in mind:
-                                <div className="p-5">
-                                    <li>
-                                        Increase my understanding of good design and performance
-                                    </li>
-                                    <li>
-                                        Expand my repertoire problem solving techniques
-                                    </li>
-                                    <li>
-                                        Sharpen my coding skills through practice
-                                    </li>
-                                </div>
-                                The posts listed below document my work and allow for simple, in browser demonstration of code.
-                                Included in each post is a behavior description of the subject program, sample output images, and an interactive demonstration of the program behavior. 
-                                <p className="pt-1">
-                                To veiw and interact with a demonstration, follow the 'Try It Live' link at the top and bottom of each post.
-                                </p>
-                                <p className="pt-1">
-                                If you wish to review the code associated with the post, a link to the repository containing the code is provided in the body of each post.
-                                </p>
-                                <h3 className="flex justify-center text-center font-bold pt-1">
-                                Thanks for viewing!
-                                </h3>
-                            </div>
-                    </div>
-                    <div className="h-full">
-                        {heroPost && (
-                                <HeroPost
-                                    title={heroPost.title}
-                                    coverImage={heroPost.coverImage}
-                                    date={heroPost.date}
-                                    author={heroPost.author}
-                                    slug={heroPost.slug}
-                                    excerpt={heroPost.excerpt}
-                                    live={heroPost.live}
-                                />
-                            )}
-                    </div>
-                </div>
+            
 
+            <div  className="flex-col items-center justify-center flex text-zinc-100">
+                <MyWork allPosts={allPosts} darkMode={darkMode}/>
+            </div>            
+            <div  className="h-screen items-start justify-center flex text-zinc-100">
+                <Experience darkMode={darkMode}  />
             </div> 
-            <div  className="flex-col h-screen items-center justify-between flex text-zinc-100">
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-5">
-                    Projects
-                </h1>
-                {morePosts.length > 1 && <MoreStories posts={morePosts} />}
-                <Link href={'/projects/'} className="hover:underline text-3xl md:text-4xl font-bold tracking-tighter leading-tight ">
-                    More Projects
-                </Link>
-            </div>  
+            
         </div>
         <DarkModeToggle headingColor={headingColor} darkMode={darkMode} handleDarkMode={handleDarkMode}/>
     </>

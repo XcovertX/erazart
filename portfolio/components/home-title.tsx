@@ -1,7 +1,7 @@
 
-const HomeTitle = () => {
+const HomeTitle = ({dark}) => {
     return(
-        <div className="flex-col flex justify-center">
+        <div className={`flex-col flex justify-center ${dark? 'text-zinc-100' : 'text-black'}`}>
             <h1 className=" text-center text-5xl lg:text-9xl md:text-7xl font-bold tracking-tighter leading-tight">
                 JAMES COVERT
             </h1>

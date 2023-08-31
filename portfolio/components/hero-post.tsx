@@ -31,14 +31,14 @@ const HeroPost = ({
     <section onMouseEnter={onMouseEnter}
              onMouseLeave={onMouseLeave}
              className='flex flex-col h-full justify-center'>
-      <h1 className={`text-2xl md:text-3xl mx-2 ${hover? 'text-indigo-300' :'text-indigo-600'} font-bold tracking-tighter leading-tight my-5`}>
+      <h1 className={`text-2xl md:text-3xl mx-2 ${hover? 'text-indigo-500' :'text-indigo-600'} font-bold tracking-tighter leading-tight my-5`}>
         Featured Project
       </h1>
       <div className="">
         <CoverImage title={title} src={coverImage} slug={slug} mouseHover={hover}/>
       </div>
-      <div className={`${hover? 'text-indigo-300' :'text-indigo-600'} px-2`}>
-        <h3 className="mb-4 text-xl lg:text-3xl leading-tight">
+      <div className={`${hover? 'text-indigo-500' :'text-indigo-600'} px-2`}>
+        <h3 className="mb-4 text-xl lg:text-3xl leading-tight mt-2">
               <Link
                 as={`/home/${slug}`}
                 href="/home/[slug]"

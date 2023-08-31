@@ -10,6 +10,7 @@ type MySketchProps = SketchProps & {
     rotation: number;
     carts: Array<CartType>;
     grid: boolean;
+    darkMode: boolean;
 };
 
 //draws grid to the screen
@@ -315,11 +316,17 @@ function drawCrossDots(p5: P5CanvasInstance<MySketchProps>, cartPosition: Positi
     drawDoubleHorizontalDots(p5, cartPosition, part);
 }
 
-function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number) {
+function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number, darkMode: boolean) {
     let gradient = p5.drawingContext.createRadialGradient(orbX, orbY, 15, orbX, orbY, 600);
-    gradient.addColorStop(0, p5.color(35, 360, 360));
-    gradient.addColorStop(.4, p5.color(25, 360, 300));
-    gradient.addColorStop(1, p5.color(160, 360, 50));
+
+    if(darkMode) {
+        gradient.addColorStop(0, p5.color(35, 360, 360));
+        gradient.addColorStop(.4, p5.color(25, 360, 300));
+        gradient.addColorStop(1, p5.color(160, 360, 50));
+    } else {
+        gradient.addColorStop(0, p5.color(160, 100, 360));
+        gradient.addColorStop(1, p5.color(0, 100, 360));
+    }
     
     p5.push();
     p5.drawingContext.fillStyle = gradient;
@@ -328,15 +335,25 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
     p5.pop();
 }
 
-function drawOrb(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number) {
-    let glowGradient = p5.drawingContext.createRadialGradient(orbX, orbY, 15, orbX, orbY, 100);
-    glowGradient.addColorStop(0, p5.color(35, 360, 360, 100));
-    glowGradient.addColorStop(1, p5.color(25, 360, 360, 0));
+function drawOrb(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number, darkMode: boolean) {
 
-    let orbGradient = p5.drawingContext.createRadialGradient(orbX, orbY, 0, orbX, orbY, 20)
-    orbGradient.addColorStop( .1, p5.color(35,  10, 360));
-    orbGradient.addColorStop(.85, p5.color(40, 270, 360));
-    orbGradient.addColorStop(1, p5.color(25, 360, 340));
+    let glowGradient = p5.drawingContext.createRadialGradient(orbX, orbY, 15, orbX, orbY, 100);
+    let orbGradient = p5.drawingContext.createRadialGradient(orbX, orbY, 0, orbX, orbY, 20);
+
+    if(darkMode) {
+        glowGradient.addColorStop(0, p5.color(35, 360, 360, 100));
+        glowGradient.addColorStop(1, p5.color(25, 360, 360, 0));
+        orbGradient.addColorStop( .1, p5.color(35,  10, 360));
+        orbGradient.addColorStop(.85, p5.color(40, 270, 360));
+        orbGradient.addColorStop(1, p5.color(25, 360, 340));
+    } else {
+        glowGradient.addColorStop(0, p5.color(160, 360, 360, 100));
+        glowGradient.addColorStop(1, p5.color(160, 360, 360, 0));
+        orbGradient.addColorStop( .1, p5.color(0,  0, 0));
+        orbGradient.addColorStop(.75, p5.color(0, 0, 0));
+        orbGradient.addColorStop(.9, p5.color(160, 360, 200));
+        orbGradient.addColorStop(1, p5.color(160, 360, 360));
+    }
 
     p5.push();
     p5.noStroke()
@@ -359,7 +376,12 @@ function drawCarts(layer, props){
         drawGrid(layer, carts[0].width, carts[0].height);
     }
     
-    layer.background(360, 360, 0)
+    if(props.darkMode) {
+        layer.background(360, 360, 0)
+    } else {
+        layer.background(160, 30, 330)
+    }
+
     layer.noFill()
     layer.erase()
     for (let i = 0; i < carts.length; i++) {
@@ -666,7 +688,8 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         grid: false,
         orbX: window.innerWidth/2,
         orbY: window.innerHeight/2,
-        orbBounce: Math.PI
+        orbBounce: Math.PI,
+        darkMode: false
     }
     var canvas, cartLayer;
 
@@ -708,17 +731,20 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
             }
             state.orbX = state.orbX + p5.sin(state.orbBounce/2)*4;
             state.orbY = state.orbY + p5.cos(state.orbBounce)*2;
-            drawBackgroundGradient(p5, state.orbX, state.orbY);
+            drawBackgroundGradient(p5, state.orbX, state.orbY, state.darkMode);
             drawCarts(cartLayer, state);
-            p5.image(cartLayer, 0, 0)
-            drawOrb(p5, state.orbX, state.orbY);
+            p5.image(cartLayer, 0, 0);
+            if(state.darkMode) {
+                drawOrb(p5, state.orbX, state.orbY, state.darkMode);
+            }
+            
         }
     }
 
     p5.draw = drawAll();
 };
 
-export default function Background() {
+export default function Background({dark}) {
     const [rotation,     setRotation] = useState(0);
     const [cartCount,   setCartCount] = useState(100);
     const [carts,           setCarts] = useState(Array<CartType>(cartCount));
@@ -766,6 +792,6 @@ export default function Background() {
         }, [dGrid]);
 
     return (
-        <NextReactP5Wrapper sketch={backgroundSketch} rotation={rotation} carts={carts} grid={dGrid}/>
+        <NextReactP5Wrapper sketch={backgroundSketch} rotation={rotation} carts={carts} grid={dGrid} darkMode={dark}/>
     )
 }

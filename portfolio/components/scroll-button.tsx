@@ -7,8 +7,17 @@ type MySketchProps = SketchProps & {
     toTop: boolean;
     arrowBounce: number;
     arrowX: number;
-    arrowY: number;
+    arrowY: number;  
+    color: string;
 };
+
+type Props = {
+    top: number;
+    direction: boolean;
+    scrollTo: any;
+    darkMode: boolean;
+    color: string;
+}
 
 function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
 
@@ -17,7 +26,9 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
         toTop: true,
         arrowX: 50,
         arrowY: 70,
-        arrowBounce: 0
+        arrowBounce: 0,
+        darkMode: false,
+        color: ''
     }
 
     var canvas, cartLayer, button, rotation: number;
@@ -32,6 +43,50 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
     function changeBG() {
         let val = p5.random(360);
         p5.background(val);
+    }
+
+    function fillColorSelect(color) {
+        switch (color) {
+            case 'bg-green-600' : return p5.color('#16a34a');
+            case 'bg-teal-600'  : return p5.color('#0d9488');
+            case 'bg-indigo-600': return p5.color('#4f46e5');
+            case 'bg-purple-600': return p5.color('#9333ea');
+            case 'bg-rose-600'  : return p5.color('#e11d48');
+            default             : return p5.color('#16a34a');
+        }
+    }
+
+    function strokeColorSelect(color) {
+        switch (color) {
+            case 'bg-green-600' : return p5.color('#14532d');
+            case 'bg-teal-600'  : return p5.color('#0d9488');
+            case 'bg-indigo-600': return p5.color('#4f46e5');
+            case 'bg-purple-600': return p5.color('#9333ea');
+            case 'bg-rose-600'  : return p5.color('#e11d48');
+            default             : return p5.color('#16a34a');
+        }
+    }
+
+    function shadowColorSelect(color) {
+        switch (color) {
+            case 'bg-green-600' : return p5.color('#14532d');
+            case 'bg-teal-600'  : return p5.color('#134e4a');
+            case 'bg-indigo-600': return p5.color('#312e81');
+            case 'bg-purple-600': return p5.color('#581c87');
+            case 'bg-rose-600'  : return p5.color('#881337');
+            default             : return p5.color('black');
+        }
+    }
+
+    function highlightColorSelect(color) {
+        switch (color) {
+            case 'bg-green-600' : return p5.color('#22c55e');
+            case 'bg-teal-600'  : return p5.color('#14b8a6');
+            case 'bg-indigo-600': return p5.color('#6366f1');
+            case 'bg-purple-600': return p5.color('#a855f7');
+            case 'bg-rose-600'  : return p5.color('#f43f5e');
+            default             : return p5.color('white');
+        }
     }
 
     p5.setup = () => {
@@ -58,33 +113,49 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
 
         return () => {
             p5.clear(0, 0, 0, 0);
-            if(p5.frameCount % 1 == 0) {
-                state.arrowBounce = state.arrowBounce + Math.PI/45;
-            }
-            state.arrowY = state.arrowY + p5.sin(state.arrowBounce)/5;
 
+            state.arrowBounce = state.arrowBounce + Math.PI/45;
+            state.arrowY = state.arrowY + p5.sin(state.arrowBounce)/5;
+         
             p5.push();
-            
-            
 
             if (state.hover){
-                p5.fill(p5.color(310,  360, 100, 50))
-                p5.strokeWeight(2.5);
-                p5.stroke(p5.color(310,  200, 360));
-                p5.drawingContext.shadowColor = p5.color(310, 360, 360);
-                p5.drawingContext.shadowBlur = 5;
+                if(state.darkMode) {
+                    p5.fill(p5.color(310,  360, 100, 50))
+                    p5.strokeWeight(2.5);
+                    p5.stroke(p5.color(310,  200, 360));
+                    p5.drawingContext.shadowColor = p5.color(310, 360, 360);
+                    p5.drawingContext.shadowBlur = 5;
+                } else {
+                    p5.noFill();
+                    p5.strokeWeight(2.5);
+                    p5.stroke(highlightColorSelect(state.color));
+                    p5.drawingContext.shadowColor = highlightColorSelect(state.color);
+                    p5.drawingContext.shadowBlur = 3;
+                }
+
             } else {
                 p5.noFill();
                 p5.strokeWeight(2);
-                p5.stroke(p5.color(160,  360, 360));
-                p5.drawingContext.shadowColor = p5.color(0, 360, 360);
-                let offsetX = p5.map(p5.mouseX, 0, p5.width, 1, -1);
-                let offsetY = p5.map(p5.mouseY, 0, p5.height, 1, -1);
-                p5.drawingContext.shadowOffsetX = offsetX;
-                p5.drawingContext.shadowOffsetY = offsetY;
+                if(state.darkMode) {
+                    p5.stroke(p5.color(160,  360, 360));
+                    p5.drawingContext.shadowColor = p5.color(0, 360, 360);
+                } else {
+                    p5.stroke(strokeColorSelect(state.color));
+                    p5.drawingContext.shadowColor = shadowColorSelect(state.color);
+                    p5.drawingContext.shadowBlur = 3;
+                }
+
+                let offsetX, offsetY;
+
+                if(state.darkMode) {
+                    offsetX = p5.map(p5.mouseX, 0, p5.width, 1, -1);
+                    offsetY = p5.map(p5.mouseY, 0, p5.height, 1, -1);
+                    p5.drawingContext.shadowOffsetX = offsetX;
+                    p5.drawingContext.shadowOffsetY = offsetY;
+                }
+                
             }
-
-
 
             if(state.toTop) {
                 p5.beginShape();
@@ -160,22 +231,20 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
     p5.draw = drawAll();
 };
 
-
-
-export default function ScrollButton(props: {top: number, direction: boolean, scrollTo}) {
+export default function ScrollButton({top, direction, scrollTo, darkMode, color}: Props) {
     const [hover,   setHover] =  useState(false);
-    const [sectionTop, setSectionTop] = useState(props.top);
+    const [sectionTop, setSectionTop] = useState(top);
     const onMouseEnter  = () =>   setHover(true);
     const onMouseLeave  = () =>  setHover(false);
 
-    useEffect(() => setSectionTop(props.top), [sectionTop]);
+    useEffect(() => setSectionTop(top), [sectionTop]);
 
     return (
         <button className="flex items-center relative justify-center"
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
-                onClick={() => props.scrollTo(sectionTop)}>
-            <NextReactP5Wrapper sketch={buttonSketch} hover={hover} toTop={props.direction}/>
+                onClick={() => scrollTo(sectionTop)}>
+            <NextReactP5Wrapper sketch={buttonSketch} hover={hover} toTop={direction} darkMode={darkMode} color={color}/>
         </button>
         
     )
