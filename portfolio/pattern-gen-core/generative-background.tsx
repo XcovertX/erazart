@@ -316,7 +316,7 @@ function drawCrossDots(p5: P5CanvasInstance<MySketchProps>, cartPosition: Positi
     drawDoubleHorizontalDots(p5, cartPosition, part);
 }
 
-function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number, darkMode: boolean) {
+function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number, darkMode: boolean, totalHeight: number) {
     let gradient = p5.drawingContext.createRadialGradient(orbX, orbY, 15, orbX, orbY, 600);
 
     if(darkMode) {
@@ -331,7 +331,7 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
     p5.push();
     p5.drawingContext.fillStyle = gradient;
     p5.noStroke();
-    p5.rect(0, 0, window.innerWidth, window.innerHeight*7);
+    p5.rect(0, 0, window.innerWidth, totalHeight);
     p5.pop();
 }
 
@@ -550,7 +550,7 @@ function changeCartColor(cart: CartType, h: number, s: number, b: number, bw: nu
     }
 }
 
-function moveCart(cart: CartType, edgeExtend: number, continuation: number) {
+function moveCart(cart: CartType, edgeExtend: number, continuation: number, height: number) {
     if (cart.isTransitioning) {
         if (cart.transitionCount >= ((cart.width / 2) - 2)) {
             cart.isTransitioning = false;
@@ -592,14 +592,14 @@ function moveCart(cart: CartType, edgeExtend: number, continuation: number) {
         cart.transitionCount = -1;
         cart.isTransitioning = true;
     }
-    if (cart.position.y > (window.innerHeight*7 + cart.height)) {
+    if (cart.position.y > (height + cart.height)) {
         cart.position.y = 0 - cart.height;
         cart.position.x = cart.position.x + cart.width
         cart.transitionCount = -1;
         cart.isTransitioning = true;
     }
     if (cart.position.y < 0 - cart.height) {
-        cart.position.y = window.innerHeight*7 + cart.height - (window.innerHeight*7 % cart.height);
+        cart.position.y = height + cart.height - (height % cart.height);
         cart.position.x = cart.position.x - cart.width
         cart.transitionCount = -1;
         cart.isTransitioning = true;
@@ -655,11 +655,12 @@ function buildRandomSuperExtraLargePart(cartPosition: PositionType, color: Color
 }
 
 // generates a give number of uniques carts
-function generateCarts(cartCount: number, partCount: number, w: number, h: number, minSpeed: number, maxSpeed: number) {
+function generateCarts(cartCount: number, partCount: number, w: number, h: number, minSpeed: number, maxSpeed: number, totalHeight: number) {
+    console.log(totalHeight)
     let carts = new Array(cartCount);
     for (let i = 0; i < cartCount; i++) {
         var cartColor: Color = {h: 140, s: 300, b: 270, a: 100};
-        var cartPosition: PositionType = getRandomPosition(0, window.innerWidth, 0, window.innerHeight*7, w, h);
+        var cartPosition: PositionType = getRandomPosition(0, window.innerWidth, 0, totalHeight, w, h);
         var parts = new Array(getRandomInt(0, partCount) + 1);
         for (let j = 0; j < partCount; j++) {
             parts[j] = buildNewPart(cartPosition, cartColor, w, h);
@@ -690,13 +691,14 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         orbY: window.innerHeight/2,
         orbBounce: Math.PI,
         darkMode: false,
-        scrollYPosition: 0
+        scrollYPosition: 0,
+        totalHeight: window.innerHeight*7
     }
     var canvas, cartLayer;
 
     p5.windowResized = () => {
-        p5.resizeCanvas(p5.windowWidth, p5.windowHeight*7);
-        cartLayer = p5.createGraphics(window.innerWidth, window.innerHeight*7);
+        p5.resizeCanvas(p5.windowWidth, state.totalHeight);
+        cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight);
         cartLayer.position(0,0);
         cartLayer.colorMode(p5.HSB, 360)
         cartLayer.strokeWeight(3);
@@ -707,13 +709,13 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
     }
 
     p5.setup = () => {
-        canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight*7, p5.P2D);
+        canvas = p5.createCanvas(p5.windowWidth, state.totalHeight, p5.P2D);
         canvas.position(0,0);
         canvas.style('z-index', '-1');
         p5.colorMode(p5.HSB, 360);
         p5.ellipseMode(p5.RADIUS);
         
-        cartLayer = p5.createGraphics(window.innerWidth, window.innerHeight*7)
+        cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight)
         cartLayer.position(0,0);
         cartLayer.colorMode(p5.HSB, 360)
         cartLayer.strokeWeight(3);
@@ -722,6 +724,16 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
 
     p5.updateWithProps = props => {
         state = Object.assign(state, props);
+        if(state.totalHeight != canvas.height){
+            p5.resizeCanvas(p5.windowWidth, state.totalHeight);
+        }
+        if(state.totalHeight != cartLayer.height){
+            cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight);
+            cartLayer.position(0,0);
+            cartLayer.colorMode(p5.HSB, 360)
+            cartLayer.strokeWeight(3);
+            cartLayer.ellipseMode(p5.RADIUS);
+        }
     }
 
     function drawAll() {
@@ -732,38 +744,42 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
             }
             state.orbX = state.orbX + p5.sin(state.orbBounce/2)*8;
             state.orbY = state.orbY + p5.cos(state.orbBounce)*4;
-            drawBackgroundGradient(p5, state.orbX, state.orbY + state.scrollYPosition, state.darkMode);
+            drawBackgroundGradient(p5, state.orbX, state.orbY + state.scrollYPosition, state.darkMode, state.totalHeight);
             drawCarts(cartLayer, state);
             p5.image(cartLayer, 0, 0);
             // if(state.darkMode) {
             //     drawOrb(p5, state.orbX, state.orbY+ state.scrollYPosition, state.darkMode);
-            // }
-            
+            // } 
         }
     }
 
     p5.draw = drawAll();
 };
 
-export default function Background({dark, scrollYPosition}) {
-    const [rotation,     setRotation] = useState(0);
-    const [cartCount,   setCartCount] = useState(200);
-    const [carts,           setCarts] = useState(Array<CartType>(cartCount));
-    const [maxSpeed,     setMaxSpeed] = useState(500);
-    const [minSpeed,     setMinSpeed] = useState(10000);
-    const [partWidth,   setPartWidth] = useState(150);
-    const [partHeight, setPartHeight] = useState(150);
-    const [partCount,   setPartCount] = useState(2);
-    const [edgeExtend, setEdgeExtend] = useState(0);
-    const [dGrid,           setDGrid] = useState(false);
-    const [continuation, setContinue] = useState(2);
-    const [orbX,             setOrbX] = useState(0);
-    const [orbY,             setOrbY] = useState(0);
-    const [orbBounce,   setOrbBounce] = useState(0);
+type BackgroundProps = {
+    darkMode: boolean;
+    scrollYPosition: number;
+    height: number;
+}
+
+export default function Background({darkMode, scrollYPosition, height}: BackgroundProps) {
+    const [rotation,       setRotation] = useState(0);
+    const [cartCount,     setCartCount] = useState(200);
+    const [carts,             setCarts] = useState(Array<CartType>(cartCount));
+    const [maxSpeed,       setMaxSpeed] = useState(500);
+    const [minSpeed,       setMinSpeed] = useState(10000);
+    const [partWidth,     setPartWidth] = useState(150);
+    const [partHeight,   setPartHeight] = useState(150);
+    const [partCount,     setPartCount] = useState(2);
+    const [edgeExtend,   setEdgeExtend] = useState(0);
+    const [dGrid,             setDGrid] = useState(false);
+    const [continuation,   setContinue] = useState(2);
+    const [orbX,               setOrbX] = useState(0);
+    const [orbY,               setOrbY] = useState(0);
+    const [orbBounce,     setOrbBounce] = useState(0);
 
     useEffect(() => {
-
-        const c: Array<CartType> = generateCarts(cartCount, partCount, partWidth, partHeight, minSpeed, maxSpeed);
+        const c: Array<CartType> = generateCarts(cartCount, partCount, partWidth, partHeight, minSpeed, maxSpeed, height);
         setCarts(c);
         
         if(partWidth > partHeight) {
@@ -779,7 +795,7 @@ export default function Background({dark, scrollYPosition}) {
             for (let i = 0; i < carts.length; i++) {
                 cts[i] = carts[i];
                 if (cts[i].isTransitioning || cts[i].age >= cts[i].speed) {
-                    moveCart(cts[i], edgeExtend, continuation);
+                    moveCart(cts[i], edgeExtend, continuation, height);
                 } else {
                     cts[i].age++;
                 }
@@ -790,9 +806,18 @@ export default function Background({dark, scrollYPosition}) {
             return () => {
                 clearInterval(interval);
             };
-        }, [dGrid]);
+        }, [dGrid, height]);
 
     return (
-        <NextReactP5Wrapper sketch={backgroundSketch} rotation={rotation} carts={carts} grid={dGrid} darkMode={dark} scrollYPosition={scrollYPosition}/>
+
+        <NextReactP5Wrapper sketch={backgroundSketch} 
+                            rotation={rotation} 
+                            carts={carts} 
+                            grid={dGrid} 
+                            darkMode={darkMode} 
+                            scrollYPosition={scrollYPosition} 
+                            totalHeight={height}/>
+
+        
     )
 }

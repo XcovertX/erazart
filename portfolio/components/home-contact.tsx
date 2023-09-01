@@ -8,12 +8,11 @@ type Props = {
 const Contact = ({darkMode}: Props) => {
     const image = (
         <CldImage
-          src={'/assets/JCovert.jpg'}
+          src={'/assets/JC_Gray.jpg'}
           width={481}
           height={640}
           sizes="100vw"
           alt={`J.Covert`}
-          grayscale
           className=''
         />
       )

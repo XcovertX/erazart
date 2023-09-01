@@ -14,7 +14,7 @@ const MyWork = ({allPosts, darkMode}: Props) => {
     const morePosts = allPosts.slice(1)
 
     return(
-        <div className='h-[300vh] flex flex-col justify-between'>
+        <div className='h-fit flex flex-col justify-between'>
             <div  className={`pt-20 flex-col items-center justify-between flex ${darkMode? 'text-zinc-100' : "text-indigo-950"}`}>
                 <div className="flex flex-row">
                     <div className="flex flex-col justify-start px-10">
