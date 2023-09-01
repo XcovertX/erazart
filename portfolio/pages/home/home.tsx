@@ -18,6 +18,7 @@ import Post from '../../interfaces/post'
 import HeroPost from '../../components/hero-post'
 import DarkModeToggle from '../../components/dark-mode'
 import Experience from '../../components/home-experience'
+import Contact from '../../components/home-contact'
 
 type Props = {
     allPosts: Post[]
@@ -29,6 +30,7 @@ const Home = ({ allPosts }: Props) => {
     const [headingColor, setHeadingColor] = useState('bg-green-600');
     const [currentSection, setCurrentSection] = useState(0);
     const [darkMode, setDarkMode] = useState(true);
+
     
     const getHeadingColor = (section: number) => {
         switch(section) {
@@ -83,7 +85,7 @@ const Home = ({ allPosts }: Props) => {
 
   return (
     <>  
-        <Background dark={darkMode}/>
+        <Background dark={darkMode} scrollYPosition={scrollYPosition}/>
         <div className="fixed right-5 bottom-0 z-36">
             {
                 scrollYPosition > 500?
@@ -96,7 +98,7 @@ const Home = ({ allPosts }: Props) => {
             <div className="flex-col h-screen items-center justify-between flex text-zinc-100">
                 <div className="items-center flex flex-col pt-5">
                     <div className="py-10">
-                        <HomeNav headingColor={headingColor} scrollTo={scrollTo} dark={darkMode}/>
+                        <HomeNav headingColor={headingColor} scrollTo={scrollTo} dark={darkMode} section={currentSection}/>
                     </div>
                     <div className="pt-10">
                         <SocialLinks dark={darkMode}/>
@@ -120,6 +122,10 @@ const Home = ({ allPosts }: Props) => {
             <div  className="h-screen items-start justify-center flex text-zinc-100">
                 <Experience darkMode={darkMode}  />
             </div> 
+
+            <div className='h-screen items-start justify-center flex text-zinc-100'>
+                <Contact darkMode={darkMode} />
+            </div>
             
         </div>
         <DarkModeToggle headingColor={headingColor} darkMode={darkMode} handleDarkMode={handleDarkMode}/>

@@ -130,8 +130,6 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
                     p5.noFill();
                     p5.strokeWeight(2.5);
                     p5.stroke(highlightColorSelect(state.color));
-                    p5.drawingContext.shadowColor = highlightColorSelect(state.color);
-                    p5.drawingContext.shadowBlur = 3;
                 }
 
             } else {
@@ -141,9 +139,8 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
                     p5.stroke(p5.color(160,  360, 360));
                     p5.drawingContext.shadowColor = p5.color(0, 360, 360);
                 } else {
-                    p5.stroke(strokeColorSelect(state.color));
-                    p5.drawingContext.shadowColor = shadowColorSelect(state.color);
-                    p5.drawingContext.shadowBlur = 3;
+                    p5.stroke(p5.color('black'));
+                    p5.drawingContext.shadowColor = shadowColorSelect(p5.color('black'));
                 }
 
                 let offsetX, offsetY;

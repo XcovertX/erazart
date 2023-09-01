@@ -2,9 +2,10 @@ type Props = {
     headingColor: string;
     scrollTo: any;
     dark: boolean;
+    section: number;
 }
 
-const HomeNav = ({headingColor, scrollTo, dark}: Props) => {
+const HomeNav = ({headingColor, scrollTo, dark, section}: Props) => {
     var textColor, bgColor;
 
     if(dark) {
@@ -38,43 +39,43 @@ const HomeNav = ({headingColor, scrollTo, dark}: Props) => {
     }
 
     return (
-        <div className={`${headingColor} fixed top-0 inset-x-0 z-50 py-2 flex-row justify-center flex font-bold text-sm md:text-2xl`}>
+        <div className={`${headingColor} fixed top-0 inset-x-0 z-50 py-4 md:p-2 flex-row justify-center flex font-bold text-sm md:text-2xl`}>
             <button onClick={() => scrollTo(0)} className="mx-2">
-                <div className="group relative md:px-1 pt-2 h-14 w-50 overflow-hidden">
-                    <span className={`absolute inset-x-8 md:inset-x-12 bottom-0 w-2 h-2 ${bgColor} rounded-md duration-[250ms] ease-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
-                    <div className={`relative px-3 ${textColor} text-end`}>
+                <div className="group relative px-1 pt-2 h-10 md:h-14 w-50 overflow-hidden">
+                    <span className={`absolute inset-x-0 bottom-0 w-full ${section == 0? 'h-full' : 'h-2'} ${bgColor} rounded-md duration-[250ms] ease-in-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
+                    <div className={`relative ${textColor} text-end`}>
                         Home
                     </div>
                 </div>
             </button>
             <button onClick={() => scrollTo(1)} className="mx-2 ">
-                <div className="group relative md:px-1 pt-2 h-14 w-50 whitespace-nowrap overflow-hidden">
-                    <span className={`absolute inset-x-8 md:inset-x-16 bottom-0 w-2 h-2 ${bgColor} rounded-md duration-[250ms] ease-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
-                    <div className={`relative px-3 ${textColor} text-end`}>
+                <div className="group relative px-1 pt-2 h-10 md:h-14 w-50 whitespace-nowrap overflow-hidden">
+                    <span className={`absolute inset-x-0 bottom-0 w-full ${section == 1? 'h-full' : 'h-2'} ${bgColor} rounded-md duration-[250ms] ease-in-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
+                    <div className={`relative ${textColor} text-end`}>
                         Expertise
                     </div>
                 </div>
             </button>
             <button onClick={() => scrollTo(2)} className="mx-2 ">
-                <div className="group relative md:px-1 pt-2 h-14 w-50 whitespace-nowrap overflow-hidden">
-                    <span className={`absolute inset-x-8 md:inset-x-12 bottom-0 w-2 h-2 ${bgColor} rounded-md duration-[250ms] ease-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
-                    <div className={`relative px-3 ${textColor} text-end`}>
+                <div className="group relative px-1 pt-2 h-10 md:h-14 w-50 whitespace-nowrap overflow-hidden">
+                    <span className={`absolute inset-x-0 bottom-0 w-full ${section == 2? 'h-full' : 'h-2'} ${bgColor} rounded-md duration-[250ms] ease-in-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
+                    <div className={`relative ${textColor} text-end`}>
                         Work
                     </div>
                 </div>
             </button>
             <button onClick={() => scrollTo(5)} className="mx-2 ">
-                <div className="group relative md:px-1 pt-2 h-14 w-50 whitespace-nowrap overflow-hidden">
-                    <span className={`absolute inset-x-8 md:inset-x-20 bottom-0 w-2 h-2 ${bgColor} rounded-md duration-[250ms] ease-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
-                    <div className={`relative px-3 ${textColor} text-end`}>
+                <div className="group relative px-1 pt-2 h-10 md:h-14 w-50 whitespace-nowrap overflow-hidden">
+                    <span className={`absolute inset-x-0 bottom-0 w-full ${(section == 3 || section == 4 || section == 5)? 'h-full' : 'h-2'} ${bgColor} rounded-md duration-[250ms] ease-in-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
+                    <div className={`relative ${textColor} text-end`}>
                         Experience
                     </div>
                 </div>
             </button>
             <div className="mx-2">
-                <div className="group relative md:px-1 pt-2 h-14 w-50 overflow-hidden">
-                    <span className={`absolute inset-x-8 md:inset-x-14 bottom-0 w-2 h-2 ${bgColor} rounded-md duration-[250ms] ease-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
-                    <button onClick={() => scrollTo(6)} className={`relative px-3 ${textColor} text-end`}>
+                <div className="group relative px-1 pt-2 h-10 md:h-14 w-50 overflow-hidden">
+                    <span className={`absolute inset-x-0 bottom-0 w-full ${section == 6? 'h-full' : 'h-2'} ${bgColor} rounded-md duration-[250ms] ease-in-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
+                    <button onClick={() => scrollTo(6)} className={`relative ${textColor} text-end`}>
                         Contact
                     </button>
                 </div>

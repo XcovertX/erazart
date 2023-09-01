@@ -17,12 +17,12 @@ const handleSelect = (n: number) => {
 }
 
 // tailwind css
-const buttonSelected     = `w-full p-5 m-1 border-4 flex flex-row grow justify-between  ${dark? 'border-teal-600 bg-teal-600/[.1]' : 'text-teal-900 border-teal-600 bg-teal-600/[.5]'}`;
-const buttonNotSelected  = `p-3 m-1 border-4 flex flex-col justify-center  ${dark? 'border-teal-950 bg-teal-950/[.5]' : 'text-teal-900 border-teal-800 bg-teal-800/[.5]'}`;
+const buttonSelected     = `w-full p-5 m-1 border-4 flex flex-row grow justify-between ${dark? 'border-teal-600 bg-teal-600/[.1]' : 'text-teal-900 border-teal-600 bg-teal-400/[.3]'}`;
+const buttonNotSelected  = `w-min p-3 m-1 border-4 flex flex-col justify-center ${dark? 'border-teal-950 bg-teal-950/[.5]' : 'text-teal-900 border-teal-800 bg-teal-600/[.5]'}`;
 const headingSelected    = "text-4xl font-bold";
-const headingNotSelected = `text-2xl font-bold break-normal rotate-180 mb-5 ${dark? 'tex-zinc-100' : 'text-teal-900 border-teal-800 bg-teal-800/[.5]'}`;
+const headingNotSelected = `text-2xl font-bold break-normal rotate-180 mb-5  ${dark? 'text-zinc-100' : 'text-teal-950 border-teal-800'}`;
 const descriptionHolder  = "flex flex-col grow justify-between p-5" ;
-const description        = `${dark? '' : 'text-teal-950'}`;
+const description        = `text-xl  ${dark? '' : 'text-teal-900'}`;
 const chartHolder        = "h-full relative grow";
 
 // icon assets
@@ -42,12 +42,12 @@ const clojureWhite      = '/assets/clojure_icon_white.png';
 const clojureBlack      = '/assets/clojure_icon_black.png';
 
     return(
-        <div className="w-full flex-col h-screen items-center justify-start flex text-zinc-100">
-                <h1 className={`${dark? 'text-zinc-100' : 'text-black'} pt-20 text-center text-5xl md:text-7xl font-bold tracking-tighter leading-tight`}>
+        <div className="w-full flex-col h-screen items-center justify-start flex text-zinc-100 transition-all delay-1000">
+                <h1 className={`${dark? 'text-zinc-100' : 'text-teal-950'} pt-20 text-center text-5xl md:text-7xl font-bold tracking-tighter leading-tight`}>
                     My Expertise
                 </h1>
                 <div className="w-full flex grow flex-row my-6">
-                    <button className={selected == 0? buttonSelected : buttonNotSelected}
+                    <button className={`transition-colors duration-500 ${selected == 0? buttonSelected : buttonNotSelected}`}
                             onClick={() => handleSelect(0)}>
                         <div className="flex grow flex-col items-center h-full justify-between w-full">
                             <Image
@@ -72,7 +72,7 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                             <SoftwareDevChart hidden={(selected == 0 && width >= 1024)? false : true}/>
                         </div>    
                     </button>
-                    <button className={selected == 1? buttonSelected : buttonNotSelected}
+                    <button className={`transition-colors duration-500 ${selected == 1? buttonSelected : buttonNotSelected}`}
                             onClick={() => handleSelect(1)}>
                         
                         <div className="flex grow flex-col items-center h-full justify-between w-full">
@@ -97,7 +97,7 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                             <FrontendChart hidden={(selected == 1 && width >= 1024)? false : true}/>
                         </div>
                     </button>
-                    <button className={selected == 2? buttonSelected : buttonNotSelected}
+                    <button className={`transition-colors duration-500 ${selected == 2? buttonSelected : buttonNotSelected}`}
                             onClick={() => handleSelect(2)}>
                         <div className="flex grow flex-col items-center h-full justify-between w-full">
                             <Image
@@ -120,7 +120,7 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                             <BackendChart hidden={(selected == 2 && width >= 1024)? false : true}/>
                         </div>
                     </button>
-                    <button className={selected == 3? buttonSelected : buttonNotSelected}
+                    <button className={`transition-colors duration-500 ${selected == 3? buttonSelected : buttonNotSelected}`}
                             onClick={() => handleSelect(3)}>
                         <div className="flex grow flex-col items-center h-full justify-between w-full  ">
                             <Image

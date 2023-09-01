@@ -47,7 +47,7 @@ const Experience = ({darkMode}: Props) => {
             <h1 className=" text-center text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
                 Professional Experience
             </h1>
-            <div className="text-green-500 text-center hidden md:block text-xl lg:text-3xl font-bold tracking-tighter leading-tight">
+            <div className="mt-2 text-green-500 text-center hidden md:block text-xl lg:text-3xl font-bold tracking-tighter leading-tight">
                 SOFTWARE ENGINEER \\ FULL STACK \\ WEB DEV
             </div>
             <ExperienceAccordian jobs={jobs} />

@@ -10,7 +10,7 @@ type Props = {
 
 
 const ExperienceAccordian = ({ jobs }: Props) => {
-    const [currentOpen, setCurrentOpen] = useState(-1);
+    const [currentOpen, setCurrentOpen] = useState(2);
 
     function handleSwitch(key){
         setCurrentOpen(key)
@@ -74,8 +74,7 @@ const AccordionEntry = ({AEid,
         <label
         htmlFor="expandCollapse"
         className={classNames(
-            "w-full flex justify-between items-center bg-purple-800 rounded-md py-3 px-5 text-zinc-100",
-            "hover:bg-purple-600",
+            `w-full flex justify-between items-center ${currentOpen == AEid? 'bg-green-600' : 'bg-purple-900'}  text-zinc-100 rounded-md py-3 px-5`,
             "transition-colors duration-1000 ease-in-out"
         )}
         onClick={currentOpen == AEid? () => {
