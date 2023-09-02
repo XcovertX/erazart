@@ -144,7 +144,7 @@ const Home = ({ allPosts }: Props) => {
                         <HomeNav headingColor={headingColor} scrollTo={scrollTo} dark={darkMode} section={currentSection}/>
                     </div>
                     <div className="pt-10">
-                        <SocialLinks dark={darkMode}/>
+                        <SocialLinks darkMode={darkMode} section={currentSection}/>
                     </div>
                 </div>
                 <div className=" pt-6">
