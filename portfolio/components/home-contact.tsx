@@ -11,18 +11,18 @@ const Contact = ({darkMode}: Props) => {
           src={'/assets/JC_Gray.jpg'}
           width={481}
           height={640}
-          sizes="100vw"
+          sizes=""
           alt={`J.Covert`}
           className=''
         />
       )
     return(
-        <div className='flex flex-row justify-center w-full h-screen pb-6 pt-24'>
-            <div className={`${darkMode? 'bg-rose-900/[.2] text-zinc-100' : 'bg-rose-700/[.3] text-rose-950'}  w-auto flex flex-col md:h-max`}>
+        <div className='flex flex-row justify-center mx-32 md:mx-0 w-full h-full pb-6 pt-24'>
+            <div className={`${darkMode? 'bg-rose-900/[.2] text-zinc-100' : 'bg-rose-700/[.3] text-rose-950'} w-auto h-3/4 md:h-full md:overflow-clip flex flex-col`}>
                 {image}
-                <div className='md:hidden text-zinc-100 text-3xl p-5 bg-teal-600 h-1/3'>
-                    <div className='p-5 flex flex-col justify-center items-center h-full'>
-                        <div className='mb-8'>
+                <div className='md:hidden text-zinc-100 text-3xl p-5 bg-teal-600 h-1/4'>
+                    <div className=' flex flex-col justify-start items-center '>
+                        <div className=''>
                             <SocialLinks dark={darkMode}/>
                         </div>
                         <a href='mailto:james.t.covert@gmail.com'

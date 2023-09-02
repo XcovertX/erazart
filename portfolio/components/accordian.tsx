@@ -17,7 +17,7 @@ const ExperienceAccordian = ({ jobs }: Props) => {
     }
     return (
         <section>
-          <div className="mt-5 mx-36 text-lg">
+          <div className="mt-5 mx-2 md:mx-36 text-sm md:text-lg flex flex-col items-center justify-center">
             {jobs.map((job, i) => (
               <AccordionEntry
                 AEid={i}
@@ -65,25 +65,25 @@ const AccordionEntry = ({AEid,
  return (
    <div className="w-full h-full">
         <input
-        id="expandCollapse"
-        checked={open}
-        readOnly
-        type="checkbox"
-        className="peer sr-only"
+            id="expandCollapse"
+            checked={open}
+            readOnly
+            type="checkbox"
+            className="peer sr-only"
         />
         <label
-        htmlFor="expandCollapse"
-        className={classNames(
-            `w-full flex justify-between items-center ${currentOpen == AEid? 'bg-green-600' : 'bg-purple-900'}  text-zinc-100 rounded-md py-3 px-5`,
-            "transition-colors duration-1000 ease-in-out"
-        )}
-        onClick={currentOpen == AEid? () => {
-            handleSwitch(-1);
-        } 
-        : 
-        () => {
-            handleSwitch(AEid);
-        }}
+            htmlFor="expandCollapse"
+            className={classNames(
+                `w-full flex justify-between items-center ${currentOpen == AEid? 'bg-green-600' : 'bg-purple-900'}  text-zinc-100 rounded-md py-2 md:py-3 px-2 md:px-5`,
+                "transition-colors duration-1000 ease-in-out"
+            )}
+            onClick={currentOpen == AEid? () => {
+                handleSwitch(-1);
+            } 
+            : 
+            () => {
+                handleSwitch(AEid);
+            }}
         >
         {`${jobTitle} @ ${jobName}`}
         <div className='flex flex-row justify-end'>
@@ -91,7 +91,7 @@ const AccordionEntry = ({AEid,
             <CaretIcon
                 height={20}
                 width={20}
-                className={classNames("ml-4", {
+                className={classNames("ml-2 md:ml-4", {
                 "rotate-180": open,
                 })}
             />
@@ -139,7 +139,7 @@ const AccordionEntry = ({AEid,
                         {frameLang.map((fm, i) => (
                         <div
                             key={i}
-                            className='px-5 py-2 mr-2 bg-purple-600 rounded-full'
+                            className='px-2 md:px-5 py-2 mr-2 text-sm md:text-lg bg-purple-600 rounded-full'
                         >
                             {fm}
                         </div>
@@ -147,7 +147,7 @@ const AccordionEntry = ({AEid,
                     </div>
 
                 </div>
-                <div className="relative w-full min-w-[100px] h-auto flex justify-center items-center pr-2 m-5">
+                <div className="hidden md:block relative w-full min-w-[100px] h-auto flex justify-center items-center pr-2 m-5">
                     <Image 
                         fill
                         sizes="(max-width: 100px) 100vw"

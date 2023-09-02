@@ -63,7 +63,7 @@ const MyWork = ({allPosts, darkMode}: Props) => {
                 </div>
             </div>
             <div  className={`flex-col items-center justify-start flex ${darkMode? 'text-zinc-100' : 'text-indigo-900'}`}>
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-5">
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight my-10">
                     Projects
                 </h1>
                 {morePosts.length > 1 && <MoreStories posts={morePosts} />}
