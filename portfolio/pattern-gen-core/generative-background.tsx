@@ -316,19 +316,47 @@ function drawCrossDots(p5: P5CanvasInstance<MySketchProps>, cartPosition: Positi
     drawDoubleHorizontalDots(p5, cartPosition, part);
 }
 
-function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number, darkMode: boolean, totalHeight: number) {
+function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number, darkMode: boolean, totalHeight: number, section: number) {
+    p5.push()
     let gradient = p5.drawingContext.createRadialGradient(orbX, orbY, 15, orbX, orbY, 600);
 
     if(darkMode) {
-        gradient.addColorStop(0, p5.color(35, 360, 360));
-        gradient.addColorStop(.4, p5.color(25, 360, 300));
-        gradient.addColorStop(1, p5.color(160, 360, 50));
+        if(section == 0) {
+            gradient.addColorStop(0, p5.color(0, 360, 360));
+            gradient.addColorStop(1, p5.color(0, 360, 100));
+        } else if(section == 1) {
+            gradient.addColorStop(0, p5.color(20, 360, 360));
+            gradient.addColorStop(1, p5.color(20, 360, 100));
+        } else if(section == 2) {
+            gradient.addColorStop(0, p5.color(40, 360, 360));
+            gradient.addColorStop(1, p5.color(40, 360, 100));
+        } else if(section == 3) {
+            gradient.addColorStop(0, p5.color(60, 360, 360));
+            gradient.addColorStop(1, p5.color(60, 360, 100));
+        } else {
+            gradient.addColorStop(0, p5.color(90, 360, 360));
+            gradient.addColorStop(1, p5.color(90, 360, 100));
+        }
+
     } else {
-        gradient.addColorStop(0, p5.color(.5, 150, 360));
-        gradient.addColorStop(1, p5.color(250, 150, 300));
+        if(section == 0) {
+            gradient.addColorStop(0, p5.color(40, 300, 360));
+            gradient.addColorStop(1, p5.color(0, 300, 360));
+        } else if(section == 1) {
+            gradient.addColorStop(0, p5.color(40, 300, 360));
+            gradient.addColorStop(1, p5.color(20, 300, 360));
+        } else if(section == 2) {
+            gradient.addColorStop(0, p5.color(40, 300, 360));
+            gradient.addColorStop(1, p5.color(40, 300, 360));
+        } else if(section == 3) {
+            gradient.addColorStop(0, p5.color(40, 300, 360));
+            gradient.addColorStop(1, p5.color(60, 300, 360));
+        } else {
+            gradient.addColorStop(0, p5.color(40, 300, 360));
+            gradient.addColorStop(1, p5.color(90, 300, 360));
+        }
     }
     
-    p5.push();
     p5.drawingContext.fillStyle = gradient;
     p5.noStroke();
     p5.rect(0, 0, window.innerWidth, totalHeight);
@@ -370,7 +398,7 @@ function drawOrb(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number
 
 function drawCarts(layer, props){
 
-    const { carts, grid } = props;
+    const { carts, grid, section } = props;
 
     if (grid) {
         drawGrid(layer, carts[0].width, carts[0].height);
@@ -379,11 +407,12 @@ function drawCarts(layer, props){
     if(props.darkMode) {
         layer.background(360, 360, 0)
     } else {
-        layer.background(240, 0, 345.5)
+        layer.background('#f4f4f5');
+        layer.strokeWeight(5)
     }
 
     layer.noFill()
-    layer.erase()
+    layer.erase(360, 360)
     for (let i = 0; i < carts.length; i++) {
         var c = carts[i];
         if(c == undefined) break;
@@ -470,7 +499,7 @@ function getRandomPosition(minW: number, maxW: number, minH: number, maxH: numbe
 }
 
 function getRandomDirection() {
-    const dir = getRandomInt(0,20);
+    const dir = getRandomInt(0,7);
     switch(dir) {
         case 0:  return "EAST";
         case 1:  return "WEST";
@@ -580,25 +609,25 @@ function moveCart(cart: CartType, edgeExtend: number, continuation: number, heig
         default: (console.error('Failed to move cart'));
     }
     
-    if (cart.position.x > (window.innerWidth + cart.width)) {
+    if (cart.position.x > (window.innerWidth + cart.width + edgeExtend)) {
         cart.position.x = 0 - cart.width;
         cart.position.y = cart.position.y + cart.height
         cart.transitionCount = -1;
         cart.isTransitioning = true;
     }
-    if (cart.position.x < 0 - cart.width) {
+    if (cart.position.x < 0 - cart.width - edgeExtend) {
         cart.position.x = window.innerWidth + cart.width - (window.innerWidth % cart.width);
         cart.position.y = cart.position.y - cart.height
         cart.transitionCount = -1;
         cart.isTransitioning = true;
     }
-    if (cart.position.y > (height + cart.height)) {
+    if (cart.position.y > (height + cart.height + edgeExtend)) {
         cart.position.y = 0 - cart.height;
         cart.position.x = cart.position.x + cart.width
         cart.transitionCount = -1;
         cart.isTransitioning = true;
     }
-    if (cart.position.y < 0 - cart.height) {
+    if (cart.position.y < 0 - cart.height - edgeExtend) {
         cart.position.y = height + cart.height - (height % cart.height);
         cart.position.x = cart.position.x - cart.width
         cart.transitionCount = -1;
@@ -656,14 +685,35 @@ function buildRandomSuperExtraLargePart(cartPosition: PositionType, color: Color
 
 // generates a give number of uniques carts
 function generateCarts(cartCount: number, partCount: number, w: number, h: number, minSpeed: number, maxSpeed: number, totalHeight: number) {
-    console.log(totalHeight)
+    
     let carts = new Array(cartCount);
     for (let i = 0; i < cartCount; i++) {
         var cartColor: Color = {h: 140, s: 300, b: 270, a: 100};
         var cartPosition: PositionType = getRandomPosition(0, window.innerWidth, 0, totalHeight, w, h);
         var parts = new Array(getRandomInt(0, partCount) + 1);
+
+        var width, height;
+
+
         for (let j = 0; j < partCount; j++) {
-            parts[j] = buildNewPart(cartPosition, cartColor, w, h);
+            const randomNum = Math.random();
+            if(randomNum < 1/5) {
+                width = w;
+                height = h;
+            } else if(randomNum < 2/5) {
+                width = w/2;
+                height = h/2;
+            } else if(randomNum < 3/5) {
+                width = w/3;
+                height = h/3;
+            } else if(randomNum < 4/5) {
+                width = w*2;
+                height = h*2;
+            }else {
+                width = w*3;
+                height = h*3;
+            }
+            parts[j] = buildNewPart(cartPosition, cartColor, width, height);
         }
         const speed = getRandomInt(minSpeed, maxSpeed);
         var cart: CartType = {
@@ -692,9 +742,32 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         orbBounce: Math.PI,
         darkMode: false,
         scrollYPosition: 0,
-        totalHeight: window.innerHeight*7
+        totalHeight: window.innerHeight*7,
+        section: 0
     }
-    var canvas, cartLayer;
+    var canvas, cartLayer, newFont;
+
+    // function preload() {
+    //     newFont = p5.loadFont('assets/fonts/Agitpropc.otf');
+    // }
+
+    p5.setup = () => {
+        canvas = p5.createCanvas(p5.windowWidth, state.totalHeight, p5.P2D);
+        canvas.position(0,0);
+        canvas.style('z-index', '-1');
+        p5.colorMode(p5.HSB, 360);
+        p5.ellipseMode(p5.RADIUS);
+        // preload();
+
+        cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight)
+        cartLayer.position(0,0);
+        cartLayer.colorMode(p5.HSB, 360)
+        cartLayer.strokeWeight(3);
+        cartLayer.ellipseMode(p5.RADIUS);
+        // cartLayer.textFont(newFont);
+        // cartLayer.textSize(window.innerWidth/8);
+        // cartLayer.textAlign(cartLayer.CENTER, cartLayer.CENTER);
+    }
 
     p5.windowResized = () => {
         p5.resizeCanvas(p5.windowWidth, state.totalHeight);
@@ -703,23 +776,12 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         cartLayer.colorMode(p5.HSB, 360)
         cartLayer.strokeWeight(3);
         cartLayer.ellipseMode(p5.RADIUS);
+        cartLayer.textFont(newFont);
+        cartLayer.textSize(window.innerWidth/8);
+        cartLayer.textAlign(cartLayer.CENTER, cartLayer.CENTER);
         state.orbX = window.innerWidth/2;
         state.orbY = window.innerHeight/2 + state.scrollYPosition;
         state.orbBounce = Math.PI;
-    }
-
-    p5.setup = () => {
-        canvas = p5.createCanvas(p5.windowWidth, state.totalHeight, p5.P2D);
-        canvas.position(0,0);
-        canvas.style('z-index', '-1');
-        p5.colorMode(p5.HSB, 360);
-        p5.ellipseMode(p5.RADIUS);
-        
-        cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight)
-        cartLayer.position(0,0);
-        cartLayer.colorMode(p5.HSB, 360)
-        cartLayer.strokeWeight(3);
-        cartLayer.ellipseMode(p5.RADIUS);
     }
 
     p5.updateWithProps = props => {
@@ -733,6 +795,9 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
             cartLayer.colorMode(p5.HSB, 360)
             cartLayer.strokeWeight(3);
             cartLayer.ellipseMode(p5.RADIUS);
+            // cartLayer.textFont(newFont);
+            // cartLayer.textSize(window.innerWidth/8);
+            // cartLayer.textAlign(cartLayer.CENTER, cartLayer.CENTER);
         }
     }
 
@@ -742,10 +807,19 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
             if(p5.frameCount % 1 == 0) {
                 state.orbBounce = state.orbBounce + Math.PI/180;
             }
-            state.orbX = state.orbX + p5.sin(state.orbBounce/2)*8;
+            state.orbX = state.orbX + p5.sin(state.orbBounce/2)*4;
             state.orbY = state.orbY + p5.cos(state.orbBounce)*4;
-            drawBackgroundGradient(p5, state.orbX, state.orbY + state.scrollYPosition, state.darkMode, state.totalHeight);
+            drawBackgroundGradient(p5, state.orbX, state.orbY + state.scrollYPosition, state.darkMode, state.totalHeight, state.section);
             drawCarts(cartLayer, state);
+            // // if(!state.darkMode) {
+            //     cartLayer.push();
+            //     cartLayer.erase();
+            //     cartLayer.strokeWeight(10);
+            //     cartLayer.fill(360)
+            //     cartLayer.text('JAMES COVERT', p5.width/ 2, 250);
+            //     cartLayer.noErase();
+            //     cartLayer.pop()
+            // // }
             p5.image(cartLayer, 0, 0);
             // if(state.darkMode) {
             //     drawOrb(p5, state.orbX, state.orbY+ state.scrollYPosition, state.darkMode);
@@ -760,16 +834,17 @@ type BackgroundProps = {
     darkMode: boolean;
     scrollYPosition: number;
     height: number;
+    section: number;
 }
 
-export default function Background({darkMode, scrollYPosition, height}: BackgroundProps) {
+export default function Background({darkMode, scrollYPosition, height, section}: BackgroundProps) {
     const [rotation,       setRotation] = useState(0);
-    const [cartCount,     setCartCount] = useState(200);
+    const [cartCount,     setCartCount] = useState(100);
     const [carts,             setCarts] = useState(Array<CartType>(cartCount));
     const [maxSpeed,       setMaxSpeed] = useState(500);
-    const [minSpeed,       setMinSpeed] = useState(10000);
-    const [partWidth,     setPartWidth] = useState(150);
-    const [partHeight,   setPartHeight] = useState(150);
+    const [minSpeed,       setMinSpeed] = useState(5000);
+    const [partWidth,     setPartWidth] = useState(500);
+    const [partHeight,   setPartHeight] = useState(500);
     const [partCount,     setPartCount] = useState(2);
     const [edgeExtend,   setEdgeExtend] = useState(0);
     const [dGrid,             setDGrid] = useState(false);
@@ -783,9 +858,9 @@ export default function Background({darkMode, scrollYPosition, height}: Backgrou
         setCarts(c);
         
         if(partWidth > partHeight) {
-            setEdgeExtend(partWidth);
+            setEdgeExtend(partWidth*3);
         } else {
-            setEdgeExtend(partHeight);
+            setEdgeExtend(partHeight*3);
         }
         setOrbX(window.innerWidth/2);
         setOrbY(window.innerHeight/2)
@@ -816,7 +891,8 @@ export default function Background({darkMode, scrollYPosition, height}: Backgrou
                             grid={dGrid} 
                             darkMode={darkMode} 
                             scrollYPosition={scrollYPosition} 
-                            totalHeight={height}/>
+                            totalHeight={height}
+                            section={section}/>
 
         
     )

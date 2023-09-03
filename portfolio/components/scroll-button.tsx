@@ -139,8 +139,8 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
                     p5.stroke(p5.color(160,  360, 360));
                     p5.drawingContext.shadowColor = p5.color(0, 360, 360);
                 } else {
-                    p5.stroke(p5.color('black'));
-                    p5.drawingContext.shadowColor = shadowColorSelect(p5.color('black'));
+                    p5.noStroke()
+                    p5.fill(highlightColorSelect(state.color));
                 }
 
                 let offsetX, offsetY;

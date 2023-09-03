@@ -126,7 +126,7 @@ const Home = ({ allPosts }: Props) => {
 
   return (
     <>  
-        <Background darkMode={darkMode} scrollYPosition={scrollYPosition} height={totalHeight}/>
+        <Background darkMode={darkMode} scrollYPosition={scrollYPosition} height={totalHeight} section={currentSection}/>
         <div className="fixed right-5 bottom-0 z-36">
             {
                 scrollYPosition > 500?

@@ -25,9 +25,9 @@ const SocialLinks = ({darkMode, section}: Props) => {
                 onMouseLeave={onMouseLeaveGit}>
                 <a href="http://github.com/xcovertx" 
                 target="_blank"
-                className="absolute md:w-9 md:h-9 w-5 h-5 rounded-full md:hover:w-14 md:hover:h-14 hover:w-8 hover:h-8 ease-in-out duration-[250ms]">
+                className="absolute md:w-10 md:h-10 w-6 h-6 rounded-full md:hover:w-16 md:hover:h-16 hover:w-10 hover:h-10 ease-in-out duration-[250ms]">
                     <Image 
-                        src={gitHover? (section == 0? '/assets/github_icon_green.png' : '/assets/github_icon_pink.png') : (!darkMode? '/assets/github_icon_black.png' : '/assets/github_icon_white.png')}
+                        src={gitHover? '/assets/github_icon_pink.png' : (!darkMode? (section == 0? '/assets/github_icon_green.png' : '/assets/github_icon_white.png')  : '/assets/github_icon_white.png')}
                         className="" 
                         alt={'github'} 
                         width={100} 
@@ -42,9 +42,9 @@ const SocialLinks = ({darkMode, section}: Props) => {
                  onMouseLeave={onMouseLeaveLI}>
                 <a href="https://linkedin.com/in/xerazx/" 
                 target="_blank"
-                className="absolute md:w-9 md:h-9 w-5 h-5 rounded-full md:hover:w-14 md:hover:h-14 hover:w-8 hover:h-8 ease-in-out duration-[250ms]">
+                className="absolute md:w-10 md:h-10 w-6 h-6 rounded-full md:hover:w-16 md:hover:h-16 hover:w-10 hover:h-10 ease-in-out duration-[250ms]">
                     <Image 
-                        src={liHover? (section == 0? '/assets/linkedin_icon_green.png' : '/assets/linkedin_icon_pink.png') : (!darkMode? '/assets/linkedin_icon_black.png' : '/assets/linkedin_icon_white.png')}
+                        src={liHover? '/assets/linkedin_icon_pink.png' : (!darkMode? (section == 0? '/assets/linkedin_icon_green.png' : '/assets/linkedin_icon_white.png')  : '/assets/linkedin_icon_white.png')}
                         className=""
                         alt={'linkedin'} 
                         width={100} 
@@ -59,9 +59,9 @@ const SocialLinks = ({darkMode, section}: Props) => {
                  onMouseLeave={onMouseLeaveInst}>
                 <a href="https://instagram.com/eraz_art/" 
                 target="_blank"
-                className="absolute md:w-9 md:h-9 w-5 h-5 rounded-full md:hover:w-14 md:hover:h-14 hover:w-8 hover:h-8 ease-in-out duration-[250ms]">  
+                className="absolute md:w-10 md:h-10 w-6 h-6 rounded-full md:hover:w-16 md:hover:h-16 hover:w-10 hover:h-10 ease-in-out duration-[250ms]">  
                     <Image 
-                        src={instHover? (section == 0? '/assets/instagram_icon_green.png' : '/assets/instagram_icon_pink.png') : (!darkMode? '/assets/instagram_icon_black.png' : '/assets/instagram_icon_white.png')}
+                        src={instHover? '/assets/instagram_icon_pink.png' : (!darkMode? (section == 0? '/assets/instagram_icon_green.png' : '/assets/instagram_icon_white.png')  : '/assets/instagram_icon_white.png')}
                         className=""
                         alt={'instagram'} 
                         width={100} 
