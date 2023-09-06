@@ -12,7 +12,7 @@ export default function Index() {
     <>
       <Layout>
         <Head>
-          <title>{`ErazArt. ${CMS_NAME}`}</title>
+          <title>{`${CMS_NAME}`}</title>
         </Head>
         <Container>
           <CodeDemoHolder>

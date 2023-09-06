@@ -93,12 +93,15 @@ const Home = ({ allPosts }: Props) => {
 
         const updateYScrollPos = () => {
             setScrollYPosition(window.scrollY);
-            const s = getSect(window.scrollY,
+            let s: number;
+            if(homeRef == null) {
+                s = getSect(window.scrollY,
                 homeRef.current.offsetHeight,
                 expertiseRef.current.offsetHeight,
                 myWorkRef.current.offsetHeight,
                 experienceRef.current.offsetHeight,
                 contactRef.current.offsetHeight);
+            } else { s = 0 };
             setCurrentSection(s);
             setHeadingColor(getHeadingColor(s));
         }
