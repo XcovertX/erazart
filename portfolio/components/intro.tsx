@@ -6,7 +6,7 @@ const Intro = () => {
     <section className="flex flex-col">
       <h2 className="text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter hover:text-green-500 leading-tight">
         <Link href="/" className="hover:underline">
-          ErazArt
+          James Covert
         </Link>
         .
       </h2>
@@ -15,7 +15,7 @@ const Intro = () => {
           Coding Projects
         </h1>
         <div >
-          <SocialLinks dark={true} />
+          <SocialLinks darkMode={true} section={0}/>
         </div>
       </div>
       <p className="text-xl bg-slate-300 p-5 shadow-sm">
