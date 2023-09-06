@@ -1,4 +1,5 @@
 import ExperienceAccordian from "./accordian";
+import Job from "../interfaces/job";
 
 type Props = {
     darkMode: boolean;
