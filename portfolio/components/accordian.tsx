@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { CaretIcon } from "./caret-icon";
 import Image from "next/image";
+import Job from "../interfaces/job";
 
 type Props = {
     jobs: Job[];
 }
-
-
 
 const ExperienceAccordian = ({ jobs }: Props) => {
     const [currentOpen, setCurrentOpen] = useState(2);
