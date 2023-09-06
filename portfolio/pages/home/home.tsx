@@ -93,15 +93,34 @@ const Home = ({ allPosts }: Props) => {
 
         const updateYScrollPos = () => {
             setScrollYPosition(window.scrollY);
-            let s: number;
-            if(homeRef == null) {
-                s = getSect(window.scrollY,
-                homeRef.current.offsetHeight,
-                expertiseRef.current.offsetHeight,
-                myWorkRef.current.offsetHeight,
-                experienceRef.current.offsetHeight,
-                contactRef.current.offsetHeight);
-            } else { s = 0 };
+            let s, h, ex, w, exp, c: number;
+
+            if(homeRef.current) {
+                h = homeRef.current.offsetHeight;
+            } else {
+                h = 0;
+            }
+            if(expertiseRef.current) {
+                ex = expertiseRef.current.offsetHeight;
+            } else {
+                ex = 0;
+            }
+            if(myWorkRef.current) {
+                w = myWorkRef.current.offsetHeight;
+            } else {
+                w = 0;
+            }
+            if(experienceRef.current) {
+                exp = experienceRef.current.offsetHeight;
+            } else {
+                exp = 0;
+            }
+            if(contactRef.current) {
+                c = contactRef.current.offsetHeight;
+            } else {
+                c = 0;
+            }
+            s = getSect(window.scrollY, h, ex, w, exp, c);
             setCurrentSection(s);
             setHeadingColor(getHeadingColor(s));
         }
