@@ -19,13 +19,13 @@ const SocialLinks = ({darkMode, section}: Props) => {
 
   return (
     <div className="flex flex-row p-5 justify-center items-center">
-        <div className="md:mx-10 mx-5">
+        <div className="md:mx-10 mx-8">
             <div className="flex items-center relative justify-center"
                 onMouseEnter={onMouseEnterGit}
                 onMouseLeave={onMouseLeaveGit}>
                 <a href="http://github.com/xcovertx" 
                 target="_blank"
-                className="absolute md:w-10 md:h-10 w-6 h-6 rounded-full md:hover:w-16 md:hover:h-16 hover:w-10 hover:h-10 ease-in-out duration-[250ms]">
+                className="absolute md:w-10 md:h-10 w-8 h-8 rounded-full md:hover:w-16 md:hover:h-16 hover:w-12 hover:h-12 ease-in-out duration-[250ms]">
                     <Image 
                         src={gitHover? '/assets/github_icon_pink.png' : (!darkMode? (section == 0? '/assets/github_icon_green.png' : '/assets/github_icon_white.png')  : '/assets/github_icon_white.png')}
                         className="" 
@@ -36,13 +36,13 @@ const SocialLinks = ({darkMode, section}: Props) => {
             </div>
         </div>
 
-        <div className="md:mx-10 mx-5">
+        <div className="md:mx-10 mx-8">
             <div className="flex items-center relative justify-center"
                  onMouseEnter={onMouseEnterLI}
                  onMouseLeave={onMouseLeaveLI}>
                 <a href="https://linkedin.com/in/xerazx/" 
                 target="_blank"
-                className="absolute md:w-10 md:h-10 w-6 h-6 rounded-full md:hover:w-16 md:hover:h-16 hover:w-10 hover:h-10 ease-in-out duration-[250ms]">
+                className="absolute md:w-10 md:h-10 w-8 h-8 rounded-full md:hover:w-16 md:hover:h-16 hover:w-12 hover:h-12 ease-in-out duration-[250ms]">
                     <Image 
                         src={liHover? '/assets/linkedin_icon_pink.png' : (!darkMode? (section == 0? '/assets/linkedin_icon_green.png' : '/assets/linkedin_icon_white.png')  : '/assets/linkedin_icon_white.png')}
                         className=""
@@ -53,13 +53,13 @@ const SocialLinks = ({darkMode, section}: Props) => {
             </div>
         </div>
 
-        <div className="md:mx-10 mx-5">
+        <div className="md:mx-10 mx-8">
             <div className="flex items-center relative justify-center"
                  onMouseEnter={onMouseEnterInst}
                  onMouseLeave={onMouseLeaveInst}>
                 <a href="https://instagram.com/eraz_art/" 
                 target="_blank"
-                className="absolute md:w-10 md:h-10 w-6 h-6 rounded-full md:hover:w-16 md:hover:h-16 hover:w-10 hover:h-10 ease-in-out duration-[250ms]">  
+                className="absolute md:w-10 md:h-10 w-8 h-8 rounded-full md:hover:w-16 md:hover:h-16 hover:w-12 hover:h-12 ease-in-out duration-[250ms]">  
                     <Image 
                         src={instHover? '/assets/instagram_icon_pink.png' : (!darkMode? (section == 0? '/assets/instagram_icon_green.png' : '/assets/instagram_icon_white.png')  : '/assets/instagram_icon_white.png')}
                         className=""

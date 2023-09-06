@@ -35,7 +35,7 @@ const Home = ({ allPosts }: Props) => {
     const [myWorkHeight,         setMyWorkHeight] = useState(0);
     const [experienceHeight, setExperienceHeight] = useState(0);
     const [contactHeight,       setContactHeight] = useState(0);
-    const [totalHeight,           setTotalHeight] = useState(0);
+    const [totalHeight,           setTotalHeight] = useState(1000);
 
     const homeRef       = useRef(null);
     const expertiseRef  = useRef(null);

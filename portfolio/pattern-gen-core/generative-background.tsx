@@ -337,7 +337,6 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
             gradient.addColorStop(0, p5.color(90, 360, 360));
             gradient.addColorStop(1, p5.color(90, 360, 100));
         }
-
     } else {
         if(section == 0) {
             gradient.addColorStop(0, p5.color(40, 300, 360));
@@ -636,7 +635,7 @@ function moveCart(cart: CartType, edgeExtend: number, continuation: number, heig
 
     if (!cart.isTransitioning &&
         (cart.transitionCount == (cart.width / 2) - 2) &&
-        (getRandomInt(0, 5) < continuation)) {
+        (getRandomInt(0, 100) < continuation)) {
             cart.isTransitioning = true;
             cart.transitionCount = -1;
         }
@@ -719,7 +718,7 @@ function generateCarts(cartCount: number, partCount: number, w: number, h: numbe
         var cart: CartType = {
             id: i,
             position: cartPosition,
-            age: getRandomInt(minSpeed, speed),
+            age: getRandomInt(minSpeed/2, maxSpeed/2),
             height: w,
             width: h,
             isTransitioning: false,
@@ -745,11 +744,7 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         totalHeight: window.innerHeight*7,
         section: 0
     }
-    var canvas, cartLayer, newFont;
-
-    // function preload() {
-    //     newFont = p5.loadFont('assets/fonts/Agitpropc.otf');
-    // }
+    var canvas, cartLayer;
 
     p5.setup = () => {
         canvas = p5.createCanvas(p5.windowWidth, state.totalHeight, p5.P2D);
@@ -757,16 +752,12 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         canvas.style('z-index', '-1');
         p5.colorMode(p5.HSB, 360);
         p5.ellipseMode(p5.RADIUS);
-        // preload();
 
         cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight)
         cartLayer.position(0,0);
         cartLayer.colorMode(p5.HSB, 360)
         cartLayer.strokeWeight(3);
         cartLayer.ellipseMode(p5.RADIUS);
-        // cartLayer.textFont(newFont);
-        // cartLayer.textSize(window.innerWidth/8);
-        // cartLayer.textAlign(cartLayer.CENTER, cartLayer.CENTER);
     }
 
     p5.windowResized = () => {
@@ -776,9 +767,6 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         cartLayer.colorMode(p5.HSB, 360)
         cartLayer.strokeWeight(3);
         cartLayer.ellipseMode(p5.RADIUS);
-        cartLayer.textFont(newFont);
-        cartLayer.textSize(window.innerWidth/8);
-        cartLayer.textAlign(cartLayer.CENTER, cartLayer.CENTER);
         state.orbX = window.innerWidth/2;
         state.orbY = window.innerHeight/2 + state.scrollYPosition;
         state.orbBounce = Math.PI;
@@ -795,9 +783,6 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
             cartLayer.colorMode(p5.HSB, 360)
             cartLayer.strokeWeight(3);
             cartLayer.ellipseMode(p5.RADIUS);
-            // cartLayer.textFont(newFont);
-            // cartLayer.textSize(window.innerWidth/8);
-            // cartLayer.textAlign(cartLayer.CENTER, cartLayer.CENTER);
         }
     }
 
@@ -811,15 +796,6 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
             state.orbY = state.orbY + p5.cos(state.orbBounce)*4;
             drawBackgroundGradient(p5, state.orbX, state.orbY + state.scrollYPosition, state.darkMode, state.totalHeight, state.section);
             drawCarts(cartLayer, state);
-            // // if(!state.darkMode) {
-            //     cartLayer.push();
-            //     cartLayer.erase();
-            //     cartLayer.strokeWeight(10);
-            //     cartLayer.fill(360)
-            //     cartLayer.text('JAMES COVERT', p5.width/ 2, 250);
-            //     cartLayer.noErase();
-            //     cartLayer.pop()
-            // // }
             p5.image(cartLayer, 0, 0);
             // if(state.darkMode) {
             //     drawOrb(p5, state.orbX, state.orbY+ state.scrollYPosition, state.darkMode);
@@ -848,7 +824,7 @@ export default function Background({darkMode, scrollYPosition, height, section}:
     const [partCount,     setPartCount] = useState(2);
     const [edgeExtend,   setEdgeExtend] = useState(0);
     const [dGrid,             setDGrid] = useState(false);
-    const [continuation,   setContinue] = useState(2);
+    const [continuation,   setContinue] = useState(20);
     const [orbX,               setOrbX] = useState(0);
     const [orbY,               setOrbY] = useState(0);
     const [orbBounce,     setOrbBounce] = useState(0);
@@ -865,19 +841,20 @@ export default function Background({darkMode, scrollYPosition, height, section}:
         setOrbX(window.innerWidth/2);
         setOrbY(window.innerHeight/2)
         
-        const interval = setInterval(() => setCarts(carts => {
-            let cts = new Array<CartType>(carts.length);
-            for (let i = 0; i < carts.length; i++) {
-                cts[i] = carts[i];
-                if (cts[i].isTransitioning || cts[i].age >= cts[i].speed) {
-                    moveCart(cts[i], edgeExtend, continuation, height);
-                } else {
-                    cts[i].age++;
+        const interval = setInterval(() => {
+            setCarts(carts => {
+                let cts = new Array<CartType>(carts.length);
+                for (let i = 0; i < carts.length; i++) {
+                    cts[i] = carts[i];
+                    if (cts[i].isTransitioning || cts[i].age >= cts[i].speed) {
+                        moveCart(cts[i], edgeExtend, continuation, height);
+                    } else {
+                        cts[i].age++;
+                    }
                 }
-            }
-            return cts;
-            }),
-            30);
+                    return cts;
+                })
+            }, 10);
             return () => {
                 clearInterval(interval);
             };

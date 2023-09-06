@@ -14,14 +14,14 @@ const MyWork = ({allPosts, darkMode}: Props) => {
     const morePosts = allPosts.slice(1)
 
     return(
-        <div className='h-fit flex flex-col justify-between'>
+        <div className='h-fit w-full flex flex-col justify-between'>
             <div  className={`pt-20 flex-col items-center justify-between flex ${darkMode? 'text-zinc-100' : "text-indigo-950"}`}>
-                <div className="flex flex-row">
-                    <div className="flex flex-col justify-start px-10">
+                <div className="flex flex-col lg:flex-row justify-center w-full">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-between">
                         <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
                             My Work
                         </h1>
-                        <div className="w-96 lg:w-[550px] flex flex-col justify-between p-5 mt-5 bg-indigo-600/[.1] border-indigo-600 border-4">
+                        <div className="flex flex-col justify-between p-5 mt-5 bg-indigo-600/[.1] border-indigo-600 border-4">
                             Over the years, I have worked on a variety of projects with the following goals in mind:
                                 <div className="p-5">
                                     <li>
@@ -47,7 +47,7 @@ const MyWork = ({allPosts, darkMode}: Props) => {
                             </h3>
                         </div>
                     </div>
-                    <div className="h-full">
+                    <div className="w-auto ml-10 pt-5">
                         {HeroPost && (
                                 <HeroPost
                                     title={heroPost.title}
@@ -62,7 +62,7 @@ const MyWork = ({allPosts, darkMode}: Props) => {
                     </div>
                 </div>
             </div>
-            <div  className={`flex-col items-center justify-start flex ${darkMode? 'text-zinc-100' : 'text-indigo-900'}`}>
+            <div  className={`flex-col items-center justify-start flex ${darkMode? 'text-zinc-100' : 'text-indigo-900'} pt-5`}>
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight my-10">
                     Projects
                 </h1>

@@ -47,12 +47,12 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
 
     function fillColorSelect(color) {
         switch (color) {
-            case 'bg-green-600' : return p5.color('#16a34a');
-            case 'bg-teal-600'  : return p5.color('#0d9488');
-            case 'bg-indigo-600': return p5.color('#4f46e5');
-            case 'bg-purple-600': return p5.color('#9333ea');
-            case 'bg-rose-600'  : return p5.color('#e11d48');
-            default             : return p5.color('#16a34a');
+            case 'bg-green-600' : return p5.color(0, 360, 360);
+            case 'bg-teal-600'  : return p5.color(20, 360, 360);
+            case 'bg-indigo-600': return p5.color(40, 360, 360);
+            case 'bg-purple-600': return p5.color(60, 360, 360);
+            case 'bg-rose-600'  : return p5.color(180, 360, 360);
+            default             : return p5.color(0, 360, 360);
         }
     }
 
@@ -121,23 +121,21 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
 
             if (state.hover){
                 if(state.darkMode) {
-                    p5.fill(p5.color(310,  360, 100, 50))
-                    p5.strokeWeight(2.5);
-                    p5.stroke(p5.color(310,  200, 360));
-                    p5.drawingContext.shadowColor = p5.color(310, 360, 360);
+                    p5.fill(highlightColorSelect(state.color))
+                    p5.noStroke();
+                    p5.drawingContext.shadowColor = p5.color(highlightColorSelect(state.color));
                     p5.drawingContext.shadowBlur = 5;
                 } else {
-                    p5.noFill();
-                    p5.strokeWeight(2.5);
-                    p5.stroke(highlightColorSelect(state.color));
+                    p5.noStroke();
+                    p5.fill(fillColorSelect(state.color));
                 }
 
             } else {
                 p5.noFill();
                 p5.strokeWeight(2);
                 if(state.darkMode) {
-                    p5.stroke(p5.color(160,  360, 360));
-                    p5.drawingContext.shadowColor = p5.color(0, 360, 360);
+                    p5.stroke(highlightColorSelect(state.color));
+                    p5.drawingContext.shadowColor = fillColorSelect(state.color);
                 } else {
                     p5.noStroke()
                     p5.fill(highlightColorSelect(state.color));
