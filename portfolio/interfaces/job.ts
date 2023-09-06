@@ -9,3 +9,5 @@ type Job = {
     companyLink: string;
     frameLang: string[];
 }
+
+export default Job
