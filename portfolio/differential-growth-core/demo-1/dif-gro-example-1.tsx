@@ -364,7 +364,7 @@ export default function DifferentialGrowthContainer()
           <div className="flex flex-col border-2 px-2 justify-between">
             <div className="flex flex-row justify-between items-center">
               <h6>Brownian Force</h6>
-              <Toggle title={'Browinan Mode'} onChange={handleChangeBrownMode} currentState={setting.brownianMode} />
+              <Toggle title={'Browinan Mode'} onChange={handleChangeBrownMode} currentState={setting.brownianMode} color={'bg-gray-500'}/>
             </div>
             <CustomSlider title={''}   id={''} min={0}  max={2} 
                           step={.01} value={setting.brownianScalar} onChange={handleChangeBrown} ref={null}/>
@@ -399,27 +399,27 @@ export default function DifferentialGrowthContainer()
           <div className="border-2 px-2">
             <div className="flex flex-row justify-between items-center">
               <h6>Draw Nodes</h6>
-              <Toggle title={''} onChange={handleChangeNodesMode} currentState={setting.drawNodesMode} />
+              <Toggle title={''} onChange={handleChangeNodesMode} currentState={setting.drawNodesMode} color={'bg-gray-500'}/>
             </div>
             <div className="flex flex-row justify-between items-center">
               <h6>Show Bounds</h6>
-              <Toggle title={''} onChange={handleChangeShowBounds} currentState={setting.showBoundsMode} />
+              <Toggle title={''} onChange={handleChangeShowBounds} currentState={setting.showBoundsMode} color={'bg-gray-500'}/>
             </div>
             <div className="flex flex-row justify-between items-center">
               <h6>Fill Mode</h6>
-              <Toggle title={''} onChange={handleChangeFillMode} currentState={setting.fillMode} />
+              <Toggle title={''} onChange={handleChangeFillMode} currentState={setting.fillMode} color={'bg-gray-500'}/>
             </div>
             <div className="flex flex-row justify-between items-center">
               <h6>Trace Mode</h6>
-              <Toggle title={''} onChange={handleChangeTraceMode} currentState={setting.traceMode} />
+              <Toggle title={''} onChange={handleChangeTraceMode} currentState={setting.traceMode} color={'bg-gray-500'}/>
             </div>
             <div className="flex flex-row justify-between items-center">
               <h6>Close Path</h6>
-              <Toggle title={''} onChange={handleChangeClosed} currentState={setting.isClosed} />
+              <Toggle title={''} onChange={handleChangeClosed} currentState={setting.isClosed} color={'bg-gray-500'}/>
             </div>
             <div className="flex flex-row justify-between items-center">
               <h6>Debug Mode</h6>
-              <Toggle title={''} onChange={handleChangeDebugMode} currentState={setting.debugMode} />
+              <Toggle title={''} onChange={handleChangeDebugMode} currentState={setting.debugMode} color={'bg-gray-500'}/>
             </div>
           </div>
         </div>

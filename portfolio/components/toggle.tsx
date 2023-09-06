@@ -1,4 +1,4 @@
-export const Toggle = ({title, onChange, currentState, color, }) => {
+export const Toggle = ({title, onChange, currentState, color }) => {
     return(  
         <div className="flex flex-row items-center justify-right mt-1">
             {/* <span className="mr-10 text-sm font-medium text-gray-900 dark:text-gray-300">
