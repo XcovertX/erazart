@@ -20,8 +20,6 @@
     "next-cloudinary": "^4.15.0",
     "p5": "^1.7.0",
     "point-in-polygon": "^1.1.0",
-    "rbush": "^3.0.1",
-    "rbush-knn": "^3.0.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
