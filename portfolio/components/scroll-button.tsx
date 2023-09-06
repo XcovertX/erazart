@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import { type Sketch, SketchProps, P5CanvasInstance, P5WrapperClassName } from "@p5-wrapper/react";
+import React, { useEffect, useState } from "react";
+import { SketchProps, P5CanvasInstance } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
 
 type MySketchProps = SketchProps & {
