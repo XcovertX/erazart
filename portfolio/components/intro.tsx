@@ -1,6 +1,10 @@
 import Link from 'next/link'
 import SocialLinks from './social'
 
+type Props = {
+  darkMode: boolean;
+}
+
 const Intro = () => {
   return (
     <section className="flex flex-col">

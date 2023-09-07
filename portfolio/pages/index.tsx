@@ -7,7 +7,7 @@ import { CMS_NAME } from '../lib/constants'
 import Post from '../interfaces/post'
 
 type Props = {
-  allPosts: Post[]
+  allPosts: Post[];
 }
 
 export default function Index({ allPosts }: Props) {
@@ -19,7 +19,7 @@ export default function Index({ allPosts }: Props) {
         <title>{`${CMS_NAME}`}</title>
       </Head>
       <Container>
-        <Home allPosts={allPosts}/>
+        <Home allPosts={allPosts} />
       </Container>
     </HomeLayout>
   )

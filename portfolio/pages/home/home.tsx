@@ -21,7 +21,7 @@ import Experience from '../../components/home-experience'
 import Contact from '../../components/home-contact'
 
 type Props = {
-    allPosts: Post[]
+    allPosts: Post[];
 }
 
 const Home = ({ allPosts }: Props) => {
@@ -93,7 +93,7 @@ const Home = ({ allPosts }: Props) => {
 
         const updateYScrollPos = () => {
             setScrollYPosition(window.scrollY);
-            let s, h, ex, w, exp, c: number;
+            let s: number, h: number, ex: number, w: number, exp: number, c: number;
 
             if(homeRef.current) {
                 h = homeRef.current.offsetHeight;
