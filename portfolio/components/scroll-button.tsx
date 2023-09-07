@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SketchProps, P5CanvasInstance } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
 
@@ -15,7 +15,7 @@ type Props = {
     top: number;
     direction: boolean;
     scrollTo: any;
-    darkMode: boolean;
+    theme: string;
     color: string;
 }
 
@@ -27,7 +27,7 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
         arrowX: 50,
         arrowY: 70,
         arrowBounce: 0,
-        darkMode: false,
+        theme: "dark",
         color: ''
     }
 
@@ -120,7 +120,7 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
             p5.push();
 
             if (state.hover){
-                if(state.darkMode) {
+                if(state.theme == "dark") {
                     p5.fill(highlightColorSelect(state.color))
                     p5.noStroke();
                     p5.drawingContext.shadowColor = p5.color(highlightColorSelect(state.color));
@@ -133,7 +133,7 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
             } else {
                 p5.noFill();
                 p5.strokeWeight(2);
-                if(state.darkMode) {
+                if(state.theme == "dark") {
                     p5.stroke(highlightColorSelect(state.color));
                     p5.drawingContext.shadowColor = fillColorSelect(state.color);
                 } else {
@@ -143,7 +143,7 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
 
                 let offsetX, offsetY;
 
-                if(state.darkMode) {
+                if(state.theme == "dark") {
                     offsetX = p5.map(p5.mouseX, 0, p5.width, 1, -1);
                     offsetY = p5.map(p5.mouseY, 0, p5.height, 1, -1);
                     p5.drawingContext.shadowOffsetX = offsetX;
@@ -226,7 +226,7 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
     p5.draw = drawAll();
 };
 
-export default function ScrollButton({top, direction, scrollTo, darkMode, color}: Props) {
+export default function ScrollButton({top, direction, scrollTo, theme, color}: Props) {
     const [hover,   setHover] =  useState(false);
     const [sectionTop, setSectionTop] = useState(top);
     const onMouseEnter  = () =>   setHover(true);
@@ -239,7 +239,7 @@ export default function ScrollButton({top, direction, scrollTo, darkMode, color}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 onClick={() => scrollTo(sectionTop)}>
-            <NextReactP5Wrapper sketch={buttonSketch} hover={hover} toTop={direction} darkMode={darkMode} color={color}/>
+            <NextReactP5Wrapper sketch={buttonSketch} hover={hover} toTop={direction} theme={theme} color={color}/>
         </button>
         
     )

@@ -1,16 +1,17 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { type Sketch, SketchProps, P5CanvasInstance, P5WrapperClassName } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
 import type CartType from "../interfaces/cart";
 import type PartType from "../interfaces/part";
 import type PositionType from "../interfaces/position";
 import type Color from "../interfaces/color";
+import { ThemeContext } from "../context/context";
 
 type MySketchProps = SketchProps & {
     rotation: number;
     carts: Array<CartType>;
     grid: boolean;
-    darkMode: boolean;
+    darkMode: string;
 };
 
 //draws grid to the screen
@@ -316,11 +317,11 @@ function drawCrossDots(p5: P5CanvasInstance<MySketchProps>, cartPosition: Positi
     drawDoubleHorizontalDots(p5, cartPosition, part);
 }
 
-function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number, darkMode: boolean, totalHeight: number, section: number) {
+function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number, theme: string, totalHeight: number, section: number) {
     p5.push()
     let gradient = p5.drawingContext.createRadialGradient(orbX, orbY, 15, orbX, orbY, 600);
 
-    if(darkMode) {
+    if(theme == "dark") {
         if(section == 0) {
             gradient.addColorStop(0, p5.color(0, 360, 360));
             gradient.addColorStop(1, p5.color(0, 360, 100));
@@ -403,7 +404,7 @@ function drawCarts(layer, props){
         drawGrid(layer, carts[0].width, carts[0].height);
     }
     
-    if(props.darkMode) {
+    if(props.theme == "dark") {
         layer.background(360, 360, 0)
     } else {
         layer.background('#f4f4f5');
@@ -739,7 +740,7 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         orbX: window.innerWidth/2,
         orbY: window.innerHeight/2,
         orbBounce: Math.PI,
-        darkMode: false,
+        theme: "dark",
         scrollYPosition: 0,
         totalHeight: window.innerHeight*7,
         section: 0
@@ -794,7 +795,7 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
             }
             state.orbX = state.orbX + p5.sin(state.orbBounce/2)*4;
             state.orbY = state.orbY + p5.cos(state.orbBounce)*4;
-            drawBackgroundGradient(p5, state.orbX, state.orbY + state.scrollYPosition, state.darkMode, state.totalHeight, state.section);
+            drawBackgroundGradient(p5, state.orbX, state.orbY + state.scrollYPosition, state.theme, state.totalHeight, state.section);
             drawCarts(cartLayer, state);
             p5.image(cartLayer, 0, 0);
             // if(state.darkMode) {
@@ -807,13 +808,12 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
 };
 
 type BackgroundProps = {
-    darkMode: boolean;
     scrollYPosition: number;
     height: number;
     section: number;
 }
 
-export default function Background({darkMode, scrollYPosition, height, section}: BackgroundProps) {
+export default function Background({scrollYPosition, height, section}: BackgroundProps) {
     const [rotation,       setRotation] = useState(0);
     const [cartCount,     setCartCount] = useState(100);
     const [carts,             setCarts] = useState(Array<CartType>(cartCount));
@@ -828,6 +828,7 @@ export default function Background({darkMode, scrollYPosition, height, section}:
     const [orbX,               setOrbX] = useState(0);
     const [orbY,               setOrbY] = useState(0);
     const [orbBounce,     setOrbBounce] = useState(0);
+    const { theme } = useContext(ThemeContext)
 
     useEffect(() => {
         const c: Array<CartType> = generateCarts(cartCount, partCount, partWidth, partHeight, minSpeed, maxSpeed, height);
@@ -866,7 +867,7 @@ export default function Background({darkMode, scrollYPosition, height, section}:
                             rotation={rotation} 
                             carts={carts} 
                             grid={dGrid} 
-                            darkMode={darkMode} 
+                            theme={theme} 
                             scrollYPosition={scrollYPosition} 
                             totalHeight={height}
                             section={section}/>

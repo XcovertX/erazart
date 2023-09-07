@@ -1,14 +1,14 @@
 type Props = {
     headingColor: string;
     scrollTo: any;
-    dark: boolean;
+    theme: string;
     section: number;
 }
 
-const HomeNav = ({headingColor, scrollTo, dark, section}: Props) => {
+const HomeNav = ({headingColor, scrollTo, theme, section}: Props) => {
     var textColor, bgColor;
 
-    if(dark) {
+    if(theme == "dark") {
         textColor = 'text-zinc-100';
         bgColor   = bgColorSelect(headingColor);
     } else {

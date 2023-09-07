@@ -4,7 +4,7 @@ import SocialLinks from '../../components/social'
 import HomeNav from '../../components/home-nav'
 import HomeTitle from '../../components/home-title'
 import ScrollButton from '../../components/scroll-button'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Expertise from '../../components/home-expertise'
 import MyWork from '../../components/home-my-work'
@@ -16,9 +16,10 @@ import MoreStories from '../../components/more-stories'
 import { getAllPosts } from '../../lib/api'
 import Post from '../../interfaces/post'
 import HeroPost from '../../components/hero-post'
-import DarkModeToggle from '../../components/dark-mode'
+import ThemeToggle from '../../components/dark-mode'
 import Experience from '../../components/home-experience'
 import Contact from '../../components/home-contact'
+import { ThemeContext } from '../../context/context'
 
 type Props = {
     allPosts: Post[];
@@ -29,7 +30,6 @@ const Home = ({ allPosts }: Props) => {
     const [width,                       setWidth] = useState(0);
     const [headingColor,         setHeadingColor] = useState('bg-green-600');
     const [currentSection,     setCurrentSection] = useState(0);
-    const [darkMode,                 setDarkMode] = useState(true);
     const [homeHeight,             setHomeHeight] = useState(0);
     const [expertiseHeight,   setExpertiseHeight] = useState(0);
     const [myWorkHeight,         setMyWorkHeight] = useState(0);
@@ -72,10 +72,6 @@ const Home = ({ allPosts }: Props) => {
             behavior: 'smooth',
         });
     };
-
-    const handleDarkMode = () => {
-        setDarkMode(!darkMode);
-    }
 
     useEffect(() => {
 
@@ -146,13 +142,15 @@ const Home = ({ allPosts }: Props) => {
         };
     }, []);
 
+    const { theme } = useContext(ThemeContext);
+
   return (
     <>  
-        <Background darkMode={darkMode} scrollYPosition={scrollYPosition} height={totalHeight} section={currentSection}/>
+        <Background scrollYPosition={scrollYPosition} height={totalHeight} section={currentSection}/>
         <div className="fixed right-5 bottom-0 z-36">
             {
                 scrollYPosition > 500?
-                <ScrollButton top={0} direction={true} scrollTo={scrollTo} darkMode={darkMode} color={headingColor}/>
+                <ScrollButton top={0} direction={true} scrollTo={scrollTo} theme={theme} color={headingColor}/>
                 :
                 <></>
             }
@@ -163,38 +161,41 @@ const Home = ({ allPosts }: Props) => {
                  ref={homeRef}>
                 <div className="items-center flex flex-col pt-5">
                     <div className="py-10">
-                        <HomeNav headingColor={headingColor} scrollTo={scrollTo} dark={darkMode} section={currentSection}/>
+                        <HomeNav headingColor={headingColor} scrollTo={scrollTo} theme={theme} section={currentSection}/>
                     </div>
                     <div className="pt-10">
-                        <SocialLinks darkMode={darkMode} section={currentSection}/>
+                    <SocialLinks theme={theme}
+                        color='green'
+                        highlightColor='pink'
+                        dmColor='white'
+                        dmHighlightColor='green'/>
                     </div>
                 </div>
                 <div className=" pt-6">
-                    <HomeTitle dark={darkMode}/>
+                    <HomeTitle theme={theme}/>
                 </div>
                 <div className="pb-10">
-                    <ScrollButton top={1} direction={false} scrollTo={scrollTo} darkMode={darkMode} color={headingColor}/>
+                    <ScrollButton top={1} direction={false} scrollTo={scrollTo} theme={theme} color={headingColor}/>
                 </div>
             </div>
             <div className="h-screen items-center justify-center text-zinc-100"
                  ref={expertiseRef}>
-                <Expertise width={width} darkMode={darkMode}/>
+                <Expertise width={width} theme={theme}/>
             </div> 
             <div className="h-fit items-center justify-center text-zinc-100"
                  ref={myWorkRef}>
-                <MyWork allPosts={allPosts} darkMode={darkMode}/>
+                <MyWork allPosts={allPosts} theme={theme}/>
             </div>            
             <div className="h-screen items-start justify-center flex text-zinc-100"
                  ref={experienceRef}>
-                <Experience darkMode={darkMode}  />
+                <Experience theme={theme}  />
             </div> 
             <div className='h-screen items-start justify-center flex text-zinc-100'
                  ref={contactRef}>
-                <Contact darkMode={darkMode} />
+                <Contact theme={theme} />
             </div>
-            
         </div>
-        <DarkModeToggle headingColor={headingColor} darkMode={darkMode} handleDarkMode={handleDarkMode}/>
+        <ThemeToggle headingColor={headingColor} location='home'/>
     </>
   )
 }

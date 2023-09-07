@@ -5,17 +5,17 @@ import MoreStories from "./more-stories";
 
 type Props = {
     allPosts: Post[];
-    darkMode: boolean;
+    theme: string;
 }
 
-const MyWork = ({allPosts, darkMode}: Props) => {
+const MyWork = ({ allPosts, theme }: Props) => {
 
     const heroPost = allPosts[0]
     const morePosts = allPosts.slice(1)
 
     return(
         <div className='h-fit w-full flex flex-col justify-between'>
-            <div  className={`pt-20 flex-col items-center justify-between flex ${darkMode? 'text-zinc-100' : "text-indigo-950"}`}>
+            <div  className={`pt-20 flex-col items-center justify-between flex ${theme == "dark"? 'text-zinc-100' : "text-indigo-950"}`}>
                 <div className="flex flex-col lg:flex-row justify-center w-full">
                     <div className="w-full lg:w-1/2 flex flex-col justify-between">
                         <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
@@ -62,7 +62,7 @@ const MyWork = ({allPosts, darkMode}: Props) => {
                     </div>
                 </div>
             </div>
-            <div  className={`flex-col items-center justify-start flex ${darkMode? 'text-zinc-100' : 'text-indigo-900'} pt-5`}>
+            <div  className={`flex-col items-center justify-start flex ${theme == "dark"? 'text-zinc-100' : 'text-indigo-900'} pt-5`}>
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight my-10">
                     Projects
                 </h1>

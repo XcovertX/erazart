@@ -2,11 +2,14 @@ import Image from "next/image"
 import { useState } from "react";
 
 type Props = {
-    darkMode: boolean;
-    section: number;
+    theme: string;
+    color: string;
+    dmColor: string;
+    highlightColor: string;
+    dmHighlightColor: string;
 }
 
-const SocialLinks = ({darkMode, section}: Props) => {
+const SocialLinks = ({ theme, color, dmColor, highlightColor, dmHighlightColor }: Props) => {
     const [gitHover,   setGitHover] =  useState(false);
     const [liHover,     setLIHover] =  useState(false);
     const [instHover, setInstHover] =  useState(false);
@@ -16,6 +19,30 @@ const SocialLinks = ({darkMode, section}: Props) => {
     const onMouseLeaveLI   = () =>   setLIHover(false);
     const onMouseEnterInst = () =>  setInstHover(true);
     const onMouseLeaveInst = () => setInstHover(false);
+
+    function colorSelect(color: string, link: string) {
+        if(color == 'white') {
+            if(link == 'github')         { return '/assets/github_icon_white.png';   } 
+            else if(link == 'linkedin')  { return '/assets/linkedin_icon_white.png'; }
+            else if(link == 'instagram') { return '/assets/instagram_icon_white.png' }
+            else                         { return ''                                 }
+        } else if(color == 'green') {
+            if(link == 'github')         { return '/assets/github_icon_green.png';   } 
+            else if(link == 'linkedin')  { return '/assets/linkedin_icon_green.png'; }
+            else if(link == 'instagram') { return '/assets/instagram_icon_green.png' }
+            else                         { return ''                                 }
+        } else if(color == 'pink') {
+            if(link == 'github')         { return '/assets/github_icon_pink.png';   } 
+            else if(link == 'linkedin')  { return '/assets/linkedin_icon_pink.png'; }
+            else if(link == 'instagram') { return '/assets/instagram_icon_pink.png' }
+            else                         { return ''                                 }
+        } else if(color == 'black') {
+            if(link == 'github')         { return '/assets/github_icon_black.png';   } 
+            else if(link == 'linkedin')  { return '/assets/linkedin_icon_black.png'; }
+            else if(link == 'instagram') { return '/assets/instagram_icon_black.png' }
+            else                         { return ''                                 }
+        }
+    }
 
   return (
     <div className="flex flex-row p-5 justify-center items-center">
@@ -27,7 +54,10 @@ const SocialLinks = ({darkMode, section}: Props) => {
                 target="_blank"
                 className="absolute md:w-10 md:h-10 w-8 h-8 rounded-full md:hover:w-16 md:hover:h-16 hover:w-12 hover:h-12 ease-in-out duration-[250ms]">
                     <Image 
-                        src={gitHover? '/assets/github_icon_pink.png' : (!darkMode? (section == 0? '/assets/github_icon_green.png' : '/assets/github_icon_white.png')  : '/assets/github_icon_white.png')}
+                        src={theme == "dark"? 
+                            (gitHover? colorSelect(dmHighlightColor, 'github') : colorSelect(dmColor, 'github')) 
+                            : 
+                            (gitHover? colorSelect(highlightColor, 'github')   : colorSelect(color, 'github'))}
                         className="" 
                         alt={'github'} 
                         width={100} 
@@ -44,7 +74,10 @@ const SocialLinks = ({darkMode, section}: Props) => {
                 target="_blank"
                 className="absolute md:w-10 md:h-10 w-8 h-8 rounded-full md:hover:w-16 md:hover:h-16 hover:w-12 hover:h-12 ease-in-out duration-[250ms]">
                     <Image 
-                        src={liHover? '/assets/linkedin_icon_pink.png' : (!darkMode? (section == 0? '/assets/linkedin_icon_green.png' : '/assets/linkedin_icon_white.png')  : '/assets/linkedin_icon_white.png')}
+                        src={theme == "dark"? 
+                        (liHover? colorSelect(dmHighlightColor, 'linkedin') : colorSelect(dmColor, 'linkedin')) 
+                        : 
+                        (liHover? colorSelect(highlightColor, 'linkedin')   : colorSelect(color, 'linkedin'))}
                         className=""
                         alt={'linkedin'} 
                         width={100} 
@@ -61,7 +94,10 @@ const SocialLinks = ({darkMode, section}: Props) => {
                 target="_blank"
                 className="absolute md:w-10 md:h-10 w-8 h-8 rounded-full md:hover:w-16 md:hover:h-16 hover:w-12 hover:h-12 ease-in-out duration-[250ms]">  
                     <Image 
-                        src={instHover? '/assets/instagram_icon_pink.png' : (!darkMode? (section == 0? '/assets/instagram_icon_green.png' : '/assets/instagram_icon_white.png')  : '/assets/instagram_icon_white.png')}
+                        src={theme == "dark"? 
+                        (instHover? colorSelect(dmHighlightColor, 'instagram') : colorSelect(dmColor, 'instagram')) 
+                        : 
+                        (instHover? colorSelect(highlightColor, 'instagram')   : colorSelect(color, 'instagram'))}
                         className=""
                         alt={'instagram'} 
                         width={100} 
@@ -69,7 +105,6 @@ const SocialLinks = ({darkMode, section}: Props) => {
                 </a>
             </div>
         </div>
-
     </div>
 
   )

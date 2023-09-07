@@ -2,7 +2,7 @@ import ExperienceAccordian from "./accordian";
 import Job from "../interfaces/job";
 
 type Props = {
-    darkMode: boolean;
+    theme: string;
 }
 
 const jobs: Job[] = [
@@ -42,9 +42,9 @@ const jobs: Job[] = [
 
 ]
 
-const Experience = ({darkMode}: Props) => {
+const Experience = ({ theme }: Props) => {
     return(
-        <div className={`pt-20 flex-col flex justify-start ${darkMode? 'text-zinc-100' : 'text-purple-900'}`}>
+        <div className={`pt-20 flex-col flex justify-start ${theme == "dark"? 'text-zinc-100' : 'text-purple-900'}`}>
             <h1 className=" text-center text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
                 Professional Experience
             </h1>

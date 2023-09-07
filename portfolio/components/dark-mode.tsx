@@ -1,10 +1,11 @@
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
 import { P5CanvasInstance, SketchProps } from "@p5-wrapper/react";
+import { useContext } from "react";
+import { ThemeContext } from "../context/context";
 
 type Props = {
-    headingColor: string,
-    handleDarkMode: any,
-    darkMode: boolean
+    headingColor: string;
+    location: string;
 }
 
 type MySketchProps = SketchProps & {
@@ -12,7 +13,9 @@ type MySketchProps = SketchProps & {
     darkMode: boolean;
 };
 
-const DarkModeToggle = ({headingColor, handleDarkMode, darkMode}: Props) => {
+const ThemeToggle = ({ headingColor, location }: Props) => {
+
+    const { theme, handleThemeChange } = useContext(ThemeContext);
 
     function colorSelect(color) {
         switch (color) {
@@ -30,6 +33,7 @@ const DarkModeToggle = ({headingColor, handleDarkMode, darkMode}: Props) => {
             color: 'bg-gray-500',
             w: 24,
             h: 24,
+            location: ''
         }
 
         var canvas;
@@ -78,11 +82,18 @@ const DarkModeToggle = ({headingColor, handleDarkMode, darkMode}: Props) => {
     function drawAll() {
 
         return () => {
-            p5.fill(p5.color('#f4f4f5'));
+            if(state.location == "home") {
+                p5.fill(p5.color('#f4f4f5'));
+            } else {
+                p5.fill(fillColorSelect(state.color));
+            }
+            
             p5.ellipse(canvas.width/2, canvas.height/2, 8);
             if(state.darkMode){
-                p5.fill(fillColorSelect(state.color));
-                p5.ellipse(canvas.width/2 + 3.5, canvas.height/2 - 3, 7);    
+                p5.push();
+                p5.erase();
+                p5.ellipse(canvas.width/2 + 2.5, canvas.height/2 - 2.5, 6.75);
+                p5.pop();    
             } 
         }
     }
@@ -91,17 +102,17 @@ const DarkModeToggle = ({headingColor, handleDarkMode, darkMode}: Props) => {
     }
 
     return (
-        <div className="fixed right-0 top-9 z-50 text-zinc-100">
-            <div className="flex flex-col">
+        <div className='fixed right-0 top-9 z-50 text-zinc-100'>
+            <div className='flex flex-col'>
                 <div className='fixed top-1 right-7'>
-                    <NextReactP5Wrapper sketch={sketch} color={headingColor} darkMode={darkMode}/>
+                    <NextReactP5Wrapper sketch={sketch} color={headingColor} darkMode={theme == "dark"} location={location}/>
                 </div>
                 <div className="flex flex-row items-center justify-right mt-1">
                     <label className="relative flex items-center cursor-pointer">       
                         <input type="checkbox" 
                                 className="sr-only peer " 
-                                checked={darkMode} 
-                                onChange={handleDarkMode}/>
+                                checked={theme == "dark"} 
+                                onChange={handleThemeChange}/>
                         <div className={`w-8 h-4 
                                          rounded-full 
                                          peer 
@@ -124,4 +135,4 @@ const DarkModeToggle = ({headingColor, handleDarkMode, darkMode}: Props) => {
         </div>
     )}
 
-export default DarkModeToggle
+export default ThemeToggle
