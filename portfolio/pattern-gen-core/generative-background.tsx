@@ -323,8 +323,8 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
 
     if(theme == "dark") {
         if(section == 0) {
-            gradient.addColorStop(0, p5.color(0, 360, 300));
-            gradient.addColorStop(1, p5.color(0, 360, 50));
+            gradient.addColorStop(0, p5.color(20, 300, 300));
+            gradient.addColorStop(1, p5.color(0, 300, 200));
         } else if(section == 1) {
             gradient.addColorStop(0, p5.color(20, 360, 300));
             gradient.addColorStop(1, p5.color(20, 360, 50));
@@ -344,10 +344,10 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
             // gradient.addColorStop(1, p5.color(145, 500, 270));
             // // gradient.addColorStop(1, p5.color(220, 360, 100));
             // // gradient.addColorStop(1, p5.color(140, 360, 200));
-            gradient.addColorStop(0, p5.color(0, 360, 300));
-            gradient.addColorStop(.7, p5.color(0, 360, 300));
-            gradient.addColorStop(.7, p5.color(140, 360, 270));
-            gradient.addColorStop(1, p5.color(140, 360, 270));
+            // gradient.addColorStop(0, p5.color(0, 360, 360));
+            gradient.addColorStop(.4, p5.color(0, 360, 2700));
+            gradient.addColorStop(.4, p5.color(150, 360, 360));
+            gradient.addColorStop(1, p5.color(146, 360, 230));
         } else if(section == 1) {
             gradient.addColorStop(0, p5.color(20, 360, 360));
             gradient.addColorStop(.5, p5.color(20, 360, 300));
@@ -422,10 +422,9 @@ function drawCarts(layer, props){
     if(props.theme == "dark") {
         layer.background(360, 360, 0);
     } else {
-        layer.background('#f4f4f5');
-        
+        layer.background('#f4f4f5'); 
     }
-    layer.strokeWeight(10);
+    layer.strokeWeight(5);
     layer.noFill();
     layer.erase(360, 360);
     for (let i = 0; i < carts.length; i++) {
@@ -501,13 +500,19 @@ function drawCarts(layer, props){
     }
     layer.ellipse((layer.width-10)/2, 250, 150);
     layer.ellipse(layer.width/2 -150, 250, 50);
+    layer.ellipse(20, 500, 75);
     layer.ellipse(250, 250, 50);
-    layer.ellipse(500, 500, 50);
+    layer.ellipse(layer.width-50, 500, 150);
+    layer.ellipse(layer.width-250, 500, 75);
     layer.noErase();
-    layer.rect(250, 250, layer.width-500, 250);
+    layer.rect(5, 250, window.innerWidth-25, 250);
     layer.erase(360, 360);
+    layer.textSize(layer.width/8);
+    layer.text('James Covert', (layer.width-25)/2, 400);
+    layer.textSize(layer.width/30);
+    layer.text('Software Engineer // Full Stack // Web Dev', (layer.width-25)/2, 450);
     layer.noFill();
-    layer.rect(250, 250, layer.width-500, 250);
+    layer.rect(5, 250, window.innerWidth-25, 250);
     
 }
 
@@ -774,16 +779,21 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         totalHeight: window.innerHeight*7,
         section: 0
     }
-    var canvas, cartLayer;
+    var canvas, cartLayer, font;
 
+    function preloadFont() {
+        font = p5.loadFont('assets/fonts/WastedPersonalUseRegular-WyegG.ttf');
+    }
     p5.setup = () => {
         canvas = p5.createCanvas(p5.windowWidth, state.totalHeight, p5.P2D);
         canvas.position(0,0);
         canvas.style('z-index', '-1');
         p5.colorMode(p5.HSB, 360);
         p5.ellipseMode(p5.RADIUS);
-
+        preloadFont();
         cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight)
+        cartLayer.textFont(font);
+        cartLayer.textAlign(cartLayer.CENTER);
         cartLayer.position(0,0);
         cartLayer.colorMode(p5.HSB, 360)
         cartLayer.strokeWeight(3);
@@ -793,6 +803,9 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
     p5.windowResized = () => {
         p5.resizeCanvas(p5.windowWidth, state.totalHeight);
         cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight);
+        // preloadFont();
+        cartLayer.textFont(font);
+        cartLayer.textAlign(cartLayer.CENTER);
         cartLayer.position(0,0);
         cartLayer.colorMode(p5.HSB, 360)
         cartLayer.strokeWeight(3);
@@ -809,6 +822,9 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         }
         if(state.totalHeight != cartLayer.height){
             cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight);
+            // preloadFont();
+            cartLayer.textFont(font);
+            cartLayer.textAlign(cartLayer.CENTER);
             cartLayer.position(0,0);
             cartLayer.colorMode(p5.HSB, 360)
             cartLayer.strokeWeight(3);
@@ -824,9 +840,9 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
                 state.orbX = state.orbX + p5.sin(state.orbBounce/2)*4;
                 state.orbY = state.orbY + p5.cos(state.orbBounce)*4;
             } else {
-                state.orbBounce = state.orbBounce + Math.PI/720;
-                state.orbX = state.orbX + p5.sin(state.orbBounce/2)/2;
-                state.orbY = state.orbY + p5.cos(state.orbBounce)/2;
+                state.orbBounce = state.orbBounce + Math.PI/1000;
+                state.orbX = state.orbX + p5.sin(state.orbBounce/2);
+                state.orbY = state.orbY + p5.cos(state.orbBounce);
             }
             
             drawBackgroundGradient(p5, state.orbX, state.orbY + state.scrollYPosition, state.theme, state.totalHeight, state.section);
@@ -852,8 +868,8 @@ export default function Background({scrollYPosition, height, section}: Backgroun
     const [rotation,       setRotation] = useState(0);
     const [cartCount,     setCartCount] = useState(100);
     const [carts,             setCarts] = useState(Array<CartType>(cartCount));
-    const [maxSpeed,       setMaxSpeed] = useState(500);
-    const [minSpeed,       setMinSpeed] = useState(5000);
+    const [maxSpeed,       setMaxSpeed] = useState(5000);
+    const [minSpeed,       setMinSpeed] = useState(10000);
     const [partWidth,     setPartWidth] = useState(500);
     const [partHeight,   setPartHeight] = useState(500);
     const [partCount,     setPartCount] = useState(2);

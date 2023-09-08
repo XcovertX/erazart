@@ -172,7 +172,7 @@ const Home = ({ allPosts }: Props) => {
                     </div>
                 </div>
                 <div className=" pt-6">
-                    <HomeTitle theme={theme}/>
+                    {/* <HomeTitle theme={theme}/> */}
                 </div>
                 <div className="pb-10">
                     <ScrollButton top={1} direction={false} scrollTo={scrollTo} theme={theme} color={headingColor}/>
