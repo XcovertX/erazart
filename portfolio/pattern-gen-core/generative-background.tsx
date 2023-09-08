@@ -323,37 +323,51 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
 
     if(theme == "dark") {
         if(section == 0) {
-            gradient.addColorStop(0, p5.color(0, 360, 360));
-            gradient.addColorStop(1, p5.color(0, 360, 100));
+            gradient.addColorStop(0, p5.color(0, 360, 300));
+            gradient.addColorStop(1, p5.color(0, 360, 50));
         } else if(section == 1) {
-            gradient.addColorStop(0, p5.color(20, 360, 360));
-            gradient.addColorStop(1, p5.color(20, 360, 100));
+            gradient.addColorStop(0, p5.color(20, 360, 300));
+            gradient.addColorStop(1, p5.color(20, 360, 50));
         } else if(section == 2) {
-            gradient.addColorStop(0, p5.color(40, 360, 360));
-            gradient.addColorStop(1, p5.color(40, 360, 100));
+            gradient.addColorStop(0, p5.color(40, 360, 300));
+            gradient.addColorStop(1, p5.color(40, 360, 50));
         } else if(section == 3) {
-            gradient.addColorStop(0, p5.color(60, 360, 360));
-            gradient.addColorStop(1, p5.color(60, 360, 100));
+            gradient.addColorStop(0, p5.color(60, 360, 300));
+            gradient.addColorStop(1, p5.color(60, 360, 50));
         } else {
-            gradient.addColorStop(0, p5.color(90, 360, 360));
-            gradient.addColorStop(1, p5.color(90, 360, 100));
+            gradient.addColorStop(0, p5.color(90, 360, 300));
+            gradient.addColorStop(1, p5.color(90, 360, 50));
         }
     } else {
         if(section == 0) {
-            gradient.addColorStop(0, p5.color(40, 300, 360));
-            gradient.addColorStop(1, p5.color(0, 300, 360));
+            // gradient.addColorStop(0, p5.color(270, 100, 270));
+            // gradient.addColorStop(1, p5.color(145, 500, 270));
+            // // gradient.addColorStop(1, p5.color(220, 360, 100));
+            // // gradient.addColorStop(1, p5.color(140, 360, 200));
+            gradient.addColorStop(0, p5.color(0, 360, 300));
+            gradient.addColorStop(.7, p5.color(0, 360, 300));
+            gradient.addColorStop(.7, p5.color(140, 360, 270));
+            gradient.addColorStop(1, p5.color(140, 360, 270));
         } else if(section == 1) {
-            gradient.addColorStop(0, p5.color(40, 300, 360));
-            gradient.addColorStop(1, p5.color(20, 300, 360));
+            gradient.addColorStop(0, p5.color(20, 360, 360));
+            gradient.addColorStop(.5, p5.color(20, 360, 300));
+            gradient.addColorStop(.5, p5.color(150, 360, 360));
+            gradient.addColorStop(1, p5.color(140, 360, 200));
         } else if(section == 2) {
-            gradient.addColorStop(0, p5.color(40, 300, 360));
-            gradient.addColorStop(1, p5.color(40, 300, 360));
+            gradient.addColorStop(0, p5.color(40, 360, 360));
+            gradient.addColorStop(.5, p5.color(40, 360, 300));
+            gradient.addColorStop(.5, p5.color(150, 360, 360));
+            gradient.addColorStop(1, p5.color(140, 360, 200));
         } else if(section == 3) {
-            gradient.addColorStop(0, p5.color(40, 300, 360));
-            gradient.addColorStop(1, p5.color(60, 300, 360));
+            gradient.addColorStop(0, p5.color(60, 360, 360));
+            gradient.addColorStop(.5, p5.color(60, 360, 300));
+            gradient.addColorStop(.5, p5.color(150, 360, 360));
+            gradient.addColorStop(1, p5.color(140, 360, 200));
         } else {
-            gradient.addColorStop(0, p5.color(40, 300, 360));
-            gradient.addColorStop(1, p5.color(90, 300, 360));
+            gradient.addColorStop(0, p5.color(90, 360, 360));
+            gradient.addColorStop(.5, p5.color(90, 360, 300));
+            gradient.addColorStop(.5, p5.color(150, 360, 360));
+            gradient.addColorStop(1, p5.color(140, 360, 200));
         }
     }
     
@@ -404,15 +418,16 @@ function drawCarts(layer, props){
         drawGrid(layer, carts[0].width, carts[0].height);
     }
     
+    
     if(props.theme == "dark") {
-        layer.background(360, 360, 0)
+        layer.background(360, 360, 0);
     } else {
         layer.background('#f4f4f5');
-        layer.strokeWeight(5)
+        
     }
-
-    layer.noFill()
-    layer.erase(360, 360)
+    layer.strokeWeight(10);
+    layer.noFill();
+    layer.erase(360, 360);
     for (let i = 0; i < carts.length; i++) {
         var c = carts[i];
         if(c == undefined) break;
@@ -476,10 +491,24 @@ function drawCarts(layer, props){
                     break;
                 default: drawX(layer, c.position, p);
             }
-            
         }
     }
-    layer.noErase()
+
+    if(props.theme == "dark") {
+        layer.fill(360, 360, 0);
+    } else {
+        layer.fill('#f4f4f5');
+    }
+    layer.ellipse((layer.width-10)/2, 250, 150);
+    layer.ellipse(layer.width/2 -150, 250, 50);
+    layer.ellipse(250, 250, 50);
+    layer.ellipse(500, 500, 50);
+    layer.noErase();
+    layer.rect(250, 250, layer.width-500, 250);
+    layer.erase(360, 360);
+    layer.noFill();
+    layer.rect(250, 250, layer.width-500, 250);
+    
 }
 
 function getRandomInt(min: number, max: number) {
@@ -790,14 +819,20 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
     function drawAll() {
 
         return () => {
-            if(p5.frameCount % 1 == 0) {
+            if(state.theme == 'dark') {
                 state.orbBounce = state.orbBounce + Math.PI/180;
+                state.orbX = state.orbX + p5.sin(state.orbBounce/2)*4;
+                state.orbY = state.orbY + p5.cos(state.orbBounce)*4;
+            } else {
+                state.orbBounce = state.orbBounce + Math.PI/720;
+                state.orbX = state.orbX + p5.sin(state.orbBounce/2)/2;
+                state.orbY = state.orbY + p5.cos(state.orbBounce)/2;
             }
-            state.orbX = state.orbX + p5.sin(state.orbBounce/2)*4;
-            state.orbY = state.orbY + p5.cos(state.orbBounce)*4;
+            
             drawBackgroundGradient(p5, state.orbX, state.orbY + state.scrollYPosition, state.theme, state.totalHeight, state.section);
             drawCarts(cartLayer, state);
             p5.image(cartLayer, 0, 0);
+
             // if(state.darkMode) {
             //     drawOrb(p5, state.orbX, state.orbY+ state.scrollYPosition, state.darkMode);
             // } 

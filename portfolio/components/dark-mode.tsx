@@ -82,6 +82,8 @@ const ThemeToggle = ({ headingColor, location }: Props) => {
     function drawAll() {
 
         return () => {
+            canvas.clear();
+
             if(state.location == "home") {
                 p5.fill(p5.color('#f4f4f5'));
             } else {

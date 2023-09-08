@@ -163,10 +163,10 @@ const Home = ({ allPosts }: Props) => {
                     <div className="py-10">
                         <HomeNav headingColor={headingColor} scrollTo={scrollTo} theme={theme} section={currentSection}/>
                     </div>
-                    <div className="pt-10">
+                    <div className="pt-16 ">
                     <SocialLinks theme={theme}
-                        color='green'
-                        highlightColor='pink'
+                        color='white'
+                        highlightColor='green'
                         dmColor='white'
                         dmHighlightColor='green'/>
                     </div>

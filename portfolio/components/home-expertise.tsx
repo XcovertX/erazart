@@ -17,10 +17,10 @@ const handleSelect = (n: number) => {
 }
 
 // tailwind css
-const buttonSelected     = `w-full p-5 m-1 border-4 flex flex-row grow justify-between ${theme == "dark"? 'border-teal-600 bg-teal-600/[.1]' : 'text-teal-900 border-teal-600 bg-teal-400/[.3]'}`;
-const buttonNotSelected  = `w-min p-3 m-1 border-4 flex flex-col justify-center ${theme == "dark"? 'border-teal-950 bg-teal-950/[.5]' : 'text-teal-900 border-teal-800 bg-teal-600/[.5]'}`;
+const buttonSelected     = `w-full p-5 m-1 border-4 flex flex-row grow justify-between ${theme == "dark"? 'border-teal-600 bg-teal-600/[.1]' : 'text-zinc-100 border-teal-600 bg-teal-600/[.9]'}`;
+const buttonNotSelected  = `w-min p-3 m-1 border-4 flex flex-col justify-center ${theme == "dark"? 'border-teal-950 bg-teal-950/[.5]' : 'text-zinc-100 border-teal-800 bg-teal-600/[.9]'}`;
 const headingSelected    = "text-4xl font-bold";
-const headingNotSelected = `text-2xl font-bold break-normal rotate-180 mb-5  ${theme == "dark"? 'text-zinc-100' : 'text-teal-950 border-teal-800'}`;
+const headingNotSelected = `text-2xl font-bold break-normal rotate-180 mb-5  ${theme == "dark"? 'text-zinc-100' : 'text-zinc-100 border-teal-800'}`;
 const descriptionHolder  = "flex flex-col grow justify-between p-5" ;
 const description        = `text-xl  ${theme == "dark"? '' : 'text-teal-900'}`;
 const chartHolder        = "h-full relative grow";
@@ -51,7 +51,7 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                             onClick={() => handleSelect(0)}>
                         <div className="flex grow flex-col items-center h-full justify-between w-full">
                             <Image
-                                src={theme != "dark"? sofDevBlack : sofDevWhite}
+                                src={theme != "dark"? sofDevWhite : sofDevWhite}
                                 className={"my-5"}
                                 alt={'softwaredev'} 
                                 width ={selected == 0? 100 : 50} 
@@ -77,7 +77,7 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                         
                         <div className="flex grow flex-col items-center h-full justify-between w-full">
                             <Image
-                                src={theme != "dark"? reactBlack : reactWhite}
+                                src={theme != "dark"? reactWhite : reactWhite}
                                 className={"my-5"}
                                 alt={'softwaredev'} 
                                 width ={selected == 1? 100 : 50} 
@@ -101,7 +101,7 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                             onClick={() => handleSelect(2)}>
                         <div className="flex grow flex-col items-center h-full justify-between w-full">
                             <Image
-                                src={theme != "dark"? nodeBlack : nodeWhite}
+                                src={theme != "dark"? nodeWhite : nodeWhite}
                                 className={"my-5"}
                                 alt={'nodejs'} 
                                 width ={selected == 2? 100 : 50} 
@@ -124,7 +124,7 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                             onClick={() => handleSelect(3)}>
                         <div className="flex grow flex-col items-center h-full justify-between w-full  ">
                             <Image
-                                src={theme != "dark"? emDevBlack : emDevWhite}
+                                src={theme != "dark"? emDevWhite : emDevWhite}
                                 className={"my-5"} 
                                 alt={'embeddeddev'} 
                                 width ={selected == 3? 100 : 50} 

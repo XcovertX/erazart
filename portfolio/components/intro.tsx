@@ -8,7 +8,7 @@ const Intro = () => {
   const { theme } = useContext(ThemeContext)
   return (
     <section className='flex flex-col'>
-      <div className='flex flex-row justify-between mt-5 '>
+      <div className='flex flex-row justify-between mt-5'>
         <h2 className={`${theme == 'dark'? 'text-zinc-100 hover:text-green-600': 'text-green-600 hover:text-rose-600'} text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight`}>
           <Link href="/" className="hover:underline">
             James Covert
@@ -22,13 +22,13 @@ const Intro = () => {
                      dmHighlightColor='green'/>
       </div>
 
-      <div className="flex-col md:flex-row flex items-center md:justify-between mt-3 mb-5">
-        <h1 className={`${theme == 'dark'? 'text-zinc-100': 'text-green-600'} text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight `}>
+      <div className="flex-col md:flex-row flex items-center md:justify-between my-10">
+        <h1 className={`${theme == 'dark'? 'text-zinc-100': 'text-green-900'} text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight `}>
           Coding Projects
         </h1>
       </div>
-      <p className={`${theme == 'dark'? 'bg-green-600 text-zinc-100' : 'bg-green-600/[.3] text-green-900'} text-xl  p-5 shadow-sm`}>
-      Over the years, I have worked on a variety of projects with the following goals in mind:
+      <div className={`${theme == 'dark'? 'bg-green-600 text-zinc-100' : 'bg-green-600/[.3] text-green-900'} text-xl  p-5 shadow-sm`}>
+        Over the years, I have worked on a variety of projects with the following goals in mind:
         <div className="p-5">
           <li>
               Increase my understanding of good design and performance
@@ -51,8 +51,7 @@ const Intro = () => {
         <h3 className="flex justify-center text-center font-bold p-5">
           Thanks for viewing!
         </h3>
-      </p>
-      <ThemeToggle headingColor='bg-green-600' location='intro'/>
+      </div>
     </section>
     
   )
