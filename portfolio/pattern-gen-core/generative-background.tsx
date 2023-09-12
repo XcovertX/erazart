@@ -323,8 +323,10 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
 
     if(theme == "dark") {
         if(section == 0) {
-            gradient.addColorStop(0, p5.color(20, 300, 300));
-            gradient.addColorStop(1, p5.color(0, 300, 200));
+            gradient.addColorStop(0, p5.color(10, 360, 360));
+            gradient.addColorStop(.5, p5.color(0, 360, 300));
+            gradient.addColorStop(.5, p5.color(150, 360, 360));
+            gradient.addColorStop(1, p5.color(140, 360, 200));
         } else if(section == 1) {
             gradient.addColorStop(0, p5.color(20, 360, 300));
             gradient.addColorStop(1, p5.color(20, 360, 50));
@@ -340,14 +342,10 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
         }
     } else {
         if(section == 0) {
-            // gradient.addColorStop(0, p5.color(270, 100, 270));
-            // gradient.addColorStop(1, p5.color(145, 500, 270));
-            // // gradient.addColorStop(1, p5.color(220, 360, 100));
-            // // gradient.addColorStop(1, p5.color(140, 360, 200));
-            // gradient.addColorStop(0, p5.color(0, 360, 360));
-            gradient.addColorStop(.4, p5.color(0, 360, 2700));
-            gradient.addColorStop(.4, p5.color(150, 360, 360));
-            gradient.addColorStop(1, p5.color(146, 360, 230));
+            gradient.addColorStop(0, p5.color(0, 360, 360));
+            gradient.addColorStop(.5, p5.color(0, 360, 300));
+            gradient.addColorStop(.5, p5.color(150, 360, 360));
+            gradient.addColorStop(1, p5.color(140, 360, 200));
         } else if(section == 1) {
             gradient.addColorStop(0, p5.color(20, 360, 360));
             gradient.addColorStop(.5, p5.color(20, 360, 300));
@@ -505,14 +503,17 @@ function drawCarts(layer, props){
     layer.ellipse(layer.width-50, 500, 150);
     layer.ellipse(layer.width-250, 500, 75);
     layer.noErase();
-    layer.rect(5, 250, window.innerWidth-25, 250);
+    layer.push();
+    layer.noStroke();
+    layer.rect(0, 250, window.innerWidth-20, 250);
+    layer.pop();
     layer.erase(360, 360);
     layer.textSize(layer.width/8);
     layer.text('James Covert', (layer.width-25)/2, 400);
     layer.textSize(layer.width/30);
     layer.text('Software Engineer // Full Stack // Web Dev', (layer.width-25)/2, 450);
     layer.noFill();
-    layer.rect(5, 250, window.innerWidth-25, 250);
+    layer.rect(0, 250, window.innerWidth-17, 250);
     
 }
 
@@ -803,7 +804,6 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
     p5.windowResized = () => {
         p5.resizeCanvas(p5.windowWidth, state.totalHeight);
         cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight);
-        // preloadFont();
         cartLayer.textFont(font);
         cartLayer.textAlign(cartLayer.CENTER);
         cartLayer.position(0,0);
@@ -822,7 +822,6 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         }
         if(state.totalHeight != cartLayer.height){
             cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight);
-            // preloadFont();
             cartLayer.textFont(font);
             cartLayer.textAlign(cartLayer.CENTER);
             cartLayer.position(0,0);
@@ -837,8 +836,8 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         return () => {
             if(state.theme == 'dark') {
                 state.orbBounce = state.orbBounce + Math.PI/180;
-                state.orbX = state.orbX + p5.sin(state.orbBounce/2)*4;
-                state.orbY = state.orbY + p5.cos(state.orbBounce)*4;
+                state.orbX = state.orbX + p5.sin(state.orbBounce/2)*2;
+                state.orbY = state.orbY + p5.cos(state.orbBounce)*2;
             } else {
                 state.orbBounce = state.orbBounce + Math.PI/1000;
                 state.orbX = state.orbX + p5.sin(state.orbBounce/2);
@@ -906,7 +905,7 @@ export default function Background({scrollYPosition, height, section}: Backgroun
                 }
                     return cts;
                 })
-            }, 10);
+            }, 50);
             return () => {
                 clearInterval(interval);
             };
@@ -922,7 +921,6 @@ export default function Background({scrollYPosition, height, section}: Backgroun
                             scrollYPosition={scrollYPosition} 
                             totalHeight={height}
                             section={section}/>
-
-        
+  
     )
 }

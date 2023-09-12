@@ -7,8 +7,11 @@ module.exports = {
         'accent-1': '#FAFAFA',
         'accent-2': '#EAEAEA',
         'accent-7': '#333',
-        success: '#0070f3',
-        cyan: '#79FFE1',
+        'erazblack': '#264653',
+        'erazgreen': '#4CE0B3',
+        'erazyellow': '#ED6A5E',
+        'erazorange': '#FF8E72',
+        'erazred': '#FFAF87'
       },
       spacing: {
         28: '7rem',

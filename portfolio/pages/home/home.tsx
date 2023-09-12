@@ -161,7 +161,7 @@ const Home = ({ allPosts }: Props) => {
                  ref={homeRef}>
                 <div className="items-center flex flex-col pt-5">
                     <div className="py-10">
-                        <HomeNav headingColor={headingColor} scrollTo={scrollTo} theme={theme} section={currentSection}/>
+                        <HomeNav scrollTo={scrollTo} theme={theme} section={currentSection}/>
                     </div>
                     <div className="pt-16 ">
                     <SocialLinks theme={theme}
