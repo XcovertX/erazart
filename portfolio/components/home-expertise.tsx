@@ -17,8 +17,8 @@ const handleSelect = (n: number) => {
 }
 
 // tailwind css
-const buttonSelected     = `w-full border-0 rounded-md p-5 m-1 border-4 flex flex-row grow justify-between ${theme == "dark"? 'bg-teal-600/[.8]' : 'text-zinc-100 bg-teal-600/[.8]'}`;
-const buttonNotSelected  = `w-min border-0 rounded-md p-3 m-1 border-4 flex flex-col justify-center ${theme == "dark"? 'bg-teal-800/[.8]' : 'text-zinc-100 bg-teal-800/[.8]'}`;
+const buttonSelected     = `w-full border-0 rounded-md p-5 m-1 flex flex-row grow justify-between ${theme == "dark"? 'bg-teal-600/[.8]' : 'text-zinc-100 bg-teal-600/[.8]'}`;
+const buttonNotSelected  = `w-min border-0 rounded-md p-3 m-1 flex flex-col justify-center ${theme == "dark"? 'bg-teal-800/[.8]' : 'text-zinc-100 bg-teal-800/[.8]'}`;
 const headingSelected    = "text-4xl font-bold";
 const headingNotSelected = `text-2xl border-0 font-bold break-normal rotate-180 mb-5  ${theme == "dark"? 'text-zinc-100' : 'text-zinc-100'}`;
 const descriptionHolder  = "flex flex-col grow justify-between p-5" ;
