@@ -73,18 +73,22 @@ const Home = ({ allPosts }: Props) => {
         });
     };
 
+    const scrollPrevious = () => {
+        scrollTo(currentSection - 1);
+    }
+
+    const scrollNext = () => {
+        scrollTo(currentSection + 1);
+    }
+
     useEffect(() => {
 
-        function getSection() {
-            return Math.floor((window.scrollY+100)/window.innerHeight);
-        }
-
         function getSect(section: number, h: number, ex: number, w: number, exp: number, c: number) {
-                if (section <  h) { return 0;} 
-                if (section >= h && section <  ex + h) { return 1; }
-                if (section >= ex + h  && section <  ex + h + w) { return 2; }
-                if (section >= ex + h + w && section <  ex + h + w + exp) { return 3; }
-                if (section >= ex + h + w + exp) { return 4; }
+            if (section <  h) { return 0;} 
+            if (section >= h && section <  ex + h) { return 1; }
+            if (section >= ex + h  && section <  ex + h + w) { return 2; }
+            if (section >= ex + h + w && section <  ex + h + w + exp) { return 3; }
+            if (section >= ex + h + w + exp) { return 4; }
         }
 
         const updateYScrollPos = () => {
@@ -147,12 +151,20 @@ const Home = ({ allPosts }: Props) => {
   return (
     <>  
         <Background scrollYPosition={scrollYPosition} height={totalHeight} section={currentSection}/>
-        <div className="fixed right-5 bottom-0 z-36">
+        <div className="fixed right-0 bottom-0 z-36">
             {
                 scrollYPosition > 500?
-                <ScrollButton top={0} direction={true} scrollTo={scrollTo} theme={theme} color={headingColor}/>
-                :
-                <></>
+                    <ScrollButton top={currentSection} direction={true} scrollTo={scrollPrevious} theme={theme} color={headingColor}/>
+                    :
+                    <></>
+            }
+        </div>
+        <div className="fixed left-0 bottom-10 z-36">            
+            {
+                scrollYPosition < getNavSection(4)?
+                    <ScrollButton top={currentSection} direction={false} scrollTo={scrollNext} theme={theme} color={headingColor}/>
+                    :
+                    <></>
             }
         </div>
         <div className="flex flex-col h-full justify-between"
@@ -173,9 +185,6 @@ const Home = ({ allPosts }: Props) => {
                 </div>
                 <div className=" pt-6">
                     {/* <HomeTitle theme={theme}/> */}
-                </div>
-                <div className="pb-10">
-                    <ScrollButton top={1} direction={false} scrollTo={scrollTo} theme={theme} color={headingColor}/>
                 </div>
             </div>
             <div className="h-screen items-center justify-center text-zinc-100"

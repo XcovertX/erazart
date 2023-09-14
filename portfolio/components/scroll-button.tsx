@@ -121,9 +121,9 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
 
             if (state.hover){
                 if(state.theme == "dark") {
-                    p5.fill(highlightColorSelect(state.color))
+                    p5.fill(fillColorSelect(state.color))
                     p5.noStroke();
-                    p5.drawingContext.shadowColor = p5.color(highlightColorSelect(state.color));
+                    p5.drawingContext.shadowColor = p5.color(fillColorSelect(state.color));
                     p5.drawingContext.shadowBlur = 5;
                 } else {
                     p5.noStroke();
@@ -238,7 +238,7 @@ export default function ScrollButton({top, direction, scrollTo, theme, color}: P
         <button className="flex items-center relative justify-center"
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
-                onClick={() => scrollTo(sectionTop)}>
+                onClick={() => scrollTo()}>
             <NextReactP5Wrapper sketch={buttonSketch} hover={hover} toTop={direction} theme={theme} color={color}/>
         </button>
         

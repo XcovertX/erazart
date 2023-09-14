@@ -322,11 +322,8 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
     let gradient = p5.drawingContext.createRadialGradient(orbX, orbY, 15, orbX, orbY, window.innerWidth);
    
     if(section == 0) {
-        // gradient.addColorStop(0, p5.color(0, 360, 360));
-        // gradient.addColorStop(.2, p5.color(0, 360, 300));
         gradient.addColorStop(.5, p5.color(140, 360, 200));
-        // gradient.addColorStop(.7, p5.color(150, 360, 360));
-        gradient.addColorStop(1, p5.color(180, 360, 50));
+        gradient.addColorStop(1, p5.color(180, 360, 70));
     } else if(section == 1) {
         gradient.addColorStop(0, p5.color(20, 300, 360));
         gradient.addColorStop(1, p5.color(20, 360, 360));
