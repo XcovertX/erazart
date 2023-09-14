@@ -20,8 +20,8 @@ export const BackendChart = (props: {hidden: boolean}) => {
     const backendData = {
         labels: [
             'Express/Node',
-            'Spring',
-            'Django'
+            'Spring            ',
+            'Django           '
         ],
         datasets: [{
             label: 'Language Skill Levels',
@@ -85,7 +85,11 @@ export const BackendChart = (props: {hidden: boolean}) => {
                                     font: {
                                         size: 20
                                     }
-                                }
+                                },
+                                grid: {
+                                    display: true,
+                                    color: 'rgba(255, 255, 255, .35)',
+                                },
                             },
                             y: {
                                 beginAtZero: true,
@@ -100,10 +104,8 @@ export const BackendChart = (props: {hidden: boolean}) => {
                                 min: 0,
                                 max: 100,
                                 grid: {
-                                    display: false,
-                                    color: 'rgba(255, 255, 255)',
-                                    z: 50,
-                                    
+                                    display: true,
+                                    color: 'rgba(255, 255, 255, .35)',
                                 },
                             } 
                         }

@@ -21,11 +21,11 @@ export const FrontendChart = (props: {hidden: boolean}) => {
     
     const frontendData = {
         labels: [
-            'React',
-            'NextJS',
-            'HTML',
-            'CSS',
-            'Typescript'
+            'ReactJS     ',
+            'NextJS       ',
+            'HTML         ',
+            'CSS           ',
+            'Typescript  '
         ],
         datasets: [{
             label: 'Language Skill Levels',
@@ -89,7 +89,11 @@ export const FrontendChart = (props: {hidden: boolean}) => {
                                     font: {
                                         size: 20
                                     }
-                                }
+                                },
+                                grid: {
+                                    display: true,
+                                    color: 'rgba(255, 255, 255, .35)',
+                                },
                             },
                             y: {
                                 beginAtZero: true,
@@ -104,10 +108,8 @@ export const FrontendChart = (props: {hidden: boolean}) => {
                                 min: 0,
                                 max: 100,
                                 grid: {
-                                    display: false,
-                                    color: 'rgba(255, 255, 255)',
-                                    z: 50,
-                                    
+                                    display: true,
+                                    color: 'rgba(255, 255, 255, .35)',
                                 },
                             } 
                         }

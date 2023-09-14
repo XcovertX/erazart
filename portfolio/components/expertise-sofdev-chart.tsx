@@ -26,12 +26,12 @@ export const SoftwareDevChart = (props:{hidden: boolean}) => {
 
     const softwareDevData = {
         labels: [
-            'Java',
-            'C',
+            'Java    ',
+            'C         ',
             'Python',
             'Clojure',
-            'Prolog',
-            'C++',
+            'Prolog ',
+            'C++     ',
         ],
         datasets: [{
             label: 'Language Skill Levels',
@@ -46,7 +46,7 @@ export const SoftwareDevChart = (props:{hidden: boolean}) => {
                 '#db2777',
             ],
             borderWidth: 1,
-            borderColor: 'rgba(255, 255, 255, .35)',
+            borderColor: 'rgba(255, 255, 255)',
             hoverBorderWidth: 2.5,
             hoverBorderColor: 'white',
             hoverOffset: 5,
@@ -80,22 +80,28 @@ export const SoftwareDevChart = (props:{hidden: boolean}) => {
                             }
                         },
                         layout: {
-                            padding: 10
+
+
                         },
                         responsive: true,
                         maintainAspectRatio: false,
                         scales: {
                             x: {
                                 ticks: {
-                                    
                                     color: 'rgba(255, 255, 255)',
                                     minRotation: 90,
-                                    padding: -120,
+                                    mirror: false,
+                                    padding: -80,
                                     z: 50,
                                     font: {
                                         size: 20,
-                                    }
-                                }
+                                    },
+                                },
+                                
+                                grid: {
+                                    display: true,
+                                    color: 'rgba(255, 255, 255, .35)',
+                                },
                             },
                             y: {
                                 beginAtZero: true,
@@ -105,15 +111,13 @@ export const SoftwareDevChart = (props:{hidden: boolean}) => {
                                     z: 50,
                                     major: {
                                         enabled: true
-                                    }
+                                    },
                                 },
                                 min: 0,
                                 max: 100,
                                 grid: {
-                                    display: false,
-                                    color: 'rgba(255, 255, 255)',
-                                    z: 50,
-                                    
+                                    display: true,
+                                    color: 'rgba(255, 255, 255, .35)'
                                 },
                             } 
                         }
