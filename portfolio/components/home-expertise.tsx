@@ -17,12 +17,12 @@ const handleSelect = (n: number) => {
 }
 
 // tailwind css
-const buttonSelected     = `w-full p-5 m-1 border-4 flex flex-row grow justify-between ${theme == "dark"? 'border-teal-600 bg-teal-600/[.1]' : 'text-zinc-100 border-teal-600 bg-teal-600/[.9]'}`;
-const buttonNotSelected  = `w-min p-3 m-1 border-4 flex flex-col justify-center ${theme == "dark"? 'border-teal-950 bg-teal-950/[.5]' : 'text-zinc-100 border-teal-800 bg-teal-600/[.9]'}`;
+const buttonSelected     = `w-full border-0 rounded-md p-5 m-1 border-4 flex flex-row grow justify-between ${theme == "dark"? 'bg-teal-600/[.8]' : 'text-zinc-100 bg-teal-600/[.8]'}`;
+const buttonNotSelected  = `w-min border-0 rounded-md p-3 m-1 border-4 flex flex-col justify-center ${theme == "dark"? 'bg-teal-800/[.8]' : 'text-zinc-100 bg-teal-800/[.8]'}`;
 const headingSelected    = "text-4xl font-bold";
-const headingNotSelected = `text-2xl font-bold break-normal rotate-180 mb-5  ${theme == "dark"? 'text-zinc-100' : 'text-zinc-100 border-teal-800'}`;
+const headingNotSelected = `text-2xl border-0 font-bold break-normal rotate-180 mb-5  ${theme == "dark"? 'text-zinc-100' : 'text-zinc-100'}`;
 const descriptionHolder  = "flex flex-col grow justify-between p-5" ;
-const description        = `text-xl  ${theme == "dark"? '' : 'text-teal-900'}`;
+const description        = `text-xl  ${theme == "dark"? '' : ''}`;
 const chartHolder        = "h-full relative grow";
 
 // icon assets
@@ -43,7 +43,7 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
 
     return(
         <div className="w-full flex-col h-screen items-center justify-start flex text-zinc-100 transition-all delay-1000">
-                <h1 className={`${theme == "dark"? 'text-zinc-100' : 'text-teal-950'} pt-20 text-center text-5xl md:text-7xl font-bold tracking-tighter leading-tight`}>
+                <h1 className={`${theme == "dark"? 'text-zinc-100' : 'text-teal-900'} pt-20 text-center text-5xl md:text-7xl font-bold tracking-tighter leading-tight`}>
                     My Expertise
                 </h1>
                 <div className="w-full flex grow flex-row my-6">

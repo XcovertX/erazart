@@ -319,55 +319,28 @@ function drawCrossDots(p5: P5CanvasInstance<MySketchProps>, cartPosition: Positi
 
 function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number, theme: string, totalHeight: number, section: number) {
     p5.push()
-    let gradient = p5.drawingContext.createRadialGradient(orbX, orbY, 15, orbX, orbY, 600);
-
-    if(theme == "dark") {
-        if(section == 0) {
-            gradient.addColorStop(0, p5.color(10, 360, 360));
-            gradient.addColorStop(.5, p5.color(0, 360, 300));
-            gradient.addColorStop(.5, p5.color(150, 360, 360));
-            gradient.addColorStop(1, p5.color(140, 360, 200));
-        } else if(section == 1) {
-            gradient.addColorStop(0, p5.color(20, 360, 300));
-            gradient.addColorStop(1, p5.color(20, 360, 50));
-        } else if(section == 2) {
-            gradient.addColorStop(0, p5.color(40, 360, 300));
-            gradient.addColorStop(1, p5.color(40, 360, 50));
-        } else if(section == 3) {
-            gradient.addColorStop(0, p5.color(60, 360, 300));
-            gradient.addColorStop(1, p5.color(60, 360, 50));
-        } else {
-            gradient.addColorStop(0, p5.color(90, 360, 300));
-            gradient.addColorStop(1, p5.color(90, 360, 50));
-        }
+    let gradient = p5.drawingContext.createRadialGradient(orbX, orbY, 15, orbX, orbY, window.innerWidth);
+   
+    if(section == 0) {
+        // gradient.addColorStop(0, p5.color(0, 360, 360));
+        // gradient.addColorStop(.2, p5.color(0, 360, 300));
+        gradient.addColorStop(.5, p5.color(140, 360, 200));
+        // gradient.addColorStop(.7, p5.color(150, 360, 360));
+        gradient.addColorStop(1, p5.color(180, 360, 50));
+    } else if(section == 1) {
+        gradient.addColorStop(0, p5.color(20, 300, 360));
+        gradient.addColorStop(1, p5.color(20, 360, 360));
+    } else if(section == 2) {
+        gradient.addColorStop(0, p5.color(40, 300, 360));
+        gradient.addColorStop(1, p5.color(40, 360, 360));
+    } else if(section == 3) {
+        gradient.addColorStop(0, p5.color(60, 300, 360));
+        gradient.addColorStop(1, p5.color(60, 360, 360));
     } else {
-        if(section == 0) {
-            gradient.addColorStop(0, p5.color(0, 360, 360));
-            gradient.addColorStop(.5, p5.color(0, 360, 300));
-            gradient.addColorStop(.5, p5.color(150, 360, 360));
-            gradient.addColorStop(1, p5.color(140, 360, 200));
-        } else if(section == 1) {
-            gradient.addColorStop(0, p5.color(20, 360, 360));
-            gradient.addColorStop(.5, p5.color(20, 360, 300));
-            gradient.addColorStop(.5, p5.color(150, 360, 360));
-            gradient.addColorStop(1, p5.color(140, 360, 200));
-        } else if(section == 2) {
-            gradient.addColorStop(0, p5.color(40, 360, 360));
-            gradient.addColorStop(.5, p5.color(40, 360, 300));
-            gradient.addColorStop(.5, p5.color(150, 360, 360));
-            gradient.addColorStop(1, p5.color(140, 360, 200));
-        } else if(section == 3) {
-            gradient.addColorStop(0, p5.color(60, 360, 360));
-            gradient.addColorStop(.5, p5.color(60, 360, 300));
-            gradient.addColorStop(.5, p5.color(150, 360, 360));
-            gradient.addColorStop(1, p5.color(140, 360, 200));
-        } else {
-            gradient.addColorStop(0, p5.color(90, 360, 360));
-            gradient.addColorStop(.5, p5.color(90, 360, 300));
-            gradient.addColorStop(.5, p5.color(150, 360, 360));
-            gradient.addColorStop(1, p5.color(140, 360, 200));
-        }
+        gradient.addColorStop(0, p5.color(180, 300, 360));
+        gradient.addColorStop(.5, p5.color(180, 360, 360));
     }
+    
     
     p5.drawingContext.fillStyle = gradient;
     p5.noStroke();
@@ -408,6 +381,26 @@ function drawOrb(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number
     
 }
 
+function drawText(layer, props) {
+
+    if(props.theme == "dark") {
+        layer.fill(360, 360, 0);
+    } else {
+        layer.fill('#f4f4f5'); 
+    }
+    layer.noStroke();
+    layer.erase(360, 360);
+    layer.rect(0, 145, window.innerWidth-15, 360);
+    layer.noErase(360, 360);
+    layer.rect(5, 155, window.innerWidth-25, 340);
+    layer.textSize(layer.width/8);
+    layer.erase(360, 360);
+    layer.text('JAMES COVERT', (layer.width-35)/2, 380);
+    layer.textSize(layer.width/30);
+    layer.text('SOFTWARE ENGINEER // FULL STACK // WEB DEV', (layer.width-35)/2, 470);
+
+}
+
 function drawCarts(layer, props){
 
     const { carts, grid, section } = props;
@@ -416,13 +409,13 @@ function drawCarts(layer, props){
         drawGrid(layer, carts[0].width, carts[0].height);
     }
     
-    
     if(props.theme == "dark") {
         layer.background(360, 360, 0);
     } else {
         layer.background('#f4f4f5'); 
     }
-    layer.strokeWeight(5);
+    layer.strokeWeight(10);
+    layer.stroke(360);
     layer.noFill();
     layer.erase(360, 360);
     for (let i = 0; i < carts.length; i++) {
@@ -491,12 +484,9 @@ function drawCarts(layer, props){
         }
     }
 
-    if(props.theme == "dark") {
-        layer.fill(360, 360, 0);
-    } else {
-        layer.fill('#f4f4f5');
-    }
-    layer.ellipse((layer.width-10)/2, 250, 150);
+
+
+    
     layer.ellipse(layer.width/2 -150, 250, 50);
     layer.ellipse(20, 500, 75);
     layer.ellipse(250, 250, 50);
@@ -506,14 +496,16 @@ function drawCarts(layer, props){
     layer.push();
     layer.noStroke();
     layer.rect(0, 250, window.innerWidth-20, 250);
+    if(props.theme == "dark") {
+        layer.fill(360, 360, 0);
+    } else {
+        layer.fill('#f4f4f5');
+    }
+    
+    layer.ellipse((layer.width-10)/2, 250, 150);
     layer.pop();
     layer.erase(360, 360);
-    layer.textSize(layer.width/8);
-    layer.text('James Covert', (layer.width-25)/2, 400);
-    layer.textSize(layer.width/30);
-    layer.text('Software Engineer // Full Stack // Web Dev', (layer.width-25)/2, 450);
-    layer.noFill();
-    layer.rect(0, 250, window.innerWidth-17, 250);
+    layer.ellipse((layer.width-10)/2, 250, 150);
     
 }
 
@@ -782,16 +774,21 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
     }
     var canvas, cartLayer, font;
 
-    function preloadFont() {
-        font = p5.loadFont('assets/fonts/WastedPersonalUseRegular-WyegG.ttf');
+    p5.preload = () => {
+        // font = p5.loadFont('assets/fonts/WastedPersonalUseRegular-WyegG.ttf');
+        font = p5.loadFont('assets/fonts/QuartzoBold-W9lv.ttf');
+        // font = p5.loadFont('assets/fonts/MadHacker-Yjz8.ttf');
+
+        
+        
     }
+    
     p5.setup = () => {
         canvas = p5.createCanvas(p5.windowWidth, state.totalHeight, p5.P2D);
         canvas.position(0,0);
         canvas.style('z-index', '-1');
         p5.colorMode(p5.HSB, 360);
         p5.ellipseMode(p5.RADIUS);
-        preloadFont();
         cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight)
         cartLayer.textFont(font);
         cartLayer.textAlign(cartLayer.CENTER);
@@ -799,6 +796,7 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         cartLayer.colorMode(p5.HSB, 360)
         cartLayer.strokeWeight(3);
         cartLayer.ellipseMode(p5.RADIUS);
+
     }
 
     p5.windowResized = () => {
@@ -817,10 +815,10 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
 
     p5.updateWithProps = props => {
         state = Object.assign(state, props);
-        if(state.totalHeight != canvas.height){
+        if(canvas != undefined && state.totalHeight != canvas.height){
             p5.resizeCanvas(p5.windowWidth, state.totalHeight);
         }
-        if(state.totalHeight != cartLayer.height){
+        if(cartLayer != undefined && state.totalHeight != cartLayer.height){
             cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight);
             cartLayer.textFont(font);
             cartLayer.textAlign(cartLayer.CENTER);
@@ -834,21 +832,18 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
     function drawAll() {
 
         return () => {
-            if(state.theme == 'dark') {
-                state.orbBounce = state.orbBounce + Math.PI/180;
-                state.orbX = state.orbX + p5.sin(state.orbBounce/2)*2;
-                state.orbY = state.orbY + p5.cos(state.orbBounce)*2;
-            } else {
-                state.orbBounce = state.orbBounce + Math.PI/1000;
-                state.orbX = state.orbX + p5.sin(state.orbBounce/2);
-                state.orbY = state.orbY + p5.cos(state.orbBounce);
-            }
+
+            state.orbBounce = state.orbBounce + Math.PI/500;
+            state.orbX = state.orbX + p5.sin(state.orbBounce/2)*4;
+            state.orbY = state.orbY + p5.cos(state.orbBounce)*2;
+            
             
             drawBackgroundGradient(p5, state.orbX, state.orbY + state.scrollYPosition, state.theme, state.totalHeight, state.section);
             drawCarts(cartLayer, state);
+            drawText(cartLayer, state);
             p5.image(cartLayer, 0, 0);
 
-            // if(state.darkMode) {
+            // if(state.theme == 'dark') {
             //     drawOrb(p5, state.orbX, state.orbY+ state.scrollYPosition, state.darkMode);
             // } 
         }
@@ -871,7 +866,7 @@ export default function Background({scrollYPosition, height, section}: Backgroun
     const [minSpeed,       setMinSpeed] = useState(10000);
     const [partWidth,     setPartWidth] = useState(500);
     const [partHeight,   setPartHeight] = useState(500);
-    const [partCount,     setPartCount] = useState(2);
+    const [partCount,     setPartCount] = useState(1);
     const [edgeExtend,   setEdgeExtend] = useState(0);
     const [dGrid,             setDGrid] = useState(false);
     const [continuation,   setContinue] = useState(20);
@@ -905,7 +900,7 @@ export default function Background({scrollYPosition, height, section}: Backgroun
                 }
                     return cts;
                 })
-            }, 50);
+            }, 10);
             return () => {
                 clearInterval(interval);
             };

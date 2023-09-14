@@ -47,7 +47,7 @@ export const SoftwareDevChart = (props:{hidden: boolean}) => {
             ],
             borderWidth: 1,
             borderColor: 'rgba(255, 255, 255, .35)',
-            hoverBorderWidth: 1.5,
+            hoverBorderWidth: 2.5,
             hoverBorderColor: 'white',
             hoverOffset: 5,
         }]
@@ -85,11 +85,23 @@ export const SoftwareDevChart = (props:{hidden: boolean}) => {
                         responsive: true,
                         maintainAspectRatio: false,
                         scales: {
+                            x: {
+                                ticks: {
+                                    
+                                    color: 'rgba(255, 255, 255)',
+                                    minRotation: 90,
+                                    padding: -120,
+                                    z: 50,
+                                    font: {
+                                        size: 20,
+                                    }
+                                }
+                            },
                             y: {
                                 beginAtZero: true,
                                 ticks: {
                                     backdropColor: 'rgba(0,0,0,0)',
-                                    color: 'rgba(255, 255, 255, .35)',
+                                    color: 'rgba(255, 255, 255)',
                                     z: 50,
                                     major: {
                                         enabled: true
@@ -99,7 +111,7 @@ export const SoftwareDevChart = (props:{hidden: boolean}) => {
                                 max: 100,
                                 grid: {
                                     display: false,
-                                    color: 'rgba(255, 255, 255, .35)',
+                                    color: 'rgba(255, 255, 255)',
                                     z: 50,
                                     
                                 },

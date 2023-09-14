@@ -74,11 +74,23 @@ export const EmbedDevChart = (props:{hidden: boolean}) => {
                         responsive: true,
                         maintainAspectRatio: false,
                         scales: {
+                            x: {
+                                ticks: {
+                                    
+                                    color: 'rgba(255, 255, 255)',
+                                    minRotation: 90,
+                                    padding: -130,
+                                    z: 50,
+                                    font: {
+                                        size: 20
+                                    }
+                                }
+                            },
                             y: {
                                 beginAtZero: true,
                                 ticks: {
                                     backdropColor: 'rgba(0,0,0,0)',
-                                    color: 'rgba(255, 255, 255, .35)',
+                                    color: 'rgba(255, 255, 255)',
                                     z: 50,
                                     major: {
                                         enabled: true
@@ -88,7 +100,7 @@ export const EmbedDevChart = (props:{hidden: boolean}) => {
                                 max: 100,
                                 grid: {
                                     display: false,
-                                    color: 'rgba(255, 255, 255, .35)',
+                                    color: 'rgba(255, 255, 255)',
                                     z: 50,
                                     
                                 },

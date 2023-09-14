@@ -21,7 +21,7 @@ const MyWork = ({ allPosts, theme }: Props) => {
                         <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
                             My Work
                         </h1>
-                        <div className="flex flex-col justify-between p-5 mt-5 bg-indigo-600/[.1] border-indigo-600 border-4">
+                        <div className="flex flex-col justify-between p-5 mt-5 bg-indigo-600/[.8] rounded-md border-0 text-zinc-100">
                             Over the years, I have worked on a variety of projects with the following goals in mind:
                                 <div className="p-5">
                                     <li>
@@ -62,7 +62,7 @@ const MyWork = ({ allPosts, theme }: Props) => {
                     </div>
                 </div>
             </div>
-            <div  className={`flex-col items-center justify-start flex ${theme == "dark"? 'text-zinc-100' : 'text-indigo-900'} pt-5`}>
+            <div  className={`flex-col items-center justify-start flex ${theme == "dark"? 'text-zinc-100' : 'text-indigo-950'} pt-5`}>
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight my-10">
                     Projects
                 </h1>
