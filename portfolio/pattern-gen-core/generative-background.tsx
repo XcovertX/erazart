@@ -380,6 +380,16 @@ function drawOrb(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number
 
 function drawText(layer, props) {
 
+    let titleWidth, subtitleWidth;
+
+    if(layer.width <= 1200) {
+        titleWidth = layer.width/8;
+        subtitleWidth = layer.width/30
+    } else {
+        titleWidth = 1200/8;
+        subtitleWidth = 1200/30;
+    }
+
     if(props.theme == "dark") {
         layer.fill(360, 360, 0);
     } else {
@@ -390,10 +400,10 @@ function drawText(layer, props) {
     layer.rect(0, 145, window.innerWidth-15, 360);
     layer.noErase(360, 360);
     layer.rect(5, 155, window.innerWidth-25, 340);
-    layer.textSize(layer.width/8);
+    layer.textSize(titleWidth);
     layer.erase(360, 360);
     layer.text('JAMES COVERT', (layer.width-35)/2, 380);
-    layer.textSize(layer.width/30);
+    layer.textSize(subtitleWidth);
     layer.text('SOFTWARE ENGINEER // FULL STACK // WEB DEV', (layer.width-35)/2, 470);
 
 }
