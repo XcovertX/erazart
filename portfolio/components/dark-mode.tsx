@@ -17,20 +17,12 @@ const ThemeToggle = ({ headingColor, location }: Props) => {
 
     const { theme, handleThemeChange } = useContext(ThemeContext);
 
-    function colorSelect(color) {
-        switch (color) {
-            case 'bg-green-600' : return 'after:bg-green-600 bg-green-400 ring-green-700 peer-checked:bg-green-800 peer-checked:ring-green-900';
-            case 'bg-teal-600'  : return 'after:bg-teal-600 bg-teal-400 ring-teal-700 peer-checked:bg-teal-900 peer-checked:ring-teal-900';
-            case 'bg-indigo-600': return 'after:bg-indigo-600 bg-indigo-400 ring-indigo-700 peer-checked:bg-indigo-900 peer-checked:ring-indigo-900';
-            case 'bg-purple-600': return 'after:bg-purple-600 bg-purple-400 ring-purple-700 peer-checked:bg-purple-900 peer-checked:ring-purple-900';
-            case 'bg-rose-600'  : return 'after:bg-rose-600 bg-rose-400 ring-rose-700 peer-checked:bg-rose-900 peer-checked:ring-rose-900';
-        }
-    }
+    const colors = 'peer-checked:after:bg-emerald-700 after:bg-amber-500 bg-emerald-400 ring-amber-400 peer-checked:bg-emerald-600 peer-checked:ring-emerald-700';
 
     const sketch = (p5: P5CanvasInstance<MySketchProps>) => {
         var state = {
             darkMode: false,
-            color: 'bg-gray-500',
+            color: 'bg-amber-500',
             w: 24,
             h: 24,
             location: ''
@@ -40,12 +32,12 @@ const ThemeToggle = ({ headingColor, location }: Props) => {
     
         function fillColorSelect(color) {
             switch (color) {
-                case 'bg-green-600' : return p5.color('#16a34a');
-                case 'bg-teal-600'  : return p5.color('#0d9488');
-                case 'bg-indigo-600': return p5.color('#4f46e5');
-                case 'bg-purple-600': return p5.color('#9333ea');
-                case 'bg-rose-600'  : return p5.color('#e11d48');
-                default             : return p5.color('#16a34a');
+                // case 'bg-green-600' : return p5.color('#16a34a');
+                // case 'bg-teal-600'  : return p5.color('#0d9488');
+                // case 'bg-indigo-600': return p5.color('#4f46e5');
+                // case 'bg-purple-600': return p5.color('#9333ea');
+                // case 'bg-rose-600'  : return p5.color('#e11d48');
+                default             : return p5.color('#f59e0b');
             }
         }
 
@@ -85,7 +77,12 @@ const ThemeToggle = ({ headingColor, location }: Props) => {
             canvas.clear();
 
             if(state.location == "home") {
-                p5.fill(p5.color('#f4f4f5'));
+                if(state.darkMode) {
+                    p5.fill(p5.color('#f4f4f5'));
+                } else {
+                    p5.fill(p5.color('#fcd34d'));
+                }
+                
             } else {
                 p5.fill(fillColorSelect(state.color));
             }
@@ -124,7 +121,7 @@ const ThemeToggle = ({ headingColor, location }: Props) => {
                                          after:absolute 
                                          after:top-0.5
                                          after:right-[16px]
-                                         ${colorSelect(headingColor)} 
+                                         ${colors} 
                                          after:rounded-full 
                                          after:h-3 after:w-3 
                                          after:transition-all 
