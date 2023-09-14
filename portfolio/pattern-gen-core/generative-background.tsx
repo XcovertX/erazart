@@ -321,22 +321,12 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
     p5.push()
     let gradient = p5.drawingContext.createRadialGradient(orbX, orbY, 15, orbX, orbY, window.innerWidth);
    
-    if(section == 0) {
-        gradient.addColorStop(.5, p5.color(140, 360, 200));
-        gradient.addColorStop(1, p5.color(180, 360, 70));
-    } else if(section == 1) {
-        gradient.addColorStop(0, p5.color(20, 300, 360));
-        gradient.addColorStop(1, p5.color(20, 360, 360));
-    } else if(section == 2) {
-        gradient.addColorStop(0, p5.color(40, 300, 360));
-        gradient.addColorStop(1, p5.color(40, 360, 360));
-    } else if(section == 3) {
-        gradient.addColorStop(0, p5.color(60, 300, 360));
-        gradient.addColorStop(1, p5.color(60, 360, 360));
-    } else {
-        gradient.addColorStop(0, p5.color(180, 300, 360));
-        gradient.addColorStop(.5, p5.color(180, 360, 360));
-    }
+
+    gradient.addColorStop(.2, p5.color('#f59e0b'));
+    gradient.addColorStop(.7, p5.color('#c2410c'));
+    gradient.addColorStop(.7, p5.color('#991b1b'));
+    gradient.addColorStop(1, p5.color('#064e3b'));
+
     
     
     p5.drawingContext.fillStyle = gradient;
@@ -391,7 +381,7 @@ function drawText(layer, props) {
     }
 
     if(props.theme == "dark") {
-        layer.fill(360, 360, 0);
+        layer.fill('#031c14');
     } else {
         layer.fill('#f4f4f5'); 
     }
@@ -417,7 +407,7 @@ function drawCarts(layer, props){
     }
     
     if(props.theme == "dark") {
-        layer.background(360, 360, 0);
+        layer.background('#031c14');
     } else {
         layer.background('#f4f4f5'); 
     }
@@ -503,13 +493,7 @@ function drawCarts(layer, props){
     layer.push();
     layer.noStroke();
     layer.rect(0, 250, window.innerWidth-20, 250);
-    if(props.theme == "dark") {
-        layer.fill(360, 360, 0);
-    } else {
-        layer.fill('#f4f4f5');
-    }
-    
-    layer.ellipse((layer.width-10)/2, 250, 150);
+
     layer.pop();
     layer.erase(360, 360);
     layer.ellipse((layer.width-10)/2, 250, 150);

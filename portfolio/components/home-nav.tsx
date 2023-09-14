@@ -15,7 +15,7 @@ const HomeNav = ({scrollTo, theme, section}: Props) => {
         selectedBGColor   = 'bg-amber-400';
     } else {
         headingColor      = 'bg-emerald-500';
-        textColor         = 'text-emerald-700';
+        textColor         = 'text-emerald-900';
         selectedTextColor = 'text-zinc-100'
         bgColor           = 'bg-amber-500';
         selectedBGColor   = 'bg-amber-400';
