@@ -46,12 +46,12 @@ const Home = ({ allPosts }: Props) => {
      
     const getHeadingColor = (section: number) => {
         switch(section) {
-            case  0: return 'bg-green-600';
-            case  1: return 'bg-teal-600';
-            case  2: return 'bg-indigo-600';
-            case  3: return 'bg-purple-600';
-            case  4: return 'bg-rose-600';
-            default: return 'bg-green-600';
+            case  0: return 'bg-teal-300';
+            case  1: return 'bg-teal-400';
+            case  2: return 'bg-teal-500';
+            case  3: return 'bg-teal-600';
+            case  4: return 'bg-teal-700';
+            default: return 'bg-teal-300';
         }
     }
 
