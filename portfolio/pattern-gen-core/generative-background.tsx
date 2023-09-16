@@ -321,12 +321,29 @@ function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: numbe
     p5.push()
     let gradient = p5.drawingContext.createRadialGradient(orbX, orbY, 15, orbX, orbY, window.innerWidth);
    
+    // gradient.addColorStop(.1, p5.color('#064e3b'));
+    // gradient.addColorStop(1, p5.color('#780425'));
+    // gradient.addColorStop(.7, p5.color('#c2410c'));
+    // gradient.addColorStop(.7, p5.color('#991b1b'));
+    
+    if(theme == 'dark') {
+        // gradient.addColorStop(0, p5.color(30,360,360));
+        // gradient.addColorStop(.5, p5.color(20,360,300));
+        gradient.addColorStop(.3, p5.color(10, 360, 230));
+        gradient.addColorStop(.8, p5.color(0, 360, 80));
+        gradient.addColorStop(1, p5.color(140, 200, 60));
+    } else {
+        gradient.addColorStop(0, p5.color(30,360,360));
+        gradient.addColorStop(.5, p5.color(0,360,200));
+        gradient.addColorStop(.8, p5.color(150, 360, 330));
+        gradient.addColorStop(1, p5.color(150, 40, 330));
+    }
 
-    gradient.addColorStop(.2, p5.color('#f59e0b'));
-    gradient.addColorStop(.7, p5.color('#c2410c'));
-    gradient.addColorStop(.7, p5.color('#991b1b'));
-    gradient.addColorStop(1, p5.color('#064e3b'));
 
+    // gradient.addColorStop(.2, p5.color('#f59e0b'));
+    // gradient.addColorStop(.7, p5.color('#c2410c'));
+    // gradient.addColorStop(.7, p5.color('#991b1b'));
+    // gradient.addColorStop(1, p5.color('#064e3b'));
     
     
     p5.drawingContext.fillStyle = gradient;
@@ -389,7 +406,7 @@ function drawText(layer, props) {
     layer.erase(360, 360);
     layer.rect(0, 145, window.innerWidth-15, 360);
     layer.noErase(360, 360);
-    layer.rect(5, 155, window.innerWidth-25, 340);
+    layer.rect(10, 155, window.innerWidth-35, 340);
     layer.textSize(titleWidth);
     layer.erase(360, 360);
     layer.text('JAMES COVERT', (layer.width-35)/2, 380);
@@ -411,7 +428,7 @@ function drawCarts(layer, props){
     } else {
         layer.background('#f4f4f5'); 
     }
-    layer.strokeWeight(10);
+    layer.strokeWeight(5);
     layer.stroke(360);
     layer.noFill();
     layer.erase(360, 360);
@@ -481,9 +498,6 @@ function drawCarts(layer, props){
         }
     }
 
-
-
-    
     layer.ellipse(layer.width/2 -150, 250, 50);
     layer.ellipse(20, 500, 75);
     layer.ellipse(250, 250, 50);
@@ -824,12 +838,12 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
 
         return () => {
 
-            state.orbBounce = state.orbBounce + Math.PI/500;
-            state.orbX = state.orbX + p5.sin(state.orbBounce/2)*4;
-            state.orbY = state.orbY + p5.cos(state.orbBounce)*2;
+            state.orbBounce = state.orbBounce + Math.PI/1000;
+            state.orbX = state.orbX + p5.sin(state.orbBounce/2);
+            state.orbY = state.orbY + p5.cos(state.orbBounce);
             
-            
-            drawBackgroundGradient(p5, state.orbX, state.orbY + state.scrollYPosition, state.theme, state.totalHeight, state.section);
+            drawBackgroundGradient(p5, state.orbX, state.orbY, state.theme, state.totalHeight, state.section);
+            // drawBackgroundGradient(p5, state.orbX, state.orbY + state.scrollYPosition, state.theme, state.totalHeight, state.section);
             drawCarts(cartLayer, state);
             drawText(cartLayer, state);
             p5.image(cartLayer, 0, 0);

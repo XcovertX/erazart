@@ -32,14 +32,14 @@ const HeroPost = ({
   return (
     <section onMouseEnter={onMouseEnter}
              onMouseLeave={onMouseLeave}
-             className='flex flex-col h-full justify-center'>
-      <h1 className={`text-4xl md:text-5xl mx-2 ${hover? 'text-indigo-500' : (theme == 'dark'? 'text-indigo-600' : 'text-indigo-950')} font-bold tracking-tighter leading-tight my-5`}>
+             className='flex flex-col h-auto justify-between'>
+      <h1 className={`text-4xl md:text-5xl mx-2 ${hover? (theme == 'dark'? 'text-amber-400' : 'text-amber-500') : (theme == 'dark'? 'text-zinc-100' : 'text-emerald-950')} font-bold tracking-tighter leading-tight my-5`}>
         Featured Project
       </h1>
       <div className="">
         <CoverImage title={title} src={coverImage} slug={slug} mouseHover={hover}/>
       </div>
-      <div className={`${hover? 'text-indigo-500' : (theme == 'dark'? 'text-indigo-600' : 'text-indigo-950')} px-2`}>
+      <div className={`${hover? (theme == 'dark'? 'text-amber-400' : 'text-amber-500') : (theme == 'dark'? 'text-zinc-100' : 'text-emerald-950')} font-bold tracking-tighter leading-tight px-2`}>
         <h3 className="mb-4 text-xl lg:text-3xl leading-tight mt-2">
               <Link
                 as={`/home/${slug}`}

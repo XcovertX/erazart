@@ -15,13 +15,13 @@ const MyWork = ({ allPosts, theme }: Props) => {
 
     return(
         <div className='h-fit w-full flex flex-col justify-between'>
-            <div  className={`pt-20 flex-col items-center justify-between flex ${theme == "dark"? 'text-zinc-100' : "text-indigo-950"}`}>
+            <div  className={`pt-20 flex-col items-center justify-between flex ${theme == "dark"? 'text-zinc-100' : "text-emerald-500"}`}>
                 <div className="flex flex-col lg:flex-row justify-center w-full">
-                    <div className="w-full lg:w-1/2 flex flex-col justify-between">
-                        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight">
+                    <div className="w-full lg:w-1/2 flex flex-col justify-start">
+                        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight pl-5">
                             My Work
                         </h1>
-                        <div className="flex flex-col justify-between p-5 mt-5 bg-indigo-600/[.8] rounded-md border-0 text-zinc-100">
+                        <div className="flex flex-col justify-between p-5 mt-5 bg-amber-400/[.8] rounded-md border-0 text-zinc-100 h-full">
                             Over the years, I have worked on a variety of projects with the following goals in mind:
                                 <div className="p-5">
                                     <li>
@@ -47,7 +47,7 @@ const MyWork = ({ allPosts, theme }: Props) => {
                             </h3>
                         </div>
                     </div>
-                    <div className="w-auto ml-10 pt-5">
+                    <div className={` w-auto h-full rounded-md mt-5 ml-10 p-5`}>
                         {HeroPost && (
                                 <HeroPost
                                     title={heroPost.title}
@@ -62,7 +62,7 @@ const MyWork = ({ allPosts, theme }: Props) => {
                     </div>
                 </div>
             </div>
-            <div  className={`flex-col items-center justify-start flex ${theme == "dark"? 'text-zinc-100' : 'text-indigo-950'} pt-5`}>
+            <div  className={`flex-col items-center justify-between flex ${theme == "dark"? 'text-zinc-100' : 'text-indigo-950'} mt-5`}>
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight my-10">
                     Projects
                 </h1>

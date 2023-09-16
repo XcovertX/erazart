@@ -17,7 +17,7 @@ const ThemeToggle = ({ headingColor, location }: Props) => {
 
     const { theme, handleThemeChange } = useContext(ThemeContext);
 
-    const colors = 'peer-checked:after:bg-emerald-700 after:bg-amber-500 bg-emerald-400 ring-amber-400 peer-checked:bg-emerald-600 peer-checked:ring-emerald-700';
+    const colors = 'peer-checked:after:bg-emerald-900 after:bg-amber-600 bg-amber-400 ring-amber-600 peer-checked:bg-emerald-500 peer-checked:ring-emerald-800';
 
     const sketch = (p5: P5CanvasInstance<MySketchProps>) => {
         var state = {
@@ -78,7 +78,7 @@ const ThemeToggle = ({ headingColor, location }: Props) => {
 
             if(state.location == "home") {
                 if(state.darkMode) {
-                    p5.fill(p5.color('#f4f4f5'));
+                    p5.fill(p5.color('#6ee7b7'));
                 } else {
                     p5.fill(p5.color('#fcd34d'));
                 }
@@ -90,7 +90,7 @@ const ThemeToggle = ({ headingColor, location }: Props) => {
             p5.ellipse(canvas.width/2, canvas.height/2, 8);
             if(state.darkMode){
                 p5.push();
-                p5.erase();
+                p5.erase(300);
                 p5.ellipse(canvas.width/2 + 2.5, canvas.height/2 - 2.5, 6.75);
                 p5.pop();    
             } 

@@ -177,10 +177,10 @@ const Home = ({ allPosts }: Props) => {
                     </div>
                     <div className="pt-28 lg:pt-20">
                     <SocialLinks theme={theme}
-                        color='green'
-                        highlightColor='green'
-                        dmColor='white'
-                        dmHighlightColor='green'/>
+                        color='emerald'
+                        highlightColor='orange'
+                        dmColor='emerald'
+                        dmHighlightColor='emeraldbright'/>
                     </div>
                 </div>
                 <div className=" pt-6">

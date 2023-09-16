@@ -31,6 +31,26 @@ const SocialLinks = ({ theme, color, dmColor, highlightColor, dmHighlightColor }
             else if(link == 'linkedin')  { return '/assets/linkedin_icon_green.png'; }
             else if(link == 'instagram') { return '/assets/instagram_icon_green.png' }
             else                         { return ''                                 }
+        } else if(color == 'emerald') {
+            if(link == 'github')         { return '/assets/github_icon_emerald.png';   } 
+            else if(link == 'linkedin')  { return '/assets/linkedin_icon_emerald.png'; }
+            else if(link == 'instagram') { return '/assets/instagram_icon_emerald.png' }
+            else                         { return ''                                 }
+        } else if(color == 'emeraldbright') {
+            if(link == 'github')         { return '/assets/github_icon_emerald_bright.png';   } 
+            else if(link == 'linkedin')  { return '/assets/linkedin_icon_emerald_bright.png'; }
+            else if(link == 'instagram') { return '/assets/instagram_icon_emerald_bright.png' }
+            else                         { return ''                                 }
+        } else if(color == 'orange') {
+            if(link == 'github')         { return '/assets/github_icon_orange.png';   } 
+            else if(link == 'linkedin')  { return '/assets/linkedin_icon_orange.png'; }
+            else if(link == 'instagram') { return '/assets/instagram_icon_orange.png' }
+            else                         { return ''                                 }
+        } else if(color == 'red') {
+            if(link == 'github')         { return '/assets/github_icon_red.png';   } 
+            else if(link == 'linkedin')  { return '/assets/linkedin_icon_red.png'; }
+            else if(link == 'instagram') { return '/assets/instagram_icon_red.png' }
+            else                         { return ''                                 }
         } else if(color == 'pink') {
             if(link == 'github')         { return '/assets/github_icon_pink.png';   } 
             else if(link == 'linkedin')  { return '/assets/linkedin_icon_pink.png'; }

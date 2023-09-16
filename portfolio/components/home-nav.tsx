@@ -8,24 +8,24 @@ const HomeNav = ({scrollTo, theme, section}: Props) => {
     var textColor, selectedTextColor, bgColor, selectedBGColor, headingColor;
 
     if(theme == "dark") {
-        headingColor      = 'bg-emerald-500';
+        headingColor      = 'bg-gradient-to-l from-emerald-600/[.15] via-emerald-600 to-emerald-600/[.15]';
         textColor         = 'text-zinc-100';
         selectedTextColor = 'text-zinc-100'
-        bgColor           = 'bg-amber-500';
-        selectedBGColor   = 'bg-amber-400';
+        bgColor           = 'bg-red-700';
+        selectedBGColor   = 'bg-red-700';
     } else {
-        headingColor      = 'bg-emerald-500';
+        headingColor      = 'bg-gradient-to-l from-emerald-600/[.4] via-emerald-600 to-emerald-600/[.4]';
         textColor         = 'text-emerald-900';
         selectedTextColor = 'text-zinc-100'
         bgColor           = 'bg-amber-500';
-        selectedBGColor   = 'bg-amber-400';
+        selectedBGColor   = 'bg-amber-500';
     }
 
     return (
         <div className={`${headingColor} fixed top-0 inset-x-0 z-50 py-4 md:p-2 flex-row justify-center flex font-bold text-sm md:text-2xl`}>
             <button onClick={() => scrollTo(0)} className="mx-2">
                 <div className="group relative px-1 pt-2 h-10 md:h-14 w-50 overflow-hidden">
-                    <span className={`absolute inset-x-0 bottom-0 w-full ${section == 0? 'h-full' : 'h-2'} ${section == 0? selectedBGColor : bgColor} rounded-md duration-[150ms] ease-in-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
+                    <span className={`absolute inset-x-0 bottom-0 w-full ${section == 0? 'h-full' : 'h-2'} ${section == 0? selectedBGColor : bgColor} rounded-md duration-[150ms] ease-in-out group-hover:h-full group-hover:w-full group-hover:inset-x-0 group-hover:`}></span>
                     <div className={`relative ${section == 0? selectedTextColor : textColor} group-hover:text-zinc-100 text-end`}>
                         Home
                     </div>

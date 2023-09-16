@@ -3,7 +3,8 @@ import DateFormatter from './date-formatter'
 import CoverImage from './cover-image'
 import Link from 'next/link'
 import type Author from '../interfaces/author'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { ThemeContext } from '../context/context'
 
 type Props = {
   title: string
@@ -25,9 +26,12 @@ const PostPreview = ({
   const [hover,   setHover] =  useState(false);
   const onMouseEnter  = () =>   setHover(true);
   const onMouseLeave  = () =>  setHover(false);
+
+  const { theme } = useContext(ThemeContext);
   return (
     <div onMouseEnter={onMouseEnter}
-         onMouseLeave={onMouseLeave}>
+         onMouseLeave={onMouseLeave}
+         className=''>
       <div className="mb-5">
         <CoverImage slug={slug} title={title} src={coverImage} mouseHover={hover}/>
       </div>
