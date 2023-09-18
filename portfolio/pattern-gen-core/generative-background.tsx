@@ -319,16 +319,15 @@ function drawCrossDots(p5: P5CanvasInstance<MySketchProps>, cartPosition: Positi
 
 function drawBackgroundGradient(p5: P5CanvasInstance<MySketchProps>, orbX: number, orbY: number, theme: string, totalHeight: number, section: number) {
     p5.push()
-    let gradient = p5.drawingContext.createRadialGradient(orbX, orbY, 15, orbX, orbY, window.innerWidth/2);
+    let gradient = p5.drawingContext.createRadialGradient(orbX, orbY, 15, orbX, orbY, window.innerWidth);
 
     if(theme == 'dark') {
         gradient.addColorStop(.3, p5.color(10, 360, 230));
         gradient.addColorStop(.8, p5.color(0, 360, 80));
         gradient.addColorStop(1, p5.color(140, 200, 60));
     } else {
-        gradient.addColorStop(0, p5.color(30,360,360));
-        gradient.addColorStop(.7, p5.color(5,360,200));
-        gradient.addColorStop(.8, p5.color(200,360,150));
+
+        gradient.addColorStop(.2, p5.color(140, 200, 40));
         gradient.addColorStop(1, p5.color(160, 330, 300));
     }
 

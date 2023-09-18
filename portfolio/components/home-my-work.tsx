@@ -15,13 +15,13 @@ const MyWork = ({ allPosts, theme }: Props) => {
 
     return(
         <div className='h-fit w-full flex flex-col justify-between'>
-            <div  className={`pt-20 flex-col items-center justify-between flex ${theme == "dark"? 'text-zinc-100' : "text-emerald-500"}`}>
+            <div  className={`pt-20 flex-col items-center justify-between flex`}>
                 <div className="flex flex-col lg:flex-row justify-center w-full">
                     <div className="w-full lg:w-1/2 flex flex-col justify-start">
-                        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight pl-5">
+                        <h1 className={`text-5xl md:text-9xl font-bold tracking-tighter leading-tight pb-5 pl-5 ${theme == "dark"? 'text-zinc-100' : "bg-gradient-to-br bg-clip-text text-transparent from-amber-500 from-20% to-orange-600"}`}>
                             My Work
                         </h1>
-                        <div className="flex flex-col justify-between p-5 mt-5 bg-amber-400/[.8] rounded-md border-0 text-zinc-100 h-full">
+                        <div className={`flex flex-col justify-between p-5 mt-5 ${theme == "dark"? 'bg-gradient-to-b from-red-800 text-emerald-500' : 'bg-gradient-to-b from-emerald-500/[.9] from-20% text-amber-600'}  rounded-md border-0  h-full`}>
                             Over the years, I have worked on a variety of projects with the following goals in mind:
                                 <div className="p-5">
                                     <li>

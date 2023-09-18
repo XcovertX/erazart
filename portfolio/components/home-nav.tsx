@@ -15,10 +15,10 @@ const HomeNav = ({scrollTo, theme, section}: Props) => {
         selectedBGColor   = 'bg-red-700';
     } else {
         headingColor      = 'bg-emerald-500/[.8]';
-        textColor         = 'text-orange-950 group-hover:text-emerald-100';
+        textColor         = 'text-emerald-950 group-hover:text-emerald-100';
         selectedTextColor = 'text-emerald-100'
-        bgColor           = 'bg-orange-500 group-hover:bg-orange-500 ';
-        selectedBGColor   = 'bg-orange-500 text-emerald-100';
+        bgColor           = 'bg-amber-500 group-hover:bg-orange-500 ';
+        selectedBGColor   = 'bg-amber-500 text-emerald-100';
     }
 
     return (

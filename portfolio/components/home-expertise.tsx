@@ -18,8 +18,8 @@ const handleSelect = (n: number) => {
 
 // tailwind css
 const buttonSelected     = `w-full border-0 rounded-md p-5 m-1 flex flex-row grow justify-between ${theme == "dark"? 'from-emerald-500/[.7] bg-gradient-to-b' : 'bg-gradient-to-b text-emerald-100 from-emerald-500/[.9] to-emerald-500/[.5] from-20%'}`;
-const buttonNotSelected  = `w-min border-0 rounded-md p-3 m-1 flex flex-col justify-center ${theme == "dark"? 'bg-gradient-to-b from-red-800 hover:from-red-600 text-emerald-500' : 'bg-gradient-to-b from-orange-600/[.95] to-orange-500/[.9] from-20% hover:from-amber-600/[.95] hover:to-amber-600/[.9] text-emerald-800'} `;
-const headingSelected    = `text-4xl font-bold ${theme == "dark"? 'text-emerald-950' : 'text-orange-950'}`;
+const buttonNotSelected  = `w-min border-0 rounded-md p-3 m-1 flex flex-col justify-center ${theme == "dark"? 'bg-gradient-to-b from-red-800 hover:from-red-600 text-emerald-500' : 'bg-gradient-to-b from-orange-600/[.95] to-orange-500/[.9] from-20% hover:from-amber-600/[.95] hover:to-amber-600/[.9] text-emerald-950'} `;
+const headingSelected    = `text-4xl font-bold ${theme == "dark"? 'text-emerald-950' : 'text-emerald-950'}`;
 const headingNotSelected = `text-2xl border-0 font-bold break-normal rotate-180 mb-5 px-1 md:px-5`;
 const descriptionHolder  = "flex flex-col grow justify-between p-5" ;
 const description        = `text-xl ${theme == 'dark'? 'text-emerald-100' : 'text-orange-700'}`;
@@ -48,7 +48,7 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
 
     return(
         <div className="w-full flex-col h-screen items-center justify-start flex text-zinc-100 transition-all delay-1000">
-                <h1 className={`${theme == "dark"? 'text-emerald-100' : 'text-orange-500'} pt-20 text-center text-5xl md:text-7xl font-bold tracking-tighter leading-tight`}>
+                <h1 className={`${theme == "dark"? 'text-emerald-100' : 'bg-gradient-to-br bg-clip-text text-transparent from-amber-500 from-20% to-orange-600'} pt-20 text-center text-5xl md:text-9xl font-bold tracking-tighter leading-tight`}>
                     My Expertise
                 </h1>
                 <div className="w-full flex grow flex-row my-6">
