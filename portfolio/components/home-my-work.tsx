@@ -21,7 +21,7 @@ const MyWork = ({ allPosts, theme }: Props) => {
                         <h1 className={`text-5xl md:text-9xl font-bold tracking-tighter leading-tight pb-5 pl-5 ${theme == "dark"? 'text-zinc-100' : "bg-gradient-to-br bg-clip-text text-transparent from-amber-500 from-20% to-orange-600"}`}>
                             My Work
                         </h1>
-                        <div className={`flex flex-col justify-between p-5 mt-5 ${theme == "dark"? 'bg-gradient-to-b from-red-800 text-emerald-500' : 'bg-gradient-to-b from-emerald-500/[.9] from-20% text-amber-600'}  rounded-md border-0  h-full`}>
+                        <div className={`flex flex-col justify-between p-5 mt-5 ${theme == "dark"? 'bg-gradient-to-b from-red-800 text-emerald-100' : 'bg-gradient-to-b from-emerald-500/[.9] from-20% text-amber-600'}  rounded-md border-0  h-full`}>
                             Over the years, I have worked on a variety of projects with the following goals in mind:
                                 <div className="p-5">
                                     <li>
