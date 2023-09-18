@@ -62,7 +62,7 @@ const MyWork = ({ allPosts, theme }: Props) => {
                     </div>
                 </div>
             </div>
-            <div  className={`flex-col items-center justify-between flex ${theme == "dark"? 'text-zinc-100' : 'text-indigo-950'} mt-5`}>
+            <div  className={`flex-col items-center justify-between flex ${theme == "dark"? 'text-zinc-100' : 'text-emerald-950'} mt-5`}>
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight my-10">
                     Projects
                 </h1>

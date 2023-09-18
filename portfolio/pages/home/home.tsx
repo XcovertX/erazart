@@ -1,21 +1,12 @@
-import Link from 'next/link'
 import Background from '../../pattern-gen-core/generative-background'
 import SocialLinks from '../../components/social'
 import HomeNav from '../../components/home-nav'
-import HomeTitle from '../../components/home-title'
 import ScrollButton from '../../components/scroll-button'
-import { useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import Image from 'next/image'
+import { useContext, useEffect, useRef, useState } from 'react'
 import Expertise from '../../components/home-expertise'
 import MyWork from '../../components/home-my-work'
-import { Toggle } from '../../components/toggle'
-import Layout from '../../components/layout'
-import Container from '../../components/container'
-import Intro from '../../components/intro'
-import MoreStories from '../../components/more-stories'
 import { getAllPosts } from '../../lib/api'
 import Post from '../../interfaces/post'
-import HeroPost from '../../components/hero-post'
 import ThemeToggle from '../../components/dark-mode'
 import Experience from '../../components/home-experience'
 import Contact from '../../components/home-contact'
@@ -182,9 +173,6 @@ const Home = ({ allPosts }: Props) => {
                         dmColor='emerald'
                         dmHighlightColor='teal'/>
                     </div>
-                </div>
-                <div className=" pt-6">
-                    {/* <HomeTitle theme={theme}/> */}
                 </div>
             </div>
             <div className="h-screen items-center justify-center text-zinc-100"

@@ -16,7 +16,6 @@ const Layout = ({ preview, children }: Props) => {
       <div className={`min-h-screen ${theme == 'dark'? 'bg-black' : ''}`}>
         <main>{children}</main>
       </div>
-      {/* <Footer /> */}
     </>
   )
 }

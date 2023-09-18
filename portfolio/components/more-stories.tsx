@@ -1,7 +1,5 @@
 import PostPreview from './post-preview'
 import type Post from '../interfaces/post'
-import { useContext } from 'react'
-import { ThemeContext } from '../context/context'
 
 type Props = {
   posts: Post[]

@@ -9,25 +9,25 @@ const Intro = () => {
   return (
     <section className='flex flex-col'>
       <div className='flex flex-row justify-between mt-5'>
-        <h2 className={`${theme == 'dark'? 'text-zinc-100 hover:text-green-600': 'text-green-600 hover:text-rose-600'} text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight`}>
+        <h2 className={`${theme == 'dark'? 'text-zinc-100 hover:text-emerald-500': 'text-emerald-950 hover:text-red-600'} text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight`}>
           <Link href="/" className="hover:underline">
             James Covert
           </Link>
           .
         </h2>
         <SocialLinks theme={theme}
-                     color='green'
-                     highlightColor='pink'
-                     dmColor='white'
-                     dmHighlightColor='green'/>
+                     color='emerald'
+                     highlightColor='orange'
+                     dmColor='emerald'
+                     dmHighlightColor='red'/>
       </div>
 
       <div className="flex-col md:flex-row flex items-center md:justify-between my-10">
-        <h1 className={`${theme == 'dark'? 'text-zinc-100': 'text-green-900'} text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight `}>
+        <h1 className={`${theme == 'dark'? 'text-zinc-100' : 'text-emerald-900'} text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight `}>
           Coding Projects
         </h1>
       </div>
-      <div className={`${theme == 'dark'? 'bg-green-600 text-zinc-100' : 'bg-green-600/[.3] text-green-900'} text-xl  p-5 shadow-sm`}>
+      <div className={`${theme == 'dark'? 'bg-emerald-800 text-zinc-100' : 'bg-emerald-600/[.3] text-emerald-950'} text-xl rounded-md p-5 mb-5 shadow-sm`}>
         Over the years, I have worked on a variety of projects with the following goals in mind:
         <div className="p-5">
           <li>

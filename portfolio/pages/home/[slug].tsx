@@ -11,6 +11,7 @@ import Head from 'next/head'
 import { CMS_NAME } from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
 import type PostType from '../../interfaces/post'
+import HomeLayout from '../../components/home-layout'
 
 type Props = {
   post: PostType
@@ -25,7 +26,7 @@ export default function Post({ post, morePosts, preview }: Props) {
     return <ErrorPage statusCode={404} />
   }
   return (
-    <Layout preview={preview}>
+    <HomeLayout preview={preview}>
       <Container>
         <Header />
         {router.isFallback ? (
@@ -49,7 +50,7 @@ export default function Post({ post, morePosts, preview }: Props) {
           </>
         )}
       </Container>
-    </Layout>
+    </HomeLayout>
   )
 }
 
