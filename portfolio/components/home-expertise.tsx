@@ -17,33 +17,38 @@ const handleSelect = (n: number) => {
 }
 
 // tailwind css
-const buttonSelected     = `w-full border-0 rounded-md p-5 m-1 flex flex-row grow justify-between ${theme == "dark"? 'bg-amber-400/[.8]' : 'text-zinc-100 bg-amber-400/[.8]'}`;
-const buttonNotSelected  = `w-min border-0 rounded-md p-3 m-1 flex flex-col justify-center ${theme == "dark"? 'bg-emerald-500/[.8]' : 'text-zinc-100 bg-emerald-500/[.8]'}`;
-const headingSelected    = `text-4xl font-bold ${theme == "dark"? 'text-emerald-800' : 'text-emerald-600'}`;
-const headingNotSelected = `text-2xl border-0 font-bold break-normal rotate-180 mb-5 'text-zinc-100'`;
+const buttonSelected     = `w-full border-0 rounded-md p-5 m-1 flex flex-row grow justify-between ${theme == "dark"? 'from-emerald-500/[.7] bg-gradient-to-b' : 'bg-gradient-to-b text-emerald-100 from-emerald-500/[.9] to-emerald-500/[.5] from-20%'}`;
+const buttonNotSelected  = `w-min border-0 rounded-md p-3 m-1 flex flex-col justify-center ${theme == "dark"? 'bg-gradient-to-b from-red-800 hover:from-red-600 text-emerald-500' : 'bg-gradient-to-b from-orange-600/[.95] to-orange-500/[.9] from-20% hover:from-amber-600/[.95] hover:to-amber-600/[.9] text-emerald-800'} `;
+const headingSelected    = `text-4xl font-bold ${theme == "dark"? 'text-emerald-950' : 'text-orange-950'}`;
+const headingNotSelected = `text-2xl border-0 font-bold break-normal rotate-180 mb-5 px-1 md:px-5`;
 const descriptionHolder  = "flex flex-col grow justify-between p-5" ;
-const description        = `text-xl `;
+const description        = `text-xl ${theme == 'dark'? 'text-emerald-100' : 'text-orange-700'}`;
 const chartHolder        = "h-full relative grow";
 
 // icon assets
 const reactWhite        = '/assets/react_icon_white.png';
+const reactTeal         = '/assets/react_icon_teal.png';
 const reactBlack        = '/assets/react_icon_black.png';
 const reactGreen        = '/assets/react_icon_green.png';
 const nodeWhite         = '/assets/node_icon_white.png';
+const nodeTeal          = '/assets/node_icon_teal.png';
 const nodeBlack         = '/assets/node_icon_black.png';
 const nodeGreen         = '/assets/node_icon_green.png';
 const sofDevWhite       = '/assets/softwaredev_icon_white.png';
+const sofDevTeal        = '/assets/softwaredev_icon_teal.png';
 const sofDevBlack       = '/assets/softwaredev_icon_black.png';
 const sofDevGreen       = '/assets/softwaredev_icon_green.png';
 const emDevWhite        = '/assets/embedded_icon_white.png';
+const emDevTeal         = '/assets/embedded_icon_teal.png';
 const emDevBlack        = '/assets/embedded_icon_black.png';
 const emDevGreen        = '/assets/embedded_icon_green.png';
 const clojureWhite      = '/assets/clojure_icon_white.png';
 const clojureBlack      = '/assets/clojure_icon_black.png';
 
+
     return(
         <div className="w-full flex-col h-screen items-center justify-start flex text-zinc-100 transition-all delay-1000">
-                <h1 className={`${theme == "dark"? 'text-zinc-100' : 'text-emerald-500'} pt-20 text-center text-5xl md:text-7xl font-bold tracking-tighter leading-tight`}>
+                <h1 className={`${theme == "dark"? 'text-emerald-100' : 'text-orange-500'} pt-20 text-center text-5xl md:text-7xl font-bold tracking-tighter leading-tight`}>
                     My Expertise
                 </h1>
                 <div className="w-full flex grow flex-row my-6">
@@ -51,11 +56,11 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                             onClick={() => handleSelect(0)}>
                         <div className="flex grow flex-col items-center h-full justify-between w-full">
                             <Image
-                                src={theme != "dark"? sofDevWhite : sofDevWhite}
+                                src={theme == 'dark'? sofDevTeal : sofDevWhite}
                                 className={"my-5"}
                                 alt={'softwaredev'} 
-                                width ={selected == 0? 100 : 50} 
-                                height={selected == 0? 100 : 50}/>
+                                width ={selected == 0? 150 : 50} 
+                                height={selected == 0? 150 : 50}/>
                             <h2 className={selected == 0? headingSelected : headingNotSelected}
                                 style={selected != 0? {writingMode: 'vertical-rl'}: {}}>
                                 Software Development
@@ -77,11 +82,11 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                         
                         <div className="flex grow flex-col items-center h-full justify-between w-full">
                             <Image
-                                src={theme != "dark"? reactWhite : reactWhite}
+                                src={theme == 'dark'? reactTeal : reactWhite}
                                 className={"my-5"}
                                 alt={'softwaredev'} 
-                                width ={selected == 1? 100 : 50} 
-                                height={selected == 1? 100 : 50}/>
+                                width ={selected == 1? 150 : 50} 
+                                height={selected == 1? 150 : 50}/>
                             <h2 className={selected == 1? headingSelected : headingNotSelected}
                                 style={selected != 1? {writingMode: 'vertical-rl'}: {}}>
                                 Front End Development
@@ -101,14 +106,14 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                             onClick={() => handleSelect(2)}>
                         <div className="flex grow flex-col items-center h-full justify-between w-full">
                             <Image
-                                src={theme != "dark"? nodeWhite : nodeWhite}
+                                src={theme == 'dark'? nodeTeal : nodeWhite}
                                 className={"my-5"}
                                 alt={'nodejs'} 
-                                width ={selected == 2? 100 : 50} 
-                                height={selected == 2? 100 : 50}/>
+                                width ={selected == 2? 150 : 50} 
+                                height={selected == 2? 150 : 50}/>
                             <h2 className={selected == 2? headingSelected : headingNotSelected}
                                 style={selected != 2? {writingMode: 'vertical-rl'}: {}}>
-                                Backend Development
+                                Back End Development
                             </h2>
                             <div className={selected == 2? descriptionHolder : "hidden"}>
                                 <h3 className={description}>
@@ -124,11 +129,11 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
                             onClick={() => handleSelect(3)}>
                         <div className="flex grow flex-col items-center h-full justify-between w-full  ">
                             <Image
-                                src={theme != "dark"? emDevWhite : emDevWhite}
+                                src={theme == 'dark'? emDevTeal : emDevWhite}
                                 className={"my-5"} 
                                 alt={'embeddeddev'} 
-                                width ={selected == 3? 100 : 50} 
-                                height={selected == 3? 100 : 50}/>
+                                width ={selected == 3? 150 : 50} 
+                                height={selected == 3? 150 : 50}/>
                             <h2 className={selected == 3? headingSelected : headingNotSelected}
                                 style={selected != 3? {writingMode: 'vertical-rl'}: {}}>
                                 Embedded Development

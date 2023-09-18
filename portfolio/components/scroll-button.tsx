@@ -72,15 +72,15 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
 
             if(state.toTop) {
                 if(state.theme == "dark") {
-                    fillColor         = p5.color('#b91c1c');
+                    fillColor         = p5.color('#c026d3');
                     highlightColor    = p5.color('#10b981');
                 } else {
                     highlightColor    = p5.color('#10b981');
-                    fillColor         = p5.color('#DC2626');
+                    fillColor         = p5.color('#f59e0b');
                 }
             } else {
                 if(state.theme == "dark") {
-                    fillColor         = p5.color('#f59e0b');
+                    fillColor         = p5.color('#c026d3');
                     highlightColor    = p5.color('#10b981');
                 } else {
                     highlightColor    = p5.color('#10b981');
@@ -108,16 +108,7 @@ function buttonSketch(p5: P5CanvasInstance<MySketchProps>) {
                 } else {
                     p5.noStroke()
                     p5.fill(fillColor);
-                }
-
-                let offsetX, offsetY;
-
-                if(state.theme == "dark") {
-                    offsetX = p5.map(p5.mouseX, 0, p5.width, .5, -.5);
-                    offsetY = p5.map(p5.mouseY, 0, p5.height, .5, -.5);
-                    p5.drawingContext.shadowOffsetX = offsetX;
-                    p5.drawingContext.shadowOffsetY = offsetY;
-                }   
+                }      
             }
 
             if(state.toTop) {

@@ -151,7 +151,7 @@ const Home = ({ allPosts }: Props) => {
   return (
     <>  
         <Background scrollYPosition={scrollYPosition} height={totalHeight} section={currentSection}/>
-        <div className="fixed right-0 bottom-0 z-36">
+        <div className="fixed right-0 bottom-0 z-50">
             {
                 scrollYPosition > 500?
                     <ScrollButton top={currentSection} direction={true} scrollTo={scrollPrevious} theme={theme} color={headingColor}/>
@@ -159,7 +159,7 @@ const Home = ({ allPosts }: Props) => {
                     <></>
             }
         </div>
-        <div className="fixed left-0 bottom-10 z-36">            
+        <div className="fixed left-0 bottom-10 z-50">            
             {
                 scrollYPosition < getNavSection(4)?
                     <ScrollButton top={currentSection} direction={false} scrollTo={scrollNext} theme={theme} color={headingColor}/>
@@ -177,10 +177,10 @@ const Home = ({ allPosts }: Props) => {
                     </div>
                     <div className="pt-28 lg:pt-20">
                     <SocialLinks theme={theme}
-                        color='emerald'
-                        highlightColor='orange'
+                        color='orange'
+                        highlightColor='teal'
                         dmColor='emerald'
-                        dmHighlightColor='emeraldbright'/>
+                        dmHighlightColor='teal'/>
                     </div>
                 </div>
                 <div className=" pt-6">

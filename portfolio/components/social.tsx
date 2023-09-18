@@ -36,10 +36,10 @@ const SocialLinks = ({ theme, color, dmColor, highlightColor, dmHighlightColor }
             else if(link == 'linkedin')  { return '/assets/linkedin_icon_emerald.png'; }
             else if(link == 'instagram') { return '/assets/instagram_icon_emerald.png' }
             else                         { return ''                                 }
-        } else if(color == 'emeraldbright') {
-            if(link == 'github')         { return '/assets/github_icon_emerald_bright.png';   } 
-            else if(link == 'linkedin')  { return '/assets/linkedin_icon_emerald_bright.png'; }
-            else if(link == 'instagram') { return '/assets/instagram_icon_emerald_bright.png' }
+        } else if(color == 'teal') {
+            if(link == 'github')         { return '/assets/github_icon_teal.png';   } 
+            else if(link == 'linkedin')  { return '/assets/linkedin_icon_teal.png'; }
+            else if(link == 'instagram') { return '/assets/instagram_icon_teal.png' }
             else                         { return ''                                 }
         } else if(color == 'orange') {
             if(link == 'github')         { return '/assets/github_icon_orange.png';   } 

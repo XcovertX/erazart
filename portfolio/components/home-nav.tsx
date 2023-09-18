@@ -14,19 +14,19 @@ const HomeNav = ({scrollTo, theme, section}: Props) => {
         bgColor           = 'bg-red-700';
         selectedBGColor   = 'bg-red-700';
     } else {
-        headingColor      = 'bg-gradient-to-l from-emerald-600/[.4] via-emerald-600 to-emerald-600/[.4]';
-        textColor         = 'text-emerald-900';
-        selectedTextColor = 'text-zinc-100'
-        bgColor           = 'bg-amber-500';
-        selectedBGColor   = 'bg-amber-500';
+        headingColor      = 'bg-emerald-500/[.8]';
+        textColor         = 'text-orange-950 group-hover:text-emerald-100';
+        selectedTextColor = 'text-emerald-100'
+        bgColor           = 'bg-orange-500 group-hover:bg-orange-500 ';
+        selectedBGColor   = 'bg-orange-500 text-emerald-100';
     }
 
     return (
         <div className={`${headingColor} fixed top-0 inset-x-0 z-50 py-4 md:p-2 flex-row justify-center flex font-bold text-sm md:text-2xl`}>
             <button onClick={() => scrollTo(0)} className="mx-2">
                 <div className="group relative px-1 pt-2 h-10 md:h-14 w-50 overflow-hidden">
-                    <span className={`absolute inset-x-0 bottom-0 w-full ${section == 0? 'h-full' : 'h-2'} ${section == 0? selectedBGColor : bgColor} rounded-md duration-[150ms] ease-in-out group-hover:h-full group-hover:w-full group-hover:inset-x-0 group-hover:`}></span>
-                    <div className={`relative ${section == 0? selectedTextColor : textColor} group-hover:text-zinc-100 text-end`}>
+                    <span className={`absolute inset-x-0 bottom-0 w-full ${section == 0? 'h-full' : 'h-2'} ${section == 0? selectedBGColor : bgColor} rounded-md duration-[150ms] ease-in-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
+                    <div className={`relative ${section == 0? selectedTextColor : textColor} text-end`}>
                         Home
                     </div>
                 </div>
@@ -34,7 +34,7 @@ const HomeNav = ({scrollTo, theme, section}: Props) => {
             <button onClick={() => scrollTo(1)} className="mx-2 ">
                 <div className="group relative px-1 pt-2 h-10 md:h-14 w-50 whitespace-nowrap overflow-hidden">
                     <span className={`absolute inset-x-0 bottom-0 w-full ${section == 1? 'h-full' : 'h-2'} ${section == 1? selectedBGColor : bgColor} rounded-md duration-[150ms] ease-in-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
-                    <div className={`relative ${section == 1? selectedTextColor : textColor} group-hover:text-zinc-100 text-end`}>
+                    <div className={`relative ${section == 1? selectedTextColor : textColor} text-end`}>
                         Expertise
                     </div>
                 </div>
@@ -42,7 +42,7 @@ const HomeNav = ({scrollTo, theme, section}: Props) => {
             <button onClick={() => scrollTo(2)} className="mx-2 ">
                 <div className="group relative px-1 pt-2 h-10 md:h-14 w-50 whitespace-nowrap overflow-hidden">
                     <span className={`absolute inset-x-0 bottom-0 w-full ${section == 2? 'h-full' : 'h-2'} ${section == 2? selectedBGColor : bgColor} rounded-md duration-[150ms] ease-in-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
-                    <div className={`relative ${section == 2? selectedTextColor : textColor} group-hover:text-zinc-100 text-end`}>
+                    <div className={`relative ${section == 2? selectedTextColor : textColor} text-end`}>
                         Work
                     </div>
                 </div>
@@ -50,7 +50,7 @@ const HomeNav = ({scrollTo, theme, section}: Props) => {
             <button onClick={() => scrollTo(3)} className="mx-2 ">
                 <div className="group relative px-1 pt-2 h-10 md:h-14 w-50 whitespace-nowrap overflow-hidden">
                     <span className={`absolute inset-x-0 bottom-0 w-full ${(section == 3)? 'h-full' : 'h-2'} ${section == 3? selectedBGColor : bgColor} rounded-md duration-[150ms] ease-in-out group-hover:h-full group-hover:w-full group-hover:inset-x-0`}></span>
-                    <div className={`relative ${section == 3? selectedTextColor : textColor} group-hover:text-zinc-100 text-end`}>
+                    <div className={`relative ${section == 3? selectedTextColor : textColor} text-end`}>
                         Experience
                     </div>
                 </div>
