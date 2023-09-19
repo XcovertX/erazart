@@ -72,49 +72,51 @@ const Home = ({ allPosts }: Props) => {
         scrollTo(currentSection + 1);
     }
 
-    useEffect(() => {
+    
 
-        function getSect(section: number, h: number, ex: number, w: number, exp: number, c: number) {
-            if (section <  h) { return 0;} 
-            if (section >= h && section <  ex + h) { return 1; }
-            if (section >= ex + h  && section <  ex + h + w) { return 2; }
-            if (section >= ex + h + w && section <  ex + h + w + exp) { return 3; }
-            if (section >= ex + h + w + exp) { return 4; }
+    function getSect(section: number, h: number, ex: number, w: number, exp: number, c: number) {
+        if (section <  h) { return 0;} 
+        if (section >= h && section <  ex + h) { return 1; }
+        if (section >= ex + h  && section <  ex + h + w) { return 2; }
+        if (section >= ex + h + w && section <  ex + h + w + exp) { return 3; }
+        if (section >= ex + h + w + exp) { return 4; }
+    }
+
+    const updateYScrollPos = () => {
+        setScrollYPosition(window.scrollY);
+        let s: number, h: number, ex: number, w: number, exp: number, c: number;
+
+        if(homeRef.current) {
+            h = homeRef.current.offsetHeight;
+        } else {
+            h = 0;
         }
-
-        const updateYScrollPos = () => {
-            setScrollYPosition(window.scrollY);
-            let s: number, h: number, ex: number, w: number, exp: number, c: number;
-
-            if(homeRef.current) {
-                h = homeRef.current.offsetHeight;
-            } else {
-                h = 0;
-            }
-            if(expertiseRef.current) {
-                ex = expertiseRef.current.offsetHeight;
-            } else {
-                ex = 0;
-            }
-            if(myWorkRef.current) {
-                w = myWorkRef.current.offsetHeight;
-            } else {
-                w = 0;
-            }
-            if(experienceRef.current) {
-                exp = experienceRef.current.offsetHeight;
-            } else {
-                exp = 0;
-            }
-            if(contactRef.current) {
-                c = contactRef.current.offsetHeight;
-            } else {
-                c = 0;
-            }
-            s = getSect(window.scrollY, h, ex, w, exp, c);
-            setCurrentSection(s);
-            setHeadingColor(getHeadingColor(s));
+        if(expertiseRef.current) {
+            ex = expertiseRef.current.offsetHeight;
+        } else {
+            ex = 0;
         }
+        if(myWorkRef.current) {
+            w = myWorkRef.current.offsetHeight;
+        } else {
+            w = 0;
+        }
+        if(experienceRef.current) {
+            exp = experienceRef.current.offsetHeight;
+        } else {
+            exp = 0;
+        }
+        if(contactRef.current) {
+            c = contactRef.current.offsetHeight;
+        } else {
+            c = 0;
+        }
+        s = getSect(window.scrollY, h, ex, w, exp, c);
+        setCurrentSection(s);
+        setHeadingColor(getHeadingColor(s));
+    }
+
+        useEffect(() => {
 
         const updateWindowSize = () => {
             setWidth(                            window.innerWidth);
@@ -181,7 +183,7 @@ const Home = ({ allPosts }: Props) => {
             </div> 
             <div className="h-fit items-center justify-center text-zinc-100"
                  ref={myWorkRef}>
-                <MyWork allPosts={allPosts} theme={theme}/>
+                <MyWork allPosts={allPosts} theme={theme} updateYPosition={updateYScrollPos}/>
             </div>            
             <div className="h-screen items-start justify-center flex text-zinc-100"
                  ref={experienceRef}>

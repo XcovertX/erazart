@@ -11,7 +11,6 @@ import Head from 'next/head'
 import { CMS_NAME } from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
 import type PostType from '../../interfaces/post'
-import HomeLayout from '../../components/home-layout'
 import ThemeToggle from '../../components/dark-mode'
 
 type Props = {
