@@ -11,7 +11,7 @@ const Intro = () => {
       <div className='flex flex-row justify-between mt-5'>
         <h2 className={`${theme == 'dark'? 'text-zinc-100 hover:text-emerald-500': 'text-emerald-950 hover:text-red-600'} text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight`}>
           <Link href="/" className="hover:underline">
-            James Covert Portfolio
+            J. Covert -- Portfolio
           </Link>
           .
         </h2>

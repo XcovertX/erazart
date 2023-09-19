@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { type Sketch, SketchProps, P5CanvasInstance, P5WrapperClassName } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
 import type CartType from "../interfaces/cart";
@@ -8,6 +8,7 @@ import type Color from "../interfaces/color";
 import { randomInt } from "crypto";
 import { CustomSlider } from "../components/slider";
 import { Toggle } from "../components/toggle";
+import { ThemeContext } from "../context/context";
 
 
 
@@ -769,8 +770,8 @@ function gridSketch(p5: P5CanvasInstance<MySketchProps>) {
 export default function GridPattern() {
     const [rows,                 setRows] = useState(3);
     const [cols,                 setCols] = useState(1);
-    const [canvasWidth,   setCanvasWidth] = useState(337.5);
-    const [canvasHeight, setCanvasHeight] = useState(600);
+    const [canvasWidth,   setCanvasWidth] = useState(500);
+    const [canvasHeight, setCanvasHeight] = useState(309);
     const [minPartCount, setMinPartCount] = useState(1);
     const [maxPartCount, setMaxPartCount] = useState(3);
     const [dGrid,               setDGrid] = useState(true);
@@ -832,11 +833,13 @@ export default function GridPattern() {
             run, 
             strokeWeight]);
 
+    const { theme } = useContext(ThemeContext);
     return (
-        <div className="flex flex-row">
-
-        <div className="flex flex-col">
-        <NextReactP5Wrapper 
+      <div className={`flex flex-col justify-start items-center p-5 ${theme == 'dark'? 'bg-emerald-600 text-zinc-100' : 'bg-emerald-500/[.3] text-emerald-950'}`}>
+        <h1 className='flex text-center text-2xl font-bold'>Pattern Generator</h1>
+        <div className={` rounded-md font-bold justify-center flex flex-row h-full`}>
+        <div className="flex flex-col justify-center pr-5">
+          <NextReactP5Wrapper 
             sketch={gridSketch}
             grid={dGrid} 
             canvasWidth={canvasWidth}
@@ -850,8 +853,8 @@ export default function GridPattern() {
         </div>
         <div className='text-md flex'>
           <div className="flex flex-col px-2 justify-between">
-            <div className="flex flex-row justify-between items-center">
-              <h6>StrokeWeight</h6>
+            <div className="flex flex-row justify-center items-center">
+              <h6 className=''>Stroke Weight</h6>
             </div>
             <CustomSlider 
                 title={''} 
@@ -862,7 +865,7 @@ export default function GridPattern() {
                 value={strokeWeight} 
                 onChange={handleChangeStrokeWeight}
                 ref={null}/>
-            <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row  justify-center items-center">
               <h6>Minimum Part Count</h6>
             </div>
             <CustomSlider 
@@ -874,7 +877,7 @@ export default function GridPattern() {
                 value={minPartCount} 
                 onChange={handleChangeMinPartCount}
                 ref={minPartRef}/>
-                        <div className="flex flex-row justify-between items-center">
+                        <div className="flex flex-row  justify-center items-center">
               <h6>Maximum Part Count</h6>
             </div>
             <CustomSlider title={''} 
@@ -885,9 +888,9 @@ export default function GridPattern() {
                 value={maxPartCount} 
                 onChange={handleChangeMaxPartCount}
                 ref={maxPartRef}/>
-            <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row  justify-center items-center">
               <h6>Row Count</h6>
-            </div>
+            </div>            
             <CustomSlider 
                 title={''} 
                 id={''} 
@@ -897,7 +900,7 @@ export default function GridPattern() {
                 value={rows} 
                 onChange={handleChangeRows}
                 ref={null}/>
-            <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row  justify-center items-center">
               <h6>Column Count</h6>
             </div>
             <CustomSlider 
@@ -909,11 +912,16 @@ export default function GridPattern() {
                 value={cols} 
                 onChange={handleChangeCols}
                 ref={null}/>
-            <div className="flex flex-row justify-around">
-                <button className="flex-grow py-3 px-5 m-3 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRun}>Run</button>
+              <div className="flex flex-row justify-around">
+                <button className={`${theme == 'dark'? 'bg-emerald-800' : 'bg-emerald-600'} rounded-md hover:bg-amber-400 flex-grow py-3 px-5 m-3 font-bold text-zinc-100`} 
+                onClick={handleChangeRun}>
+                    Generate Pattern
+              </button>
             </div>
           </div>
         </div>
       </div>
+      </div>
+
     )
 }

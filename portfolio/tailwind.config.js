@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./components/**/*.tsx', './pages/**/*.tsx', './differential-growth-core/**/*.tsx'],
+  content: ['./components/**/*.tsx', './pages/**/*.tsx', './differential-growth-core/**/*.tsx', './pattern-gen-core/**/*.tsx'],
   theme: {
     extend: {
       colors: {
