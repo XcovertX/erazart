@@ -610,27 +610,7 @@ function moveCart(cart: CartType, edgeExtend: number, continuation: number) {
 
 function buildNewPart(cartPosition: PositionType, color: Color, partW: number, partH: number) {
     var shape: string = getRandomPartShape();
-    var position: PositionType = cartPosition; //getRandomContainerPosition(partW, partH, cartPosition);
-
-    // if (shape == "BOX-LG"     ||
-    //     shape == "BOX-SM"     ||
-    //     // shape == "CIRCLE-SM"  ||
-    //     // shape == "CIRCLE-LG"  ||
-    //     // shape == "CIRCLE-DOT" ||
-    //     shape == "DIAG-CLEFT" ||
-    //     shape == "BOX-SM-X"   ||
-    //     shape == "BOX-LG-X"   ||
-    //     shape == "X"          ||
-    //     shape == "DIAG-LEFT"  ||
-    //     shape == "DIAG-RIGHT" ||
-    //     shape == "BOX-CROSS"  ||
-    //     shape == "SUPER-EXTRA-LG-CIRCLE"  ||
-    //     shape == "EXTRA-LG-CIRCLE"  ||
-    //     shape == "DIAMOND") {
-    //         position = getRandomContainerPosition(partW, partH, cartPosition)
-    //     } else {
-    //         position = getRandomAccentPosition(partW, partH, cartPosition);
-    //     }
+    var position: PositionType = cartPosition; 
     var p: PartType = {
         shape: shape,
         color: color,
