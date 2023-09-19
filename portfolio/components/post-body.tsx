@@ -12,7 +12,7 @@ type Props = {
 const PostBody = ({ content, live, repo }: Props) => {
   const { theme } = useContext(ThemeContext);
   return (
-    <div className={`${theme == 'dark'? 'text-zinc-100' : 'text-emerald-950'} max-w-2xl mx-auto`}>
+    <div className={`${theme == 'dark'? 'text-zinc-100 bg-emerald-950' : 'text-emerald-950 bg-emerald-200'} max-w-2xl py-5 px-32 mx-auto`}>
       <div
         className={markdownStyles['markdown']}
         dangerouslySetInnerHTML={{ __html: content }}
