@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { ThemeContext } from "../context/context";
 
 type Props = {
-    headingColor: string;
     location: string;
 }
 
@@ -13,7 +12,7 @@ type MySketchProps = SketchProps & {
     darkMode: boolean;
 };
 
-const ThemeToggle = ({ headingColor, location }: Props) => {
+const ThemeToggle = ({ location }: Props) => {
 
     const { theme, handleThemeChange } = useContext(ThemeContext);
 
@@ -32,11 +31,6 @@ const ThemeToggle = ({ headingColor, location }: Props) => {
     
         function fillColorSelect(color) {
             switch (color) {
-                // case 'bg-green-600' : return p5.color('#16a34a');
-                // case 'bg-teal-600'  : return p5.color('#0d9488');
-                // case 'bg-indigo-600': return p5.color('#4f46e5');
-                // case 'bg-purple-600': return p5.color('#9333ea');
-                // case 'bg-rose-600'  : return p5.color('#e11d48');
                 default             : return p5.color('#f59e0b');
             }
         }
@@ -104,7 +98,7 @@ const ThemeToggle = ({ headingColor, location }: Props) => {
         <div className='fixed right-0 top-9 z-50 text-zinc-100'>
             <div className='flex flex-col'>
                 <div className='fixed top-1 right-7'>
-                    <NextReactP5Wrapper sketch={sketch} color={headingColor} darkMode={theme == "dark"} location={location}/>
+                    <NextReactP5Wrapper sketch={sketch} darkMode={theme == "dark"} location={location}/>
                 </div>
                 <div className="flex flex-row items-center justify-right mt-1">
                     <label className="relative flex items-center cursor-pointer">       

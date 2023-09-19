@@ -13,7 +13,7 @@ const Layout = ({ preview, children }: Props) => {
   return (
     <>
       <Meta />
-      <div className={`min-h-screen ${theme == 'dark'? 'bg-black' : ''}`}>
+      <div className={`min-h-screen grow flex-col flex ${theme == 'dark'? 'bg-black' : ''}`}>
         <main>{children}</main>
       </div>
     </>

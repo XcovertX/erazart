@@ -192,7 +192,6 @@ const Home = ({ allPosts }: Props) => {
                 <Contact theme={theme} />
             </div>
         </div>
-        <ThemeToggle headingColor={headingColor} location='home'/>
     </>
   )
 }

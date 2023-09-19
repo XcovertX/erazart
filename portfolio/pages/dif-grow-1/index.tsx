@@ -5,6 +5,7 @@ import { CMS_NAME } from '../../lib/constants'
 import Post from '../../interfaces/post'
 import DifferentialGrowthContainer from '../../differential-growth-core/demo-1/dif-gro-example-1'
 import CodeDemoHolder from '../../components/code-demo-holder'
+import ThemeToggle from '../../components/dark-mode'
 
 
 export default function Index() {
@@ -13,12 +14,13 @@ export default function Index() {
     <>
       <Layout>
         <Head>
-          <title>{`ErazArt. ${CMS_NAME}`}</title>
+          <title>{`${CMS_NAME}`}</title>
         </Head>
         <Container>
           <CodeDemoHolder>
             <DifferentialGrowthContainer />
           </CodeDemoHolder>
+          <ThemeToggle location='codeProjects'/>
         </Container>
       </Layout>
     </>
