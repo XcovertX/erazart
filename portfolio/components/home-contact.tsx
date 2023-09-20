@@ -25,12 +25,12 @@ const Contact = ({ theme }: Props) => {
                         <div className=''>
                         <SocialLinks theme={theme}
                             color='white'
-                            highlightColor='pink'
+                            highlightColor='red'
                             dmColor='white'
-                            dmHighlightColor='pink'/>
+                            dmHighlightColor='orange'/>
                         </div>
                         <a href='mailto:james.t.covert@gmail.com'
-                            className="text-2xl hover:underline hover:text-rose-600">
+                            className={`${theme == "dark"? 'hover:underline hover:text-amber-600' : 'hover:underline hover:text-red-600'} text-2xl`}>
                             james.t.covert@gmail.com
                         </a>
                     </div>
@@ -43,12 +43,12 @@ const Contact = ({ theme }: Props) => {
                         <div className='mb-8'>
                         <SocialLinks theme={theme}
                             color='white'
-                            highlightColor='pink'
+                            highlightColor='red'
                             dmColor='white'
-                            dmHighlightColor='pink'/>
+                            dmHighlightColor='orange'/>
                         </div>
                         <a href='mailto:james.t.covert@gmail.com'
-                            className="text-2xl hover:underline hover:text-rose-600">
+                            className={`text-2xl hover:underline ${theme == "dark"? 'hover:underline hover:text-amber-600' : 'hover:underline hover:text-red-600'}`}>
                             james.t.covert@gmail.com
                         </a>
                     </div>
