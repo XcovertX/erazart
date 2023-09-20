@@ -47,7 +47,7 @@ const clojureBlack      = '/assets/clojure_icon_black.png';
 
 
     return(
-        <div className="w-full flex-col h-full items-center justify-start flex text-zinc-100 transition-all delay-1000">
+        <div className="w-full flex-col h-full items-center justify-between flex text-zinc-100 transition-all delay-1000">
                 <h1 className={`${theme == "dark"? 'text-zinc-100' : 'bg-gradient-to-br bg-clip-text text-transparent from-amber-500 from-20% to-orange-600'} pt-20 text-center text-5xl md:text-9xl font-bold tracking-tighter leading-tight`}>
                     My Expertise
                 </h1>

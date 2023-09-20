@@ -1,6 +1,6 @@
 ---
 title: 'Differential Growth Algorithm'
-excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.'
+excerpt: 'A differential growth algorithm I wrote that simulates space-fillings, organic growth structurs seen in nature such as coral and other sealife.'
 coverImage: 'differential-growth/difgrow-1.png'
 date: '2020-03-16T05:35:07.322Z'
 live: '/dif-grow-1/'
@@ -9,12 +9,69 @@ author:
   picture: assets/james_gray.jpg
 ogImage:
   url: 'differential-growth/difgrow-1.png'
-images: []
+images: [
+  {
+    name: First Pattern,
+    picture: 'pattern-generation/pattern2'
+  },
+  {
+    name: Second Pattern,
+    picture: 'pattern-generation/pattern1_cc3ntw'
+  },
+    {
+    name: Third Pattern,
+    picture: 'pattern-generation/pattern3'
+  },
+  {
+    name: Forth Pattern,
+    picture: 'pattern-generation/pattern4_square'
+  },
+  {
+    name: Fifth Pattern,
+    picture: 'pattern-generation/pattern5_Landscape'
+  }
+]
 repo: https://github.com/XcovertX/erazart/tree/main/portfolio/differential-growth-core/demo-1
 ---
 
-While exploring the
+## Differential Growth Algorithm
 
-## Lorem Ipsum
+### Inspiration
+This snippet of code started as an attempt to recreate the work of polyhop seen here: 
 
-Tristique senectus et netus et malesuada fames ac turpis. Ridiculous mus mauris vitae ultricies leo integer malesuada nunc vel. In mollis nunc sed id semper. Egestas tellus rutrum tellus pellentesque. Phasellus vestibulum lorem sed risus ultricies tristique nulla. Quis blandit turpis cursus in hac habitasse platea dictumst quisque. Eros donec ac odio tempor orci dapibus ultrices. Aliquam sem et tortor consequat id porta nibh. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo nulla. Diam vulputate ut pharetra sit amet. Ut tellus elementum sagittis vitae et leo. Arcu non odio euismod lacinia at quis risus sed vulputate.
+[polyhop differential growth](https://www.instagram.com/p/CTLHdApnY7M/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==)
+
+As per usual, the project evolved beyond the inspiration, however, I think it's important to give credit where credit is due! polyhop's generative designs are fascinating and certainly worth exploring. 
+
+### Code Explanation
+
+The code comprises of two main structures: nodes and paths. A node is a point on the canvas and a path is a collection of nodes. The algorithm works iteratively with each cycle applying a number of forces on the collection of nodes of a path then redrawing the path to the canvas. 
+
+## Forces
+### Repultion Force
+Each iteration, the algorithm locates all neighboring nodes that are within the user-defined distance (repultion radius). This is a resource demanding process so I used a data structure that stores the node locations in a searchable poximity tree. I then used a KNN (k-Nearest Neighbors) algorithm to allow nodes to quickly locate their closest neighbors. The force repels away from the node applying the force.
+### Attraction Force
+The attracting force is then applied to the node's two direct on-path neighbors, pulling the toward the applying node.
+### Alignment Force
+The alignment force removes nodes where thew path angle exceeds a user-defined limit (alighnment force). This straightens out the path, making it apear 'smoother'.
+### Brownian Force
+Lastly, the brownian force is applied. This is a randomly generated force to push nodes in any direction which makes them look as tho the path is alive...
+
+### Controls
+
+1. Run - executes the differential algorithm on the path
+2. Restart - restarts the differential algorithm a new randomly generated path
+3. Min Node Distance - minimum distance can be from a neighboring node before being deleted
+4. max Node Distance - maximum distance from a neighboring node before a new node is inserted inbetween the node and its neighbor
+5. Repultion Force - the repelling force a node applies to its spatially closest neighboring nodes
+6. Attraction Force - the attracting force a node applies to its two direct on-path neighbors
+7. Alignment Force - the force applied to any sharp angle on a path to straigten out
+8. Brownian Force - random generated force to push nodes in any direction, creating a vibrating look
+9. Stroke Color - the color of the path in HSB(360, 360, 360,360)
+11. Background Color - the color of the background in HSB(360, 360, 360,360)
+12. Draw Nodes - displays all nodes on the path
+13. Show Bounds - shows the path's bounding walls
+14. Fill Mode - fills the enlosed path
+15. Trace Mode - does not erase the canvas before each redraw, persisting previous paths to the canvas
+16. Close Path - closes the ends of the path
+17. Debug Mode - colors the path red to violet to detect any bugs
