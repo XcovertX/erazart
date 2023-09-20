@@ -17,7 +17,7 @@ const Contact = ({ theme }: Props) => {
         />
       )
     return(
-        <div className='flex flex-row justify-center mx-32 md:mx-0 w-full h-full pb-6 pt-24'>
+        <div className='flex flex-row justify-center mx-32 md:mx-0 w-full pb-6 pt-24'>
             <div className={`${theme == "dark"? 'bg-emerald-600/[.9] text-zinc-100' : 'bg-amber-600/[.9] text-emerald-950'} w-auto h-3/4 sm:h-full overflow-clip flex flex-col`}>
                 {image}
                 <div className={`${theme == "dark"? 'bg-emerald-600/[.9] text-zinc-100' : 'bg-amber-600/[.9] text-emerald-950'} md:hidden text-zinc-100 text-3xl p-5 h-1/4`}>

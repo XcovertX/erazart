@@ -2,25 +2,20 @@ import HeroPost from "./hero-post";
 import Post from '../interfaces/post';
 import Link from "next/link";
 import MoreStories from "./more-stories";
-import { useEffect } from "react";
 
 type Props = {
     allPosts: Post[];
     theme: string;
-    updateYPosition: any
+
 }
 
-const MyWork = ({ allPosts, theme, updateYPosition }: Props) => {
+const MyWork = ({ allPosts, theme }: Props) => {
 
     const heroPost = allPosts[0]
     const morePosts = allPosts.slice(1)
 
-    useEffect(() => {
-        updateYPosition;
-    })
-    
     return(
-        <div className='h-fit w-full flex flex-col justify-between'>
+        <div className='h-full w-full flex flex-col justify-between'>
             <div className={`pt-20 flex-col items-center justify-between flex`}>
                 <div className="flex h-full flex-col lg:flex-row justify-center w-full">
                     <div className="w-full lg:w-1/2 flex flex-col justify-start">

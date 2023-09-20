@@ -47,8 +47,6 @@ export default function Post({ post, morePosts, preview }: Props) {
               />
               <PostBody content={post.content} live={post.live} repo={post.repo}/>
             </article>
-            
-        
           </>
         )}
         <ThemeToggle location='codeProjects'/>

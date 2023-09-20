@@ -46,16 +46,38 @@ const Home = ({ allPosts }: Props) => {
         }
     }
 
+    const getWorkHeight = () => {
+
+        if(myWorkRef.current) {
+            console.log(myWorkRef.current.offsetHeight)
+            return myWorkRef.current.offsetHeight;
+        } else {
+            return 0;
+        }
+    }
+
+    const getTotalHeight = () => {
+
+        if(totalRef.current) {
+            console.log(totalRef.current.offsetHeight)
+            return totalRef.current.offsetHeight;
+        } else {
+            return 1000;
+        }
+    }
+    const workHeight = getWorkHeight();
     const getNavSection = (section: number) => {
         switch(section) {
             case  0: return 0;
             case  1: return homeHeight;
             case  2: return homeHeight + expertiseHeight;
-            case  3: return homeHeight + expertiseHeight + myWorkHeight;
-            case  4: return homeHeight + expertiseHeight + myWorkHeight + experienceHeight;
+            case  3: return homeHeight + expertiseHeight + workHeight;
+            case  4: return homeHeight + expertiseHeight + workHeight + experienceHeight;
             default: return 0;
         }
     }
+
+
 
     const scrollTo = (section: number) => {
         window.scrollTo({
@@ -72,8 +94,6 @@ const Home = ({ allPosts }: Props) => {
         scrollTo(currentSection + 1);
     }
 
-    
-
     function getSect(section: number, h: number, ex: number, w: number, exp: number, c: number) {
         if (section <  h) { return 0;} 
         if (section >= h && section <  ex + h) { return 1; }
@@ -83,6 +103,15 @@ const Home = ({ allPosts }: Props) => {
     }
 
     const updateYScrollPos = () => {
+
+        console.log('w:')
+        console.log(myWorkRef.current.offsetHeight);
+        console.log('t:')
+        console.log(homeRef.current.offsetHeight + expertiseRef.current.offsetHeight + myWorkRef.current.offsetHeight);
+        console.log('th:')
+        console.log(totalRef.current.offsetHeight);        
+        console.log('s:')
+        console.log(window.scrollY);
         setScrollYPosition(window.scrollY);
         let s: number, h: number, ex: number, w: number, exp: number, c: number;
 
@@ -115,18 +144,17 @@ const Home = ({ allPosts }: Props) => {
         setCurrentSection(s);
         setHeadingColor(getHeadingColor(s));
     }
-
-        useEffect(() => {
-
-        const updateWindowSize = () => {
-            setWidth(                            window.innerWidth);
-            setHomeHeight(            homeRef.current.offsetHeight);
-            setExpertiseHeight(  expertiseRef.current.offsetHeight);
-            setMyWorkHeight(        myWorkRef.current.offsetHeight);
-            setExperienceHeight(experienceRef.current.offsetHeight);
-            setContactHeight(      contactRef.current.offsetHeight);
-            setTotalHeight(          totalRef.current.offsetHeight);
-        }
+    const updateWindowSize = () => {
+        setWidth(                            window.innerWidth);
+        setHomeHeight(            homeRef.current.offsetHeight);
+        setExpertiseHeight(  expertiseRef.current.offsetHeight);
+        setMyWorkHeight(        myWorkRef.current.offsetHeight);
+        setExperienceHeight(experienceRef.current.offsetHeight);
+        setContactHeight(      contactRef.current.offsetHeight);
+        setTotalHeight(          totalRef.current.offsetHeight);
+    }
+    
+    useEffect(() => {
 
         window.addEventListener('scroll', updateYScrollPos);
         updateYScrollPos();
@@ -140,10 +168,10 @@ const Home = ({ allPosts }: Props) => {
     }, []);
 
     const { theme } = useContext(ThemeContext);
-
+    const tHeight = getTotalHeight();
   return (
     <>  
-        <Background scrollYPosition={scrollYPosition} height={totalHeight} section={currentSection}/>
+        <Background scrollYPosition={scrollYPosition} height={tHeight} section={currentSection}/>
         <div className="fixed right-0 bottom-0 z-50">
             {
                 scrollYPosition > 500?
@@ -160,9 +188,9 @@ const Home = ({ allPosts }: Props) => {
                     <></>
             }
         </div>
-        <div className="flex flex-col h-full justify-between"
+        <div className="flex flex-col h-fit justify-between"
              ref={totalRef}>
-            <div className="flex-col h-screen items-center justify-between flex text-zinc-100"
+            <div className="flex-col min-h-screen h-fit items-center justify-between flex text-zinc-100"
                  ref={homeRef}>
                 <div className="items-center flex flex-col pt-5">
                     <div className="py-10">
@@ -177,19 +205,19 @@ const Home = ({ allPosts }: Props) => {
                     </div>
                 </div>
             </div>
-            <div className="h-screen items-center justify-center text-zinc-100"
+            <div className="h-fit min-h-screen items-center justify-center flex text-zinc-100"
                  ref={expertiseRef}>
                 <Expertise width={width} theme={theme}/>
             </div> 
-            <div className="h-fit items-center justify-center text-zinc-100"
+            <div className="h-fit min-h-screen items-center justify-center  flex text-zinc-100"
                  ref={myWorkRef}>
-                <MyWork allPosts={allPosts} theme={theme} updateYPosition={updateYScrollPos}/>
+                <MyWork allPosts={allPosts} theme={theme} />
             </div>            
-            <div className="h-screen items-start justify-center flex text-zinc-100"
+            <div className="h-fit min-h-screen items-start justify-center flex text-zinc-100"
                  ref={experienceRef}>
                 <Experience theme={theme}  />
             </div> 
-            <div className='h-screen items-start justify-center flex text-zinc-100'
+            <div className='h-fit min-h-screen items-start justify-center  text-zinc-100'
                  ref={contactRef}>
                 <Contact theme={theme} />
             </div>
