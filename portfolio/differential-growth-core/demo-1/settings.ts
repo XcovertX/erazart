@@ -27,7 +27,7 @@ export const E01Settings: Settings =
     finiteIterations:      false,
     indiPathMode:          false,
     strokeColor:          {h: 360, s: 360, b: 360, a: 100},
-    backgroundColor:      {h: 10,  s: 268, b: 322, a: 100},
+    backgroundColor:      {h: 0,   s: 0,   b: 0,   a: 100},
     fillColor:            {h: 157, s: 360, b: 315, a: 100},
     fixedColor:           {h: 157, s: 360, b: 360, a: 100},
     movingColor:          {h: 250, s: 360, b: 360, a: 100},

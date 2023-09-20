@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {  SketchProps, P5CanvasInstance } from "@p5-wrapper/react";
 import { NextReactP5Wrapper } from "@p5-wrapper/next";
 import Node from "../node";
@@ -10,6 +10,7 @@ import PolygonBounds from "../polygon-bounds";
 import Settings from "../interfaces/settings";
 import { CustomSlider } from "../../components/slider";
 import { Toggle } from "../../components/toggle";
+import { ThemeContext } from "../../context/context";
 
 
 let nodecount: number = 0;
@@ -46,7 +47,7 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
     p5.colorMode(p5.HSB, 360);
     p5.ellipseMode(p5.RADIUS);
     setBorderWidth();
-
+    p5.strokeWeight(1);
     p5.updateWithProps = props => {
       if(settings.restart != props.settings.restart) {
         restartWorld();
@@ -100,42 +101,23 @@ const sketch = function (p5: P5CanvasInstance<MySketchProps>) {
     const p2: PositionType = { x: p5.width - border, y: border }
     const p3: PositionType = { x: p5.width - border, y: p5.height - border }
     const p4: PositionType = { x: border, y: p5.height - border }
+
     pol.push([p1.x, p1.y])
     pol.push([p2.x, p2.y])
     pol.push([p3.x, p3.y])
     pol.push([p4.x, p4.y])
-    // const p1: PositionType = {x: p5.width/3-100, y: p5.height*3/4 };
-    // const p2: PositionType = {x: p5.width/2, y: p5.height*1/4};
-    // const p3: PositionType = {x: p5.width/2+100, y: p5.height*3/4 };
-    // pol.push([p1.x, p1.y])
-    // pol.push([p2.x, p2.y])
-    // pol.push([p3.x, p3.y])
 
     const pb: PolygonBounds = new PolygonBounds(p5, pol)
-    // for (let i = 0; i < 10; i++) {
-    //   let nodes = new Array<Node>;
-    //   const p1: PositionType = {x: p5.width/2-100, y: p5.height/(i + 1) };
-    //   const p2: PositionType = {x: p5.width/2+100, y: p5.height/(i + 1) };
-    //   nodes.push(new Node(getID(), p5, p1, settings, true));
-    //   nodes.push(new Node(getID(), p5, p2, settings, true));
-    //   paths.push(new Path(p5, nodes, pb, settings))
-    // }
 
-      let nodes = new Array<Node>;
-      const pa1: PositionType = {x: (p5.width-border)*(Math.random()) + border, y: (p5.height-border)*(Math.random()) + border };
-      const pa2: PositionType = {x: (p5.width-border)*(Math.random()) + border, y: (p5.height-border)*(Math.random()) + border };
-      const pa3: PositionType = {x: (p5.width-border)*(Math.random()) + border, y: (p5.height-border)*(Math.random()) + border };
-      nodes.push(new Node(getID(), p5, pa1, settings, true));
-      nodes.push(new Node(getID(), p5, pa2, settings, true));
-      nodes.push(new Node(getID(), p5, pa3, settings, true));
-      
-      // const pa1: PositionType = {x: p5.width/3 - 100, y: p5.height *2/3 +50 };
-      // const pa2: PositionType = {x: p5.width/2, y: p5.height *1/3 -50 };
-      // const pa3: PositionType = {x: p5.width*2/3 +100, y: p5.height *2/3 +50 };
-      // nodes.push(new Node(getID(), p5, pa1, settings, true))
-      // nodes.push(new Node(getID(), p5, pa2, settings, true));
-      // nodes.push(new Node(getID(), p5, pa3, settings, true));
-      paths.push(new Path(p5, nodes, pb, settings))
+    let nodes = new Array<Node>;
+    const pa1: PositionType = {x: (p5.width-border)*(Math.random()) + border, y: (p5.height-border)*(Math.random()) + border };
+    const pa2: PositionType = {x: (p5.width-border)*(Math.random()) + border, y: (p5.height-border)*(Math.random()) + border };
+    const pa3: PositionType = {x: (p5.width-border)*(Math.random()) + border, y: (p5.height-border)*(Math.random()) + border };
+    
+    nodes.push(new Node(getID(), p5, pa1, settings, true));
+    nodes.push(new Node(getID(), p5, pa2, settings, true));
+    nodes.push(new Node(getID(), p5, pa3, settings, true));
+    paths.push(new Path(p5, nodes, pb, settings))
     return paths;
   }
 
@@ -315,15 +297,15 @@ export default function DifferentialGrowthContainer()
   useEffect(() => {
     setSetting(setting);
   }, [{...setting}]);
-
+    const { theme } = useContext(ThemeContext);
     return (
-      <div className="flex flex-row">
-        <div className='text-sm flex-col flex mr-3 justify-between'>
+      <div className={`${theme == 'dark'? 'text-zinc-100 bg-emerald-800/[.5]' : 'text-emerald-950 bg-emerald-300' } font-bold p-5 flex flex-row`}>
+        <div className={` text-sm flex-col flex mr-3 justify-between`}>
           <div className="flex flex-row justify-around mb-3">
-            <button className="flex-grow py-3 px-5 mr-3 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRun}>{setting.paused ? 'run' : 'pause'}</button>
-            <button className="flex-grow py-3 px-5 bg-slate-900 font-bold text-zinc-300" onClick={handleChangeRestart}>restart</button>
+            <button className={`${theme == 'dark'? 'bg-emerald-500 text-emerald-950' : 'bg-emerald-800 text-zinc-100' } text-lg rounded-md flex-grow py-3 px-5 mr-3 font-bold`} onClick={handleChangeRun}>{setting.paused ? 'run' : 'pause'}</button>
+            <button className={`${theme == 'dark'? 'bg-emerald-500 text-emerald-950' : 'bg-emerald-800 text-zinc-100' } text-lg rounded-md flex-grow py-3 px-5 font-bold`} onClick={handleChangeRestart}>restart</button>
           </div>
-          <div className="flex flex-col mb-3 border-2 px-2 justify-between">
+          <div className={`${theme == 'dark'? 'border-emerald-300 ' : 'border-emerald-950' } flex flex-col mb-3 border-2 p-2 justify-between`}>
             <div className="flex flex-row justify-between items-center">
               <h6>Min Node Distance</h6>
             </div>
@@ -335,7 +317,7 @@ export default function DifferentialGrowthContainer()
             <CustomSlider title={''} id={''} min={.1} max={30} 
                         step={.1} value={setting.maxDistance} onChange={handleChangeMax} ref={null}/>
           </div>
-          <div className="flex flex-col mb-3 border-2 px-2 justify-between">
+          <div className={`${theme == 'dark'? 'border-emerald-300 ' : 'border-emerald-950' } flex flex-col mb-3 border-2 p-2 justify-between`}>
             <div className="flex flex-row justify-between items-center">
               <h6>Repulsion Force</h6>
             </div>
@@ -347,21 +329,21 @@ export default function DifferentialGrowthContainer()
             <CustomSlider title={''} id={''} min={1} max={10} 
                         step={.1}  value={setting.repulsionRadius} onChange={handleChangeRepulseRad} ref={null}/>
           </div>
-          <div className="flex flex-col mb-3 border-2 px-2 justify-between">
+          <div className={`${theme == 'dark'? 'border-emerald-300 ' : 'border-emerald-950' } flex flex-col mb-3 border-2 p-2 justify-between`}>
             <div className="flex flex-row justify-between items-center">
               <h6>Attraction Force</h6>
             </div>
             <CustomSlider title={''} id={''} min={1}  max={30} 
                         step={.1} value={setting.attractionScalar} onChange={handleChangeAttract} ref={null}/>
           </div>
-          <div className="flex flex-col mb-3 border-2 px-2 justify-between">
+          <div className={`${theme == 'dark'? 'border-emerald-300 ' : 'border-emerald-950' } flex flex-col mb-3 border-2 p-2 justify-between`}>
             <div className="flex flex-row justify-between items-center">
               <h6>Alignment Force</h6>
             </div>
             <CustomSlider title={''}  id={''} min={0}  max={2} 
                         step={.01} value={setting.alignmentScalar} onChange={handleChangeAlign} ref={null}/>
           </div>
-          <div className="flex flex-col border-2 px-2 justify-between">
+          <div className={`${theme == 'dark'? 'border-emerald-300 ' : 'border-emerald-950' } flex flex-col border-2 p-2 justify-between`}>
             <div className="flex flex-row justify-between items-center">
               <h6>Brownian Force</h6>
               <Toggle title={'Browinan Mode'} onChange={handleChangeBrownMode} currentState={setting.brownianMode} color={'bg-gray-500'}/>
@@ -374,7 +356,7 @@ export default function DifferentialGrowthContainer()
           <NextReactP5Wrapper sketch={sketch} settings={{...setting}} />
         </div>
         <div className=" flex flex-col ml-3 justify-between">
-          <div className="border-2 px-2 mb-3">
+          <div className={`${theme == 'dark'? 'border-emerald-300 ' : 'border-emerald-950' } border-2 p-2 mb-3`}>
             <h6 className="flex justify-center">Stroke Color</h6>
             <CustomSlider title={'H'} id={''} min={0} max={360} 
                           step={.1} value={setting.fillColor.h} onChange={handleChangeFillColorH} ref={null}/>
@@ -385,7 +367,7 @@ export default function DifferentialGrowthContainer()
             <CustomSlider title={'A'} id={''} min={0} max={360} 
                           step={.1} value={setting.fillColor.a} onChange={handleChangeFillColorA} ref={null}/>
           </div>
-          <div className="border-2 px-2 mb-3">
+          <div className={`${theme == 'dark'? 'border-emerald-300 ' : 'border-emerald-950' } border-2 p-2 mb-3`}>
             <h6 className="flex justify-center">Background Color</h6>
             <CustomSlider title={'H'} id={''} min={0} max={360} 
                           step={.1} value={setting.backgroundColor.h} onChange={handleChangeBGColorH} ref={null}/>
@@ -396,7 +378,7 @@ export default function DifferentialGrowthContainer()
             <CustomSlider title={'A'} id={''} min={0} max={360} 
                           step={.1} value={setting.backgroundColor.a} onChange={handleChangeBGColorA} ref={null}/>
           </div>
-          <div className="border-2 px-2">
+          <div className={`${theme == 'dark'? 'border-emerald-300 ' : 'border-emerald-950' } border-2 p-2`}>
             <div className="flex flex-row justify-between items-center">
               <h6>Draw Nodes</h6>
               <Toggle title={''} onChange={handleChangeNodesMode} currentState={setting.drawNodesMode} color={'bg-gray-500'}/>
