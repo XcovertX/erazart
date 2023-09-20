@@ -16,7 +16,7 @@ export const CustomSlider = ({title, id, min, max, step, value, onChange, ref}) 
         onChange  = {onChange}
         ref       = {ref}
       />
-      <div className="ml-3 pl-3 relative h-5 w-10">
+      <div className="ml-3 pl-3 relative h-5 w-10"> 
         <label className={`mx-2 absolute start-0 ${theme == 'dark'? 'text-zinc-100' : 'text-emerald-950'} font-bold`}>
             {value}
         </label>
