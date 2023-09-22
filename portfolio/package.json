@@ -12,6 +12,7 @@
     "@p5-wrapper/react": "^4.2.0",
     "@types/rbush": "^3.0.0",
     "@types/vec2": "^1.6.2",
+    "@vercel/analytics": "^1.0.2",
     "chart.js": "^4.3.3",
     "classnames": "^2.3.1",
     "date-fns": "^2.28.0",
