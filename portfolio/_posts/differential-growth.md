@@ -9,28 +9,7 @@ author:
   picture: assets/james_gray.jpg
 ogImage:
   url: 'differential-growth/difgrow-1.png'
-images: [
-  {
-    name: First Pattern,
-    picture: 'pattern-generation/pattern2'
-  },
-  {
-    name: Second Pattern,
-    picture: 'pattern-generation/pattern1_cc3ntw'
-  },
-    {
-    name: Third Pattern,
-    picture: 'pattern-generation/pattern3'
-  },
-  {
-    name: Forth Pattern,
-    picture: 'pattern-generation/pattern4_square'
-  },
-  {
-    name: Fifth Pattern,
-    picture: 'pattern-generation/pattern5_Landscape'
-  }
-]
+images: []
 repo: https://github.com/XcovertX/erazart/tree/main/portfolio/differential-growth-core/demo-1
 ---
 

@@ -9,7 +9,28 @@ author:
   picture: assets/james_gray.jpg
 ogImage:
   url: 'differential-growth/difgrow-james.png'
-images: []
+images: [
+   {
+    name: Never,
+    picture: 'differential-growth/difgro-never'
+  },
+  {
+    name: Gonna,
+    picture: 'differential-growth/difgro-gonna'
+  },
+    {
+    name: Give,
+    picture: 'differential-growth/difgro-give'
+  },
+  {
+    name: You,
+    picture: 'differential-growth/difgro-you'
+  },
+  {
+    name: Up,
+    picture: 'differential-growth/difgro-up'
+  }
+]
 repo: 'https://github.com/XcovertX/erazart/tree/main/portfolio/differential-growth-core/demo-2'
 ---
 
