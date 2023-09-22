@@ -24,9 +24,12 @@ const PostHeader = ({ title, coverImage, date, author, live }: Props) => {
         <div className="hidden md:block md:mb-6 ">
           <Avatar name={author.name} picture={author.picture} />
         </div>
+        {live == ''? 
+        <></> 
+          : 
         <Link href={live} className={`${theme == 'dark'? 'text-emerald-500 hover:text-red-500' : 'text-emerald-950 hover:text-amber-500'} hidden md:block md:mb-6 hover:underline text-xl font-bold`}>
           Try Live Version
-        </Link>
+        </Link>}
       </div>
 
       <div className="mb-8 md:mb-16 sm:mx-0 px-16">
@@ -35,9 +38,12 @@ const PostHeader = ({ title, coverImage, date, author, live }: Props) => {
       <div className="max-w-2xl mx-auto">
         <div className="block md:hidden mb-6 flex flex-row justify-between items-center">
           <Avatar name={author.name} picture={author.picture} />
-          <Link href={live} className="hover:underline hover:text-green-500 text-xl font-bold">
+          {live == ''? 
+          <></> 
+            : 
+          <Link href={live} className={`${theme == 'dark'? 'text-emerald-500 hover:text-red-500' : 'text-emerald-950 hover:text-amber-500'} hidden md:block md:mb-6 hover:underline text-xl font-bold`}>
             Try Live Version
-          </Link>
+          </Link>}
         </div>
         <div className="mb-2 text-lg">
           <DateFormatter dateString={date} />

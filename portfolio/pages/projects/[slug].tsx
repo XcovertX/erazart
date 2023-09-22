@@ -12,14 +12,16 @@ import { CMS_NAME } from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
 import type PostType from '../../interfaces/post'
 import ThemeToggle from '../../components/dark-mode'
+import Image from '../../interfaces/image'
 
 type Props = {
   post: PostType
   morePosts: PostType[]
   preview?: boolean
+  images: Image[]
 }
 
-export default function Post({ post, morePosts, preview }: Props) {
+export default function Post({ post, morePosts, preview, images }: Props) {
   const router = useRouter()
   const title = `${post.title} | Coding Projects ${CMS_NAME}`
   if (!router.isFallback && !post?.slug) {
@@ -45,7 +47,7 @@ export default function Post({ post, morePosts, preview }: Props) {
                 author={post.author}
                 live={post.live}
               />
-              <PostBody content={post.content} live={post.live} repo={post.repo}/>
+              <PostBody content={post.content} live={post.live} repo={post.repo} images={post.images}/>
             </article>
           </>
         )}
@@ -71,7 +73,8 @@ export async function getStaticProps({ params }: Params) {
     'ogImage',
     'coverImage',
     'live',
-    'repo'
+    'repo', 
+    'images'
   ])
   const content = await markdownToHtml(post.content || '')
 

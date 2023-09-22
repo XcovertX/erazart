@@ -1,5 +1,3 @@
-import Avatar from './avatar'
-import DateFormatter from './date-formatter'
 import CoverImage from './cover-image'
 import Link from 'next/link'
 import type Author from '../interfaces/author'
@@ -42,8 +40,8 @@ const HeroPost = ({
       <div className={`${hover? (theme == 'dark'? 'text-red-600' : 'text-amber-500') : (theme == 'dark'? 'text-emerald-500' : 'text-emerald-950')} font-bold tracking-tighter leading-tight px-2`}>
         <h3 className="mb-4 text-xl lg:text-3xl leading-tight mt-2">
               <Link
-                as={`/home/${slug}`}
-                href="/home/[slug]"
+                as={`/projects/${slug}`}
+                href="/projects/[slug]"
                 className={hover? "underline": ""}
               >
                 {title}

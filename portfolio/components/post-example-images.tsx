@@ -7,13 +7,15 @@ type Props = {
 
 
 const PostExampleImages = ({ images }: Props) => {
-  const imgs = (images.map((img, i) => {
-    return (
-      <div key={i} className="mb-8 md:mb-16 sm:mx-0">
-        <ExampleImage title={img.name} src={img.picture} />
-      </div>
-    )
-  }))
+  let imgs;
+  if(images) {
+    imgs = (images.map((img, i) => {
+      return (
+        <div key={i} className="mb-8 md:mb-16 sm:mx-0">
+          <ExampleImage title={img.name} src={img.picture} />
+        </div>
+      )
+  }))}
 
   return (
     <div className="flex flex-col items-center">

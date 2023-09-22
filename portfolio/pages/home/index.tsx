@@ -104,14 +104,6 @@ const Home = ({ allPosts }: Props) => {
 
     const updateYScrollPos = () => {
 
-        console.log('w:')
-        console.log(myWorkRef.current.offsetHeight);
-        console.log('t:')
-        console.log(homeRef.current.offsetHeight + expertiseRef.current.offsetHeight + myWorkRef.current.offsetHeight);
-        console.log('th:')
-        console.log(totalRef.current.offsetHeight);        
-        console.log('s:')
-        console.log(window.scrollY);
         setScrollYPosition(window.scrollY);
         let s: number, h: number, ex: number, w: number, exp: number, c: number;
 
@@ -234,6 +226,7 @@ export const getStaticProps = async () => {
       'author',
       'coverImage',
       'excerpt',
+      'images'
     ])
   
     return {
