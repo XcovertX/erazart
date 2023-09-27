@@ -1,5 +1,5 @@
 ---
-title: 'Procedural Pattern Generator'
+title: 'Procedural Pattern Generator (Javascript)'
 excerpt: 'A procedural pattern generating program that receives user inputs to build a randomly generated pattern.'
 coverImage: 'pattern-generation/pattern2'
 date: '2023-03-28T05:35:07.322Z'

@@ -1,5 +1,5 @@
 ---
-title: 'Rectangle Pixel Averaging'
+title: 'Rectangle Pixel Averaging (Clojure)'
 excerpt: 'An algorithm for recursively dividing a provided image into rectangles and averaging the pixels of each rectangle.'
 coverImage: 'rectangular-pixels/rectangle4'
 date: '2020-03-16T05:35:07.322Z'

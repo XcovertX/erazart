@@ -1,5 +1,5 @@
 ---
-title: 'Differential Growth Algorithm'
+title: 'Differential Growth Algorithm (Javascript)'
 excerpt: 'A differential growth algorithm I wrote that simulates space-fillings, organic growth structurs seen in nature such as coral and other sealife.'
 coverImage: 'differential-growth/difgrow-1.png'
 date: '2020-03-16T05:35:07.322Z'

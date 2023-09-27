@@ -1,5 +1,5 @@
 ---
-title: 'Triangle Mapping and Data Structures'
+title: 'Triangle Mapping and Data Structures (Clojure)'
 excerpt: 'An algorithm for recursively dividing a provided image into triangles and averaging the pixels of each triangle.'
 coverImage: 'triangle-mapping/triangle-mapping-1'
 date: '2023-07-14T05:35:07.322Z'

@@ -1,6 +1,6 @@
 ---
-title: 'Real Time Operating System Scheduler'
-excerpt: 'C++ Real-Time Operating System (RTOS) scheduler for embedded systems.'
+title: 'Real Time Operating System Scheduler (C++)'
+excerpt: 'Real-Time Operating System (RTOS) scheduler for embedded systems.'
 coverImage: 'embedded-systems/preemptive_scheduling'
 date: '2021-01-14T05:35:07.322Z'
 live: ''

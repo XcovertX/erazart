@@ -1,5 +1,5 @@
 ---
-title: 'Differential Growth Letters'
+title: 'Differential Growth Letters (Javascript)'
 excerpt: 'Differential growth algorithm that take user defined word to bound the path.'
 coverImage: 'differential-growth/difgrow-james.png'
 date: '2020-03-16T05:35:07.322Z'
