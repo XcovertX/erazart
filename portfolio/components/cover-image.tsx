@@ -24,7 +24,7 @@ const CoverImage = ({ title, src, slug, mouseHover }: Props) => {
   return (
     <div className={`sm:mx-0 ${mouseHover? 'scale-105' : ''} transition-all duration-200`}>
       {slug ? (
-        <Link as={`/home/${slug}`} href="/home/[slug]" aria-label={title}>
+        <Link as={`/projects/${slug}`} href="/projects/[slug]" aria-label={title}>
           {image}
         </Link>
       ) : (

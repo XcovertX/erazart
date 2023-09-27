@@ -6,7 +6,7 @@ date: '2020-03-16T05:35:07.322Z'
 live: '/dif-grow-1/'
 author:
   name: J.A. Covert
-  picture: assets/james_gray.jpg
+  picture: assets/james_profile_pic.png
 ogImage:
   url: 'differential-growth/difgrow-1.png'
 images: []

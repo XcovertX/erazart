@@ -6,7 +6,7 @@ date: '2023-07-14T05:35:07.322Z'
 live: ''
 author:
   name: J.A. Covert
-  picture: assets/james_gray.jpg
+  picture: assets/james_profile_pic.png
 ogImage:
   url: 'triangle-mapping/triangle-mapping-1'
 images: [
