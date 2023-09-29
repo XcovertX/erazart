@@ -10,7 +10,7 @@ import ThemeToggle from '../components/dark-mode'
 type Props = {
   allPosts: Post[];
   countries: { name:string, population:number };
-  contributions: { data: { data: { user: { contributionsCollection: { contributionCalendar }}}} };
+  contributions: { weeks: [] };
 }
 
 export default function Index({ allPosts, countries, contributions }: Props) {
@@ -22,7 +22,7 @@ export default function Index({ allPosts, countries, contributions }: Props) {
         <title>{`${CMS_NAME}`}</title>
       </Head>
       <Container>
-        <Home allPosts={allPosts} countries={countries} contributions={contributions} />
+        <Home allPosts={allPosts} contributions={contributions} />
         <ThemeToggle location='home'/>
       </Container>
     </HomeLayout>
@@ -60,7 +60,7 @@ export const getStaticProps = async () => {
         body: JSON.stringify({ query }),
         })
          .then((response) => response.json())
-         .then((data) => {
+         .then((data: { data: {user: { contributionsCollection: { contributionCalendar: { weeks: [] }}}}}) => {
             contributions = data.data.user.contributionsCollection.contributionCalendar;  
         })
         .catch((error) => {

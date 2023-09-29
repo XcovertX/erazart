@@ -15,11 +15,10 @@ import GithubContributions from '../../components/githubContributions'
 
 type Props = {
     allPosts: Post[];
-    countries: { name:string, population:number };
-    contributions: { data };
+    contributions: { weeks };
 }
 
-const Home = ({ allPosts, countries, contributions }: Props) => {
+const Home = ({ allPosts, contributions }: Props) => {
     const [scrollYPosition,   setScrollYPosition] = useState(0);
     const [width,                       setWidth] = useState(0);
     const [headingColor,         setHeadingColor] = useState('bg-green-600');
