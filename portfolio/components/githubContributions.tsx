@@ -25,23 +25,24 @@ const GithubContributions = ({ conts }) => {
             let children = [];
             for (let weekIndex = 0; weekIndex < 53; weekIndex++) {
             const week: { contributionDays: [] } = weeks[weekIndex];
-            const contributionDay: { contributionCount: number } = week.contributionDays[dayOfWeek];
+            const contributionDay: { contributionCount: number, date:Date } = week.contributionDays[dayOfWeek];
             const contributionCount = contributionDay ? contributionDay.contributionCount : 0;
+            const date = contributionDay ? contributionDay.date : 0;
             let contributionColor;
-            if (contributionCount == 0) {
+            if (contributionCount < 1) {
                 contributionColor = 'bg-green-100/[.15]';
             } else if (contributionCount < 2) {
-                contributionColor = 'bg-green-300';
-            } else if (contributionCount < 3) {
                 contributionColor = 'bg-green-400';
-            } else if (contributionCount < 5) {
+            } else if (contributionCount < 3) {
+                contributionColor = 'bg-green-500';
+            } else if (contributionCount < 4) {
                 contributionColor = 'bg-green-600';
-            } else if (contributionCount < 7) {
-                contributionColor = 'bg-green-800';
+            } else if (contributionCount < 5) {
+                contributionColor = 'bg-green-700';
             } else {
                 contributionColor = 'bg-green-900';
             }
-            children.push({key: weekIndex, color: contributionColor, count: contributionCount})
+            children.push({key: weekIndex, color: contributionColor, count: contributionCount, date: date })
             }
             table.push({key: dayOfWeek, c: children})
         }
@@ -49,31 +50,36 @@ const GithubContributions = ({ conts }) => {
     }
 
     return (
-        <table className='mb-2 cursor-pointer'>
-            <tbody className=''>
-                {table.map(e => {
-                    return (
-                        <>
-                            <tr className={`h-1`}></tr>
-                            <tr key={e.key} className={''}>
-                                {e.c.map(w => {
-                                    return (
-                                        <td className={`group p-0 relative`}>
-                                        <div className={'hidden group-hover:block bg-zinc-950 p-2 right-[-5rem] absolute bottom-6 w-48 rounded-md text-center'}>{w.count} contributions this day</div>
-                                        <td className={`w-1 `}></td>
-                                        <td key={w.key} className={`${w.color} ring-2 ring-transparent group-hover:ring-white h-1 w-1 p-2 rounded-sm `}></td>
-                                        <td className={`w-1 `}></td>
-                                        </td>
-                                    )
-                                })}
-                            </tr>
-                            <tr className={`h-1 `}></tr>
-                        </>)
-                })}
-            </tbody>
-        </table>
+        <div className=''>
+            <div className='text-center text-xl bg-emerald-500/[.5] mx-1 font-bold'>
+                GITHUB CONTRIBUTIONS
+            </div>
+            <table className='cursor-pointer'>
+                <tbody className=''>
+                    {table.map(e => {
+                        return (
+                            <>
+                                <tr className={`h-1`}></tr>
+                                <tr key={e.key} className={''}>
+                                    {e.c.map(w => {
+                                        return (
+                                            <td className={`group p-0 relative`}>
+                                            <div className={'hidden group-hover:block bg-zinc-950 p-2 right-[-5rem] absolute bottom-6 w-60 rounded-md text-center'}>{w.count} contributions on {w.date}</div>
+                                            <td className={`w-1 `}></td>
+                                            <td key={w.key} className={`${w.color} ring-2 ring-transparent group-hover:ring-white h-1 w-1 p-1 lg:p-2 rounded-sm `}></td>
+                                            <td className={`w-1 `}></td>
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                                <tr className={`h-1 `}></tr>
+                            </>)
+                    })}
+                </tbody>
+            </table>
+        </div>
     )
 }
 
-// export default dynamic(() => Promise.resolve(GithubContributions), { ssr: false });
-export default GithubContributions
+export default dynamic(() => Promise.resolve(GithubContributions), { ssr: false });
+// export default GithubContributions
