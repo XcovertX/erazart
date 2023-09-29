@@ -87,18 +87,16 @@ const GithubContributions = ({ conts }) => {
                 <tbody key={0} className=''>
                     {table.map(e => {
                         return (
-                            <>
-                                <tr key={e.key} className={''}>
-                                    {e.c.map(w => {
-                                        return (
-                                            <td key={w.key} className={`group p-0 relative`}>
-                                                <div key={w.key + 2}className={'hidden group-hover:block bg-zinc-950 p-2 right-[-6.5rem] absolute bottom-10 w-60 rounded-md text-center'}>{w.count} contributions on {w.date}</div>
-                                                <div key={w.key + 1} className={`${w.color} ring-2 m-[2px] md:m-1 ring-transparent group-hover:ring-white h-1 w-1 p-1 lg:p-2 rounded-sm `}></div>
-                                            </td>
-                                        )
-                                    })}
-                                </tr>
-                            </>
+                            <tr key={e.key} className={''}>
+                            {e.c.map(w => {
+                                return (
+                                    <td key={w.key} className={`group p-0 relative`}>
+                                        <div className={'hidden group-hover:block bg-zinc-950 p-2 right-[-6.5rem] absolute bottom-10 w-60 rounded-md text-center'}>{w.count} contributions on {w.date}</div>
+                                        <div className={`${w.color} ring-2 m-[2px] md:m-1 ring-transparent group-hover:ring-white h-1 w-1 p-1 lg:p-2 rounded-sm `}></div>
+                                    </td>
+                                )
+                            })}
+                        </tr>
                         )
                     })}
                 </tbody>
