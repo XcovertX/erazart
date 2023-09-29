@@ -11,12 +11,15 @@ import ThemeToggle from '../../components/dark-mode'
 import Experience from '../../components/home-experience'
 import Contact from '../../components/home-contact'
 import { ThemeContext } from '../../context/context'
+import GithubContributions from '../../components/githubContributions'
 
 type Props = {
     allPosts: Post[];
+    countries: { name:string, population:number };
+    contributions: { data };
 }
 
-const Home = ({ allPosts }: Props) => {
+const Home = ({ allPosts, countries, contributions }: Props) => {
     const [scrollYPosition,   setScrollYPosition] = useState(0);
     const [width,                       setWidth] = useState(0);
     const [headingColor,         setHeadingColor] = useState('bg-green-600');
@@ -49,7 +52,6 @@ const Home = ({ allPosts }: Props) => {
     const getWorkHeight = () => {
 
         if(myWorkRef.current) {
-            console.log(myWorkRef.current.offsetHeight)
             return myWorkRef.current.offsetHeight;
         } else {
             return 0;
@@ -59,7 +61,6 @@ const Home = ({ allPosts }: Props) => {
     const getTotalHeight = () => {
 
         if(totalRef.current) {
-            console.log(totalRef.current.offsetHeight)
             return totalRef.current.offsetHeight;
         } else {
             return 1000;
@@ -196,6 +197,7 @@ const Home = ({ allPosts }: Props) => {
                         dmHighlightColor='teal'/>
                     </div>
                 </div>
+                <GithubContributions conts={contributions} />
             </div>
             <div className="h-fit min-h-screen items-center justify-center flex text-zinc-100"
                  ref={expertiseRef}>
@@ -219,6 +221,7 @@ const Home = ({ allPosts }: Props) => {
 }
 
 export const getStaticProps = async () => {
+
     const allPosts = getAllPosts([
       'title',
       'date',

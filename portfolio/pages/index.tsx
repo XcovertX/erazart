@@ -9,9 +9,11 @@ import ThemeToggle from '../components/dark-mode'
 
 type Props = {
   allPosts: Post[];
+  countries: { name:string, population:number };
+  contributions: { data };
 }
 
-export default function Index({ allPosts }: Props) {
+export default function Index({ allPosts, countries, contributions }: Props) {
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
   return (
@@ -20,7 +22,7 @@ export default function Index({ allPosts }: Props) {
         <title>{`${CMS_NAME}`}</title>
       </Head>
       <Container>
-        <Home allPosts={allPosts} />
+        <Home allPosts={allPosts} countries={countries} contributions={contributions} />
         <ThemeToggle location='home'/>
       </Container>
     </HomeLayout>
@@ -28,6 +30,52 @@ export default function Index({ allPosts }: Props) {
 }
 
 export const getStaticProps = async () => {
+  const res = await fetch("https://restcountries.com/v3.1/region/asia");
+  const countries = await res.json();
+  const countriesWithNamePopulation = countries.map((country) => ({
+    name: country.name.common,
+    population: country.population
+  }));
+
+  let contributions: { weeks };
+
+  const query:string = `
+            query {
+                user(login: "${process.env.GITHUB_USERNAME}") {
+                contributionsCollection {
+                    contributionCalendar {
+                    totalContributions
+                    weeks {
+                        contributionDays {
+                        contributionCount
+                        date
+                        }
+                    }
+                    }
+                }
+                }
+            }
+        `;
+        
+        await fetch("https://api.github.com/graphql", {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query }),
+        })
+         .then((response) => response.json())
+         .then((data) => {
+            console.log(data);
+            contributions = data.data.user.contributionsCollection.contributionCalendar;
+            // weeks = contributions.weeks;
+            // table = setTable(weeks);
+            
+        })
+        .catch((error) => {
+            console.error("Error fetching GitHub contributions:", error);
+        });
   const allPosts = getAllPosts([
     'title',
     'date',
@@ -39,6 +87,6 @@ export const getStaticProps = async () => {
   ])
 
   return {
-    props: { allPosts },
+    props: { allPosts, countries: countriesWithNamePopulation, contributions },
   }
 }
