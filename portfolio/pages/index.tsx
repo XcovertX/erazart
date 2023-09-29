@@ -31,7 +31,7 @@ export default function Index({ allPosts, countries, contributions }: Props) {
 
 export const getStaticProps = async () => {
 
-  let contributions: { weeks };
+  let contributions = null;
 
   const query:string = `
             query {
