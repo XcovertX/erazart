@@ -10,7 +10,7 @@ import ThemeToggle from '../components/dark-mode'
 type Props = {
   allPosts: Post[];
   countries: { name:string, population:number };
-  contributions: { data };
+  contributions: { data: { data: { user: { contributionsCollection: { contributionCalendar }}}} };
 }
 
 export default function Index({ allPosts, countries, contributions }: Props) {
