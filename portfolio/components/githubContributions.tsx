@@ -64,42 +64,42 @@ const GithubContributions = ({ conts }) => {
     const { theme } = useContext(ThemeContext);
     let headerColor;
     if(theme == 'dark') {
-        headerColor = 'bg-emerald-500/[.5]'
+        headerColor = 'text-emerald-500'
     } else {
-        headerColor = 'bg-amber-500/[.8]'
+        headerColor = 'text-amber-950'
     }
-
 
     useEffect(() => {
         setContributions(conts);
-
     }, [conts])
 
     return (
-        <div className=''>
-            <div className={`text-center text-2xl ${headerColor} mx-1 mb-2 py-5 font-bold`}>
-                Github Contributions
+        <div className='flex flex-col w-full'>
+            <div className='flex flex-row justify-between items-end '>
+                <div className={` lg:ml-2 text-2xl lg:text-4xl w-full ${headerColor} font-bold`}>
+                    Github Contributions
+                </div>
+                <div className={`lg:mr-2 w-full text-sm md:text-xl ${headerColor} font-bold text-end`}>
+                    Contributions in the last year: {contributions.totalContributions}
+                </div>
             </div>
-            <table className='cursor-pointer mb-10'>
-                <tbody className=''>
+            <table className='cursor-pointer mb-10 flex w-full flex-row justify-center'>
+                <tbody key={0} className=''>
                     {table.map(e => {
                         return (
                             <>
-                                <tr className={`h-1`}></tr>
                                 <tr key={e.key} className={''}>
                                     {e.c.map(w => {
                                         return (
-                                            <td className={`group p-0 relative`}>
-                                            <div className={'hidden group-hover:block bg-zinc-950 p-2 right-[-5rem] absolute bottom-6 w-60 rounded-md text-center'}>{w.count} contributions on {w.date}</div>
-                                            <td className={`w-1 `}></td>
-                                            <td key={w.key} className={`${w.color} ring-2 ring-transparent group-hover:ring-white h-1 w-1 p-1 lg:p-2 rounded-sm `}></td>
-                                            <td className={`w-1 `}></td>
+                                            <td key={w.key} className={`group p-0 relative`}>
+                                                <div key={w.key + 2}className={'hidden group-hover:block bg-zinc-950 p-2 right-[-6.5rem] absolute bottom-10 w-60 rounded-md text-center'}>{w.count} contributions on {w.date}</div>
+                                                <div key={w.key + 1} className={`${w.color} ring-2 m-[2px] md:m-1 ring-transparent group-hover:ring-white h-1 w-1 p-1 lg:p-2 rounded-sm `}></div>
                                             </td>
                                         )
                                     })}
                                 </tr>
-                                <tr className={`h-1 `}></tr>
-                            </>)
+                            </>
+                        )
                     })}
                 </tbody>
             </table>

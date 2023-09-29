@@ -30,12 +30,6 @@ export default function Index({ allPosts, countries, contributions }: Props) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch("https://restcountries.com/v3.1/region/asia");
-  const countries = await res.json();
-  const countriesWithNamePopulation = countries.map((country) => ({
-    name: country.name.common,
-    population: country.population
-  }));
 
   let contributions: { weeks };
 
@@ -67,11 +61,7 @@ export const getStaticProps = async () => {
         })
          .then((response) => response.json())
          .then((data) => {
-            console.log(data);
-            contributions = data.data.user.contributionsCollection.contributionCalendar;
-            // weeks = contributions.weeks;
-            // table = setTable(weeks);
-            
+            contributions = data.data.user.contributionsCollection.contributionCalendar;  
         })
         .catch((error) => {
             console.error("Error fetching GitHub contributions:", error);
@@ -87,6 +77,6 @@ export const getStaticProps = async () => {
   ])
 
   return {
-    props: { allPosts, countries: countriesWithNamePopulation, contributions },
+    props: { allPosts, contributions },
   }
 }
