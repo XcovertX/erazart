@@ -389,14 +389,14 @@ function drawText(layer, props) {
     }
     layer.noStroke();
     layer.erase(360, 360);
-    layer.rect(0, 145, window.innerWidth-15, 360);
+    layer.rect(0, 80, window.innerWidth-15, 310);
     layer.noErase(360, 360);
-    layer.rect(10, 155, window.innerWidth-35, 340);
+    layer.rect(10, 90, window.innerWidth-35, 290);
     layer.textSize(titleWidth);
     layer.erase(360, 360);
-    layer.text('JAMES COVERT', (layer.width-35)/2, 380);
+    layer.text('JAMES COVERT', (layer.width-35)/2, 300);
     layer.textSize(subtitleWidth);
-    layer.text('SOFTWARE ENGINEER // FULL STACK // WEB DEV', (layer.width-35)/2, 470);
+    layer.text('SOFTWARE ENGINEER // FULL STACK // WEB DEV', (layer.width-35)/2, 350);
 
 }
 

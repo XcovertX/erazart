@@ -1,10 +1,57 @@
 import dynamic from 'next/dynamic' 
-import { use, useEffect, useState } from 'react';
+import { use, useContext, useEffect, useState } from 'react';
+import { ThemeContext } from '../context/context';
 const apiUrl = "https://api.github.com/graphql";
 const username = process.env.GITHUB_USERNAME;
 const accessToken = process.env.GITHUB_ACCESS_TOKEN;
 
 
+function renderTable(weeks: []) {
+    const { theme } = useContext(ThemeContext);
+    let zeroColor, oneColor, twoColor, threeColor, fourColor, elseColor;
+    if(theme == 'dark') {
+        zeroColor   = 'bg-emerald-100/[.15]'
+        oneColor    = 'bg-emerald-300'
+        twoColor    = 'bg-emerald-400'
+        threeColor  = 'bg-emerald-500'
+        fourColor   = 'bg-emerald-600'
+        elseColor   = 'bg-emerald-700'
+    } else {
+        zeroColor   = 'bg-amber-300/[.5]'
+        oneColor    = 'bg-amber-400'
+        twoColor    = 'bg-amber-500'
+        threeColor  = 'bg-amber-600'
+        fourColor   = 'bg-amber-700'
+        elseColor   = 'bg-amber-900'
+    }
+    let table = [];
+    for (let dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
+        let children = [];
+        for (let weekIndex = 0; weekIndex < 53; weekIndex++) {
+        const week: { contributionDays: [] } = weeks[weekIndex];
+        const contributionDay: { contributionCount: number, date:Date } = week.contributionDays[dayOfWeek];
+        const contributionCount = contributionDay ? contributionDay.contributionCount : 0;
+        const date = contributionDay ? contributionDay.date : 0;
+        let contributionColor;
+        if (contributionCount < 1) {
+            contributionColor = zeroColor;
+        } else if (contributionCount < 2) {
+            contributionColor = oneColor;
+        } else if (contributionCount < 3) {
+            contributionColor = twoColor;
+        } else if (contributionCount < 4) {
+            contributionColor = threeColor;
+        } else if (contributionCount < 5) {
+            contributionColor = fourColor;
+        } else {
+            contributionColor = elseColor;
+        }
+        children.push({key: weekIndex, color: contributionColor, count: contributionCount, date: date })
+        }
+        table.push({key: dayOfWeek, c: children})
+    }
+    return table;
+}
 
 const GithubContributions = ({ conts }) => {
 
@@ -14,47 +61,26 @@ const GithubContributions = ({ conts }) => {
         weeks = contributions.weeks;
         table = renderTable(weeks);
     }
+    const { theme } = useContext(ThemeContext);
+    let headerColor;
+    if(theme == 'dark') {
+        headerColor = 'bg-emerald-500/[.5]'
+    } else {
+        headerColor = 'bg-amber-500/[.8]'
+    }
+
+
     useEffect(() => {
         setContributions(conts);
-    }, [conts])
 
-    
-    function renderTable(weeks: []) {
-        let table = [];
-        for (let dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
-            let children = [];
-            for (let weekIndex = 0; weekIndex < 53; weekIndex++) {
-            const week: { contributionDays: [] } = weeks[weekIndex];
-            const contributionDay: { contributionCount: number, date:Date } = week.contributionDays[dayOfWeek];
-            const contributionCount = contributionDay ? contributionDay.contributionCount : 0;
-            const date = contributionDay ? contributionDay.date : 0;
-            let contributionColor;
-            if (contributionCount < 1) {
-                contributionColor = 'bg-green-100/[.15]';
-            } else if (contributionCount < 2) {
-                contributionColor = 'bg-green-400';
-            } else if (contributionCount < 3) {
-                contributionColor = 'bg-green-500';
-            } else if (contributionCount < 4) {
-                contributionColor = 'bg-green-600';
-            } else if (contributionCount < 5) {
-                contributionColor = 'bg-green-700';
-            } else {
-                contributionColor = 'bg-green-900';
-            }
-            children.push({key: weekIndex, color: contributionColor, count: contributionCount, date: date })
-            }
-            table.push({key: dayOfWeek, c: children})
-        }
-        return table;
-    }
+    }, [conts])
 
     return (
         <div className=''>
-            <div className='text-center text-xl bg-emerald-500/[.5] mx-1 font-bold'>
-                GITHUB CONTRIBUTIONS
+            <div className={`text-center text-2xl ${headerColor} mx-1 mb-2 py-5 font-bold`}>
+                Github Contributions
             </div>
-            <table className='cursor-pointer'>
+            <table className='cursor-pointer mb-10'>
                 <tbody className=''>
                     {table.map(e => {
                         return (

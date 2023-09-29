@@ -189,7 +189,7 @@ const Home = ({ allPosts, countries, contributions }: Props) => {
                     <div className="py-10">
                         <HomeNav scrollTo={scrollTo} theme={theme} section={currentSection}/>
                     </div>
-                    <div className="pt-28 lg:pt-20">
+                    <div className="pt-10 lg:pt-6">
                     <SocialLinks theme={theme}
                         color='orange'
                         highlightColor='teal'
