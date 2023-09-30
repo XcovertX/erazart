@@ -75,24 +75,29 @@ const GithubContributions = ({ conts }) => {
 
     return (
         <div className='flex flex-col w-full'>
-            <div className='flex flex-row justify-between items-end '>
-                <div className={` lg:ml-2 text-2xl lg:text-4xl w-full ${headerColor} font-bold`}>
-                    Github Contributions
-                </div>
-                <div className={`lg:mr-2 w-full text-sm md:text-xl ${headerColor} font-bold text-end`}>
-                    Contributions in the last year: {contributions.totalContributions}
-                </div>
-            </div>
-            <table className='cursor-pointer mb-10 flex w-full flex-row justify-center'>
+
+            <table className='cursor-pointer mb-10 flex  flex-col justify-center'>
+                <thead className=''>
+                    <tr className='flex grow'>
+                        <td className='flex flex-row justify-between items-end grow'>
+                            <div className={` lg:ml-2 text-2xl lg:text-4xl w-full ${headerColor} font-bold`}>
+                                Github Contributions
+                            </div>
+                            <div className={`lg:mr-2 w-full text-sm md:text-xl ${headerColor} font-bold text-end`}>
+                                Contributions in the last year: {contributions.totalContributions}
+                            </div>
+                        </td>
+                    </tr>
+                </thead>
                 <tbody key={0} className=''>
                     {table.map(e => {
                         return (
-                            <tr key={e.key} className={''}>
+                            <tr key={e.key} className={'grow flex justify-center'}>
                             {e.c.map(w => {
                                 return (
-                                    <td key={w.key} className={`group p-0 relative`}>
+                                    <td key={w.key} className={`group p-0 relative flex grow`}>
                                         <div className={'hidden group-hover:block bg-zinc-950 p-2 right-[-6.5rem] absolute bottom-10 w-60 rounded-md text-center'}>{w.count} contributions on {w.date}</div>
-                                        <div className={`${w.color} ring-2 m-[2px] md:m-1 ring-transparent group-hover:ring-white h-1 w-1 p-1 lg:p-2 rounded-sm `}></div>
+                                        <div className={`${w.color} ring-2 m-0.5 ring-transparent group-hover:ring-white h-1 w-0.5 p-1 lg:w-1 lg:p-2.5 rounded-sm `}></div>
                                     </td>
                                 )
                             })}
