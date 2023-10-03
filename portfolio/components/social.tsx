@@ -65,14 +65,14 @@ const SocialLinks = ({ theme, color, dmColor, highlightColor, dmHighlightColor }
     }
 
   return (
-    <div className="flex flex-row p-5 justify-center items-center">
-        <div className="md:mx-10 mx-8">
+    <div className="flex flex-row py-5 justify-center items-center">
+        <div className="mx-5">
             <div className="flex items-center relative justify-center"
                 onMouseEnter={onMouseEnterGit}
                 onMouseLeave={onMouseLeaveGit}>
                 <a href="http://github.com/xcovertx" 
                 target="_blank"
-                className="absolute md:w-10 md:h-10 w-8 h-8 rounded-full md:hover:w-16 md:hover:h-16 hover:w-12 hover:h-12 ease-in-out duration-[250ms]">
+                className="absolute w-5 h-5 rounded-full hover:w-8 hover:h-8 ease-in-out duration-[250ms]">
                     <Image 
                         src={theme == "dark"? 
                             (gitHover? colorSelect(dmHighlightColor, 'github') : colorSelect(dmColor, 'github')) 
@@ -86,13 +86,13 @@ const SocialLinks = ({ theme, color, dmColor, highlightColor, dmHighlightColor }
             </div>
         </div>
 
-        <div className="md:mx-10 mx-8">
+        <div className="mx-5">
             <div className="flex items-center relative justify-center"
                  onMouseEnter={onMouseEnterLI}
                  onMouseLeave={onMouseLeaveLI}>
                 <a href="https://linkedin.com/in/xerazx/" 
                 target="_blank"
-                className="absolute md:w-10 md:h-10 w-8 h-8 rounded-full md:hover:w-16 md:hover:h-16 hover:w-12 hover:h-12 ease-in-out duration-[250ms]">
+                className="absolute w-5 h-5 rounded-full hover:w-8 hover:h-8 ease-in-out duration-[250ms]">
                     <Image 
                         src={theme == "dark"? 
                         (liHover? colorSelect(dmHighlightColor, 'linkedin') : colorSelect(dmColor, 'linkedin')) 
@@ -106,13 +106,13 @@ const SocialLinks = ({ theme, color, dmColor, highlightColor, dmHighlightColor }
             </div>
         </div>
 
-        <div className="md:mx-10 mx-8">
+        <div className="mx-5">
             <div className="flex items-center relative justify-center"
                  onMouseEnter={onMouseEnterInst}
                  onMouseLeave={onMouseLeaveInst}>
                 <a href="https://instagram.com/eraz_art/" 
                 target="_blank"
-                className="absolute md:w-10 md:h-10 w-8 h-8 rounded-full md:hover:w-16 md:hover:h-16 hover:w-12 hover:h-12 ease-in-out duration-[250ms]">  
+                className="absolute w-5 h-5 rounded-full hover:w-8 hover:h-8 ease-in-out duration-[250ms]">  
                     <Image 
                         src={theme == "dark"? 
                         (instHover? colorSelect(dmHighlightColor, 'instagram') : colorSelect(dmColor, 'instagram')) 

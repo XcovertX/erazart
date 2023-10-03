@@ -21,6 +21,9 @@ module.exports = {
       },
       lineHeight: {
         tight: 1.2,
+      },    
+      fontFamily: {
+        'sans': ['Valorax']
       },
       fontSize: {
         '5xl': '2.5rem',

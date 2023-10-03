@@ -18,20 +18,19 @@ type MySketchProps = SketchProps & {
 function drawGrid(p5: P5CanvasInstance<MySketchProps>, w:number, h: number) {
     
     p5.push();
-    p5.background(0, 0, 0)
     p5.strokeWeight(1);
-    p5.stroke(360, 10, 50);
+    p5.stroke(0, 360, 360);
 
-    const xCount = w/10;
-    const yCount = h/xCount;
+    const xCount = window.innerWidth  / w;
+    const yCount = window.innerHeight*7 / h;
+
     for (let index = 0; index < xCount; index++) {
-        
-        let x = index * xCount;
-        p5.line(x, 0, x, h);
+        let x = index * w;
+        p5.line(x, 0, x, window.innerHeight*7);
     }
-    for (let index = 0; index * xCount < h; index++) {
-        let y = index * xCount;
-        p5.line(0, y, w, y);
+    for (let index = 0; index < yCount; index++) {
+        let y = index * h;
+        p5.line(0, y, window.innerWidth, y);
     }
     p5.pop();
 }
@@ -765,8 +764,13 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
     }
     var canvas, cartLayer, font;
 
-    p5.preload = () => {   
+    p5.preload = () => {
+        // font = p5.loadFont('assets/fonts/WastedPersonalUseRegular-WyegG.ttf');
         font = p5.loadFont('assets/fonts/QuartzoBold-W9lv.ttf');
+        // font = p5.loadFont('assets/fonts/MadHacker-Yjz8.ttf');
+
+        
+        
     }
     
     p5.setup = () => {
@@ -775,10 +779,28 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         canvas.style('z-index', '-1');
         p5.colorMode(p5.HSB, 360);
         p5.ellipseMode(p5.RADIUS);
+        cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight)
+        cartLayer.textFont(font);
+        cartLayer.textAlign(cartLayer.CENTER);
+        cartLayer.position(0,0);
+        cartLayer.colorMode(p5.HSB, 360)
+        cartLayer.strokeWeight(3);
+        cartLayer.ellipseMode(p5.RADIUS);
+
     }
 
     p5.windowResized = () => {
         p5.resizeCanvas(p5.windowWidth, state.totalHeight);
+        cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight);
+        cartLayer.textFont(font);
+        cartLayer.textAlign(cartLayer.CENTER);
+        cartLayer.position(0,0);
+        cartLayer.colorMode(p5.HSB, 360)
+        cartLayer.strokeWeight(3);
+        cartLayer.ellipseMode(p5.RADIUS);
+        state.orbX = window.innerWidth/2;
+        state.orbY = window.innerHeight/2 + state.scrollYPosition;
+        state.orbBounce = Math.PI;
     }
 
     p5.updateWithProps = props => {
@@ -786,12 +808,34 @@ function backgroundSketch(p5: P5CanvasInstance<MySketchProps>) {
         if(canvas != undefined && state.totalHeight != canvas.height){
             p5.resizeCanvas(p5.windowWidth, state.totalHeight);
         }
+        if(cartLayer != undefined && state.totalHeight != cartLayer.height){
+            cartLayer = p5.createGraphics(window.innerWidth, state.totalHeight);
+            cartLayer.textFont(font);
+            cartLayer.textAlign(cartLayer.CENTER);
+            cartLayer.position(0,0);
+            cartLayer.colorMode(p5.HSB, 360)
+            cartLayer.strokeWeight(3);
+            cartLayer.ellipseMode(p5.RADIUS);
+        }
     }
 
     function drawAll() {
 
         return () => {
-            drawGrid(p5, p5.width, state.totalHeight);
+
+            state.orbBounce = state.orbBounce + Math.PI/1000;
+            state.orbX = state.orbX + p5.sin(state.orbBounce/2);
+            state.orbY = state.orbY + p5.cos(state.orbBounce);
+            
+            drawBackgroundGradient(p5, state.orbX, state.orbY, state.theme, state.totalHeight, state.section);
+            // drawBackgroundGradient(p5, state.orbX, state.orbY + state.scrollYPosition, state.theme, state.totalHeight, state.section);
+            drawCarts(cartLayer, state);
+            drawText(cartLayer, state);
+            p5.image(cartLayer, 0, 0);
+
+            // if(state.theme == 'dark') {
+            //     drawOrb(p5, state.orbX, state.orbY+ state.scrollYPosition, state.darkMode);
+            // } 
         }
     }
 
@@ -833,23 +877,23 @@ export default function Background({scrollYPosition, height, section}: Backgroun
         setOrbX(window.innerWidth/2);
         setOrbY(window.innerHeight/2)
         
-        // const interval = setInterval(() => {
-        //     setCarts(carts => {
-        //         let cts = new Array<CartType>(carts.length);
-        //         for (let i = 0; i < carts.length; i++) {
-        //             cts[i] = carts[i];
-        //             if (cts[i].isTransitioning || cts[i].age >= cts[i].speed) {
-        //                 moveCart(cts[i], edgeExtend, continuation, height);
-        //             } else {
-        //                 cts[i].age++;
-        //             }
-        //         }
-        //             return cts;
-        //         })
-        //     }, 10);
-        //     return () => {
-        //         clearInterval(interval);
-        //     };
+        const interval = setInterval(() => {
+            setCarts(carts => {
+                let cts = new Array<CartType>(carts.length);
+                for (let i = 0; i < carts.length; i++) {
+                    cts[i] = carts[i];
+                    if (cts[i].isTransitioning || cts[i].age >= cts[i].speed) {
+                        moveCart(cts[i], edgeExtend, continuation, height);
+                    } else {
+                        cts[i].age++;
+                    }
+                }
+                    return cts;
+                })
+            }, 10);
+            return () => {
+                clearInterval(interval);
+            };
         }, [dGrid, height]);
 
     return (

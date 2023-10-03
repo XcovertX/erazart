@@ -27,7 +27,13 @@
     border-radius: 14px;
     border: 3px solid var(--primary);
   }
-  
+
+/* @font-face {
+  font-family: 'Valorax';
+  src: local('Valorax'), url(public/assets/fonts/Valorax-lg25V.otf) format('otf');
+} */
+
+@import url('public/assets/fonts/tailwind.css');
 @tailwind components;
 @tailwind utilities;
 

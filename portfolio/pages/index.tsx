@@ -23,7 +23,7 @@ export default function Index({ allPosts, countries, contributions }: Props) {
       </Head>
       <Container>
         <Home allPosts={allPosts} contributions={contributions} />
-        <ThemeToggle location='home'/>
+        {/* <ThemeToggle location='home'/> */}
       </Container>
     </HomeLayout>
   )

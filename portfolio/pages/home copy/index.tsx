@@ -12,7 +12,6 @@ import Experience from '../../components/home-experience'
 import Contact from '../../components/home-contact'
 import { ThemeContext } from '../../context/context'
 import GithubContributions from '../../components/githubContributions'
-import Title from '../../components/home-name'
 
 type Props = {
     allPosts: Post[];
@@ -163,7 +162,7 @@ const Home = ({ allPosts, contributions }: Props) => {
     const { theme } = useContext(ThemeContext);
     const tHeight = getTotalHeight();
   return (
-    <div className='flex flex-row justify-end'>  
+    <>  
         <Background scrollYPosition={scrollYPosition} height={tHeight} section={currentSection}/>
         <div className="fixed right-0 bottom-0 z-50">
             {
@@ -181,17 +180,28 @@ const Home = ({ allPosts, contributions }: Props) => {
                     <></>
             }
         </div>
-        <div className="flex flex-col h-full w-full justify-between "
+        <div className="flex flex-col h-fit justify-between"
              ref={totalRef}>
-            <div className="flex-row min-h-screen h-fit items-start justify-between flex text-zinc-100"
+            <div className="flex-col min-h-screen h-fit items-center justify-between flex text-zinc-100"
                  ref={homeRef}>
+                <div className="items-center flex flex-col pt-5">
+                    <div className="py-10">
+                        <HomeNav scrollTo={scrollTo} theme={theme} section={currentSection}/>
+                    </div>
+                    <div className="pt-10 lg:pt-6">
+                    <SocialLinks theme={theme}
+                        color='orange'
+                        highlightColor='teal'
+                        dmColor='emerald'
+                        dmHighlightColor='teal'/>
+                    </div>
+                </div>
                 <GithubContributions conts={contributions} />
-                <Title location='home' />
             </div>
             <div className="h-fit min-h-screen items-center justify-center flex text-zinc-100"
                  ref={expertiseRef}>
                 <Expertise width={width} theme={theme}/>
-            </div>
+            </div> 
             <div className="h-fit min-h-screen items-center justify-center  flex text-zinc-100"
                  ref={myWorkRef}>
                 <MyWork allPosts={allPosts} theme={theme} />
@@ -205,10 +215,7 @@ const Home = ({ allPosts, contributions }: Props) => {
                 <Contact theme={theme} />
             </div>
         </div>
-        <div className="w-28 flex flex-col  p-2">
-            <HomeNav scrollTo={scrollTo} theme={theme} section={currentSection}/>
-        </div>
-    </div>
+    </>
   )
 }
 
