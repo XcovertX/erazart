@@ -11,11 +11,11 @@ const HomeNav = ({scrollTo, theme, section}: Props) => {
     var textColor, selectedTextColor, bgColor, selectedBGColor, headingColor;
 
     if(theme == "dark") {
-        headingColor      = 'bg-zinc-200';
-        textColor         = 'text-zinc-700';
+        headingColor      = 'bg-transparent';
+        textColor         = 'text-amber-300';
         selectedTextColor = 'text-zinc-100'
-        bgColor           = 'bg-zinc-800';
-        selectedBGColor   = 'bg-zinc-800';
+        bgColor           = 'bg-amber-300';
+        selectedBGColor   = 'bg-amber-300';
     } else {
         headingColor      = 'bg-emerald-500/[.8]';
         textColor         = 'text-emerald-950 group-hover:text-emerald-100';
@@ -25,7 +25,7 @@ const HomeNav = ({scrollTo, theme, section}: Props) => {
     }
 
     return (
-        <div className={`${headingColor} flex-col justify-start flex font-bold text-sm bg-transparent grow h-full`}>
+        <div className={`${headingColor} flex-col flex font-bold text-sm  grow h-full`}>
             <SocialLinks theme={theme} color='black' dmColor='white' highlightColor="black" dmHighlightColor="white"/>
             <button onClick={() => scrollTo(0)} className="m-1">
                 <div className="group relative px-1 pt-2 h-10 w-50 overflow-hidden">

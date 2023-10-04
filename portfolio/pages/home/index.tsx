@@ -163,7 +163,7 @@ const Home = ({ allPosts, contributions }: Props) => {
     const { theme } = useContext(ThemeContext);
     const tHeight = getTotalHeight();
   return (
-    <div className='flex flex-row justify-end'>  
+    <div className='flex flex-row justify-between'>  
         <Background scrollYPosition={scrollYPosition} height={tHeight} section={currentSection}/>
         <div className="fixed right-0 bottom-0 z-50">
             {
@@ -181,31 +181,35 @@ const Home = ({ allPosts, contributions }: Props) => {
                     <></>
             }
         </div>
-        <div className="flex flex-col h-full w-full justify-between "
+        <div className="flex flex-col h-full w-full justify-between"
              ref={totalRef}>
-            <div className="flex-row min-h-screen h-fit items-start justify-between flex text-zinc-100"
+            <div className="flex-row min-h-screen justify-between flex text-zinc-100"
                  ref={homeRef}>
-                <GithubContributions conts={contributions} />
-                <Title location='home' />
+                <div className='ml-5 flex items-end'>
+                    <GithubContributions conts={contributions} />
+                </div>
+                <div className='ml-5 flex items-end'>
+                    <Title location='home' />
+                </div>
             </div>
             <div className="h-fit min-h-screen items-center justify-center flex text-zinc-100"
                  ref={expertiseRef}>
-                <Expertise width={width} theme={theme}/>
+                {/* <Expertise width={width} theme={theme}/> */}
             </div>
             <div className="h-fit min-h-screen items-center justify-center  flex text-zinc-100"
                  ref={myWorkRef}>
-                <MyWork allPosts={allPosts} theme={theme} />
+                {/* <MyWork allPosts={allPosts} theme={theme} /> */}
             </div>            
             <div className="h-fit min-h-screen items-start justify-center flex text-zinc-100"
                  ref={experienceRef}>
-                <Experience theme={theme}  />
+                {/* <Experience theme={theme}  /> */}
             </div> 
             <div className='h-fit min-h-screen items-start justify-center  text-zinc-100'
                  ref={contactRef}>
-                <Contact theme={theme} />
+                {/* <Contact theme={theme} /> */}
             </div>
         </div>
-        <div className="w-28 flex flex-col  p-2">
+        <div className="sticky h-screen p-2">
             <HomeNav scrollTo={scrollTo} theme={theme} section={currentSection}/>
         </div>
     </div>

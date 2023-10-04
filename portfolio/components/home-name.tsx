@@ -21,12 +21,12 @@ const Title = ({ location }: Props) => {
         var state = {
             darkMode: false,
             color: 'bg-amber-500',
-            w: 50,
-            h: 500,
+            w: 100,
+            h: p5.windowHeight,
             location: 'home'
         }
 
-        var font;
+        var canvas, font;
 
         p5.preload = () => {   
             font = p5.loadFont('assets/fonts/RostavePersonalUse-Eaylz.otf');
@@ -38,17 +38,18 @@ const Title = ({ location }: Props) => {
             }
         }
 
-    // p5.windowResized = () => {
-    //     p5.resizeCanvas(state.w, state.h);
-    // }
+    p5.windowResized = () => {
+        state.h = p5.windowHeight;
+        p5.resizeCanvas(state.w, state.h);
+        p5.redraw();
+    }
 
     p5.setup = () => {
-        p5.createCanvas(state.w, state.h, p5.P2D);
+        canvas = p5.createCanvas(state.w, p5.windowHeight, p5.P2D);
         p5.colorMode(p5.HSB, 360);
         p5.noLoop();
         p5.noStroke();
         p5.textFont(font);
-        console.log("ran name ---------")
     }
 
     p5.updateWithProps = props => {
@@ -62,19 +63,19 @@ const Title = ({ location }: Props) => {
 
             if(state.location == "home") {
                 if(state.darkMode) {
-                    p5.fill(p5.color('#6ee7b7'));
+                    p5.fill(p5.color('#fcd34d'));
                 } else {
                     p5.fill(p5.color('#fcd34d'));
                 }
             } else {
                 p5.fill(fillColorSelect(state.color));
             }
-            p5.textSize(30);
-            p5.background(30)
-            p5.translate(100, 180);
+            p5.textSize(p5.windowHeight/16);
+            
             p5.rotate(p5.radians(-90))
-            p5.textAlign(p5.RIGHT, p5.BOTTOM)
-            p5.text('JAMES COVERT', 150, -50);
+            
+            p5.textAlign(p5.RIGHT, p5.CENTER)
+            p5.text('JAMES COVERT', -10, 30);
             
         }
     }

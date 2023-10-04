@@ -74,11 +74,11 @@ const GithubContributions = ({ conts }) => {
     }, [conts])
 
     return (
-        <div className='flex flex-col w-full'>
+        <div className=''>
 
-            <table className='cursor-pointer mb-10 flex  flex-col justify-center'>
+            <table className='cursor-pointer mb-10 flex  flex-col'>
                 <thead className=''>
-                    <tr className='flex grow'>
+                    <tr className='flex'>
                         <td className='flex flex-row justify-between items-end grow'>
                             <div className={` lg:ml-2 text-2xl lg:text-4xl w-full ${headerColor} font-bold`}>
                                 Github Contributions
@@ -92,12 +92,12 @@ const GithubContributions = ({ conts }) => {
                 <tbody key={0} className=''>
                     {table.map(e => {
                         return (
-                            <tr key={e.key} className={'grow flex justify-center'}>
+                            <tr key={e.key} className={''}>
                             {e.c.map(w => {
                                 return (
-                                    <td key={w.key} className={`group p-0 relative flex grow`}>
+                                    <td key={w.key} className={`group p-0 relative `}>
                                         <div className={'hidden group-hover:block bg-zinc-950 p-2 right-[-6.5rem] absolute bottom-10 w-60 rounded-md text-center'}>{w.count} contributions on {w.date}</div>
-                                        <div className={`${w.color} ring-2 m-0.5 ring-transparent group-hover:ring-white h-1 w-0.5 p-1 lg:w-1 lg:p-2.5 rounded-sm `}></div>
+                                        <div className={`${w.color} ring-2 m-0.5 ring-transparent group-hover:ring-white h-1 w-0.5 p-1 lg:w-1 lg:p-1.5 rounded-sm `}></div>
                                     </td>
                                 )
                             })}
