@@ -17,6 +17,4 @@ const HomeLayout = ({ preview, children }: Props) => {
   )
 }
 
-
-
 export default HomeLayout
