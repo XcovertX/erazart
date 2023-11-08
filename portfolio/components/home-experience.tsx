@@ -18,13 +18,13 @@ const jobs: Job[] = [
         frameLang: ['Javascript', 'NextJS', 'ExpressJS', 'ReactJS']
     },
     {
-        jobName: 'Genics',
+        jobName: 'Genics Certifications',
         jobTitle: 'Web Developer',
         location: 'Remote (United Kingdom)',
         startDate: 'August 2022',
         endDate: 'May 2023',
-        description: 'During my senior year at Arizona State University, I worked with a team of developers to build a prototype platform that provides authenticated certification for university lecture attendance.',
-        companyLink: 'tncdesigns.com',
+        description: 'I worked with a team of developers to build a prototype platform that provides blockchain authenticated certifications for university lecture attendance.',
+        companyLink: '',
         companyLogo: '/assets/genics_logo.png',
         frameLang: ['Javascript', 'NextJS', 'ExpressJS', 'MongoDB']
     },
