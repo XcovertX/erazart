@@ -7,19 +7,19 @@ type Props = {
 
 const jobs: Job[] = [
     {
-        jobName: 'TNC-CNC',
-        jobTitle: 'Web Developer',
-        location: 'Remote (Auburn, WA)',
-        startDate: 'January 2023',
-        endDate: '',
-        description: "Developed a premium, high performing website that provides B2B and B2C fabrication solutions useing React.js, Next.js and Express.js frameworks",
-        companyLink: 'tncdesigns.com',
-        companyLogo: '/assets/TNCCNC_logo_white.png',
+        jobName:    'The Stor-House',
+        jobTitle:   'Software Developer',
+        location:   'Puyallup, WA',
+        startDate:  'August 2018',
+        endDate:    '',
+        description: "Designed and developed storage management prototype (Stor-Pro), providing rental management, gate access control and invoice tracking. The application uses React.js, Next.js and Express.js frameworks and Mongdb for data storage.",
+        companyLink: '',
+        companyLogo: '/assets/stor-pro.png',
         frameLang: ['Javascript', 'NextJS', 'ExpressJS', 'ReactJS']
     },
     {
         jobName: 'Genics',
-        jobTitle: 'Web Developer Internship',
+        jobTitle: 'Web Developer',
         location: 'Remote (United Kingdom)',
         startDate: 'August 2022',
         endDate: 'May 2023',
