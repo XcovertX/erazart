@@ -12,7 +12,7 @@ const jobs: Job[] = [
         location:   'Puyallup, WA',
         startDate:  'August 2018',
         endDate:    '',
-        description: "Designed and developed a storage management prototype (Stor-Pro), providing rental management, gate access control and invoice tracking. The application uses React.js, Next.js and Express.js frameworks and Mongdb for data storage.",
+        description: "Designed and developed a storage management application (Stor-Pro), providing rental management, gate access control and invoice tracking to store managers. The application uses React.js, Next.js and Express.js frameworks and Mongdb for data storage.",
         companyLink: '',
         companyLogo: '/assets/stor-pro.png',
         frameLang: ['Javascript', 'NextJS', 'ExpressJS', 'ReactJS']
