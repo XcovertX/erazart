@@ -12,6 +12,7 @@ import Experience from '../../components/home-experience'
 import Contact from '../../components/home-contact'
 import { ThemeContext } from '../../context/context'
 import GithubContributions from '../../components/githubContributions'
+import { track } from '@vercel/analytics/react'
 
 type Props = {
     allPosts: Post[];
@@ -95,6 +96,7 @@ const Home = ({ allPosts, contributions }: Props) => {
     }
 
     function getSect(section: number, h: number, ex: number, w: number, exp: number, c: number) {
+        if (section != currentSection) { track(`Section: ${section.toString()}`)}
         if (section <  h) { return 0;} 
         if (section >= h && section <  ex + h) { return 1; }
         if (section >= ex + h  && section <  ex + h + w) { return 2; }
