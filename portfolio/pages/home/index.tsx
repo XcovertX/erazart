@@ -95,8 +95,18 @@ const Home = ({ allPosts, contributions }: Props) => {
         scrollTo(currentSection + 1);
     }
 
+    function getSectionName(section: number) {
+        switch(section) {
+            case 0: return 'home';
+            case 1: return 'expertise';
+            case 2: return 'my work';
+            case 3: return 'experience';
+            case 4: return 'contact'
+            default: return `Error: section ${section} does not exist.`
+        }
+    }
+
     function getSect(section: number, h: number, ex: number, w: number, exp: number, c: number) {
-        if (section != currentSection) { track(`Section: ${section.toString()}`)}
         if (section <  h) { return 0;} 
         if (section >= h && section <  ex + h) { return 1; }
         if (section >= ex + h  && section <  ex + h + w) { return 2; }
@@ -135,6 +145,7 @@ const Home = ({ allPosts, contributions }: Props) => {
             c = 0;
         }
         s = getSect(window.scrollY, h, ex, w, exp, c);
+        if (s != currentSection) { track(`Section: ${getSectionName(s)}`)}
         setCurrentSection(s);
         setHeadingColor(getHeadingColor(s));
     }
