@@ -11,6 +11,7 @@ import Settings from "../interfaces/settings";
 import { CustomSlider } from "../../components/slider";
 import { Toggle } from "../../components/toggle";
 import { ThemeContext } from "../../context/context";
+import { track } from "@vercel/analytics/react";
 
 
 let nodecount: number = 0;
@@ -152,18 +153,21 @@ export default function DifferentialGrowthContainer()
 
   function handleChangeBrown(event) {
     let s = setting;
+    track('brownian-amount-change');
     s.brownianScalar = event.target.value;
     setSetting({...Object.assign(setting, s)});
   }
 
   function handleChangeRepulse(event) {
     let s = setting;
+    track('repulse-amount-change');
     s.repulsionScalar = event.target.value;
     setSetting({...Object.assign(setting, s)});
   }
 
   function handleChangeRepulseRad(event) {
     let s = setting;
+    track('repulse-radius-change');
     s.repulsionRadius = event.target.value;
     setSetting({...Object.assign(setting, s)});
   }
@@ -241,37 +245,43 @@ export default function DifferentialGrowthContainer()
   }
 
   function handleChangeBrownMode(event) {
-    let s = setting;
+    let s = setting; 
+    track('brownian-change');
     s.brownianMode = event.target.checked;
     setSetting({...Object.assign(setting, s)});
   }
 
   function handleChangeNodesMode(event) {
     let s = setting;
+    track('nodes-mode');
     s.drawNodesMode = event.target.checked;
     setSetting({...Object.assign(setting, s)});
   }
 
   function handleChangeDebugMode(event) {
     let s = setting;
+    track('debug-mode');
     s.debugMode = event.target.checked;
     setSetting({...Object.assign(setting, s)});
   }
 
   function handleChangeTraceMode(event) {
     let s = setting;
+    track('trace-mode');
     s.traceMode = event.target.checked;
     setSetting({...Object.assign(setting, s)});
   }
 
   function handleChangeFillMode(event) {
     let s = setting;
+    track('fill-mode');
     s.fillMode = event.target.checked;
     setSetting({...Object.assign(setting, s)});
   }
 
   function handleChangeShowBounds(event) {
     let s = setting;
+    track('show-bounds-mode');
     s.showBoundsMode = event.target.checked;
     setSetting({...Object.assign(setting, s)});
   }
@@ -284,12 +294,14 @@ export default function DifferentialGrowthContainer()
 
   function handleChangeRun() {
     let s = setting;
+    track('demo-1-run');
     s.paused = !setting.paused;
     setSetting({...Object.assign(setting, s)});
   }
 
   function handleChangeRestart() {
     let s = setting;
+    track('demo-run-restart');
     s.restart = !s.restart;
     setSetting({...Object.assign(setting, s)});
   }
