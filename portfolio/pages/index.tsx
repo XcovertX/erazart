@@ -61,7 +61,8 @@ export const getStaticProps = async () => {
         })
          .then((response) => response.json())
          .then((data: { data: {user: { contributionsCollection: { contributionCalendar: { weeks: [] }}}}}) => {
-            contributions = data.data.user.contributionsCollection.contributionCalendar;  
+            contributions = data.data.user.contributionsCollection.contributionCalendar;
+            console.log("Contributions: ", contributions);  
         })
         .catch((error) => {
             console.error("Error fetching GitHub contributions:", error);
