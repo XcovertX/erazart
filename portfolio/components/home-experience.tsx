@@ -7,11 +7,22 @@ type Props = {
 
 const jobs: Job[] = [
     {
+        jobName:    'Valkyrie Enterprises',
+        jobTitle:   'Lead Software Engineer',
+        location:   'Fredericksburg, VA',
+        startDate:  'May 2024',
+        endDate:    '',
+        description: "Lead Software Engineer",
+        companyLink: '',
+        companyLogo: '/assets/valkyrie.png',
+        frameLang: ['Python', 'C', 'C++']
+    },
+    {
         jobName:    'The Stor-House',
         jobTitle:   'Software Developer',
         location:   'Puyallup, WA',
         startDate:  'August 2018',
-        endDate:    '',
+        endDate:    'April 2024',
         description: "Designed and developed a storage management application (Stor-Pro), providing rental management, gate access control and invoice tracking to store managers. The application uses React.js, Next.js and Express.js frameworks and Mongdb for data storage.",
         companyLink: '',
         companyLogo: '/assets/stor-pro.png',
