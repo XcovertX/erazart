@@ -12,7 +12,7 @@ const jobs: Job[] = [
         location:   'Fredericksburg, VA',
         startDate:  'May 2024',
         endDate:    '',
-        description: "Lead Software Engineer",
+        description: "Lead Software Engineer for Valkyrie products.",
         companyLink: '',
         companyLogo: '/assets/valkyrie.png',
         frameLang: ['Python', 'C', 'C++']
