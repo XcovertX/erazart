@@ -12,7 +12,7 @@ const jobs: Job[] = [
         location:   'Fredericksburg, VA',
         startDate:  'May 2024',
         endDate:    '',
-        description: "Lead Software Engineer for Valkyrie products.",
+        description: "Research, test and develop high quality signal processing solutions for cutting-edge radar applications.",
         companyLink: '',
         companyLogo: '/assets/valkyrie.png',
         frameLang: ['Python', 'C', 'C++']
