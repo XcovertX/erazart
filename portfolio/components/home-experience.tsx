@@ -17,6 +17,17 @@ const jobs: Job[] = [
         companyLogo: '/assets/valkyrie.png',
         frameLang: ['Python', 'C', 'C++']
     },
+        {
+        jobName:    'Ammortal',
+        jobTitle:   'Software Engineer',
+        location:   'Asheville, NC',
+        startDate:  'April 2022',
+        endDate:    'April 2024',
+        description: "Full-stack development for the Ammortal Chamber, building a real-time IoT platform that integrated biometric sensors, embedded hardware, and services into a unified user experience.",
+        companyLink: 'www.ammortal.com',
+        companyLogo: '/assets/ammortal.png',
+        frameLang: ['Python', 'ReactJS', 'NodeJS', 'GoLang']
+    },
     {
         jobName:    'The Stor-House',
         jobTitle:   'Software Developer',
