@@ -30,54 +30,64 @@ export default function Index({ allPosts, countries, contributions }: Props) {
 }
 
 export const getStaticProps = async () => {
+  const now = new Date();
+  const to = now.toISOString();
+  const from = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate()).toISOString();
+
+  const query = `
+    query ($login: String!, $from: DateTime!, $to: DateTime!) {
+      user(login: $login) {
+        contributionsCollection(from: $from, to: $to) {
+          contributionCalendar {
+            totalContributions
+            weeks {
+              contributionDays {
+                contributionCount
+                date
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
 
   let contributions = null;
 
-  const query:string = `
-            query {
-                user(login: "${process.env.GITHUB_USERNAME}") {
-                contributionsCollection {
-                    contributionCalendar {
-                    totalContributions
-                    weeks {
-                        contributionDays {
-                        contributionCount
-                        date
-                        }
-                    }
-                    }
-                }
-                }
-            }
-        `;
-        
-        await fetch("https://api.github.com/graphql", {
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
-            "Content-Type": "application/json",
+  try {
+    const res = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query,
+        variables: {
+          login: process.env.GITHUB_USERNAME,
+          from,
+          to,
         },
-        body: JSON.stringify({ query }),
-        })
-         .then((response) => response.json())
-         .then((data: { data: {user: { contributionsCollection: { contributionCalendar: { weeks: [] }}}}}) => {
-            contributions = data.data.user.contributionsCollection.contributionCalendar;
-            console.log("Contributions: ", contributions);  
-        })
-        .catch((error) => {
-            console.error("Error fetching GitHub contributions:", error);
-        });
+      }),
+    });
+    const json = await res.json();
+    contributions = json.data.user.contributionsCollection.contributionCalendar;
+  } catch (e) {
+    console.error("Error fetching GitHub contributions:", e);
+  }
+
   const allPosts = getAllPosts([
-    'title',
-    'date',
-    'slug',
-    'author',
-    'coverImage',
-    'excerpt',
-    'images'
-  ])
+    "title",
+    "date",
+    "slug",
+    "author",
+    "coverImage",
+    "excerpt",
+    "images",
+  ]);
 
   return {
     props: { allPosts, contributions },
-  }
-}
+    revalidate: 60 * 60 * 24, // revalidate once per day (adjust to taste)
+  };
+};
