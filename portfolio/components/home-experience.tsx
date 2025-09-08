@@ -13,9 +13,9 @@ const jobs: Job[] = [
         startDate:  'May 2024',
         endDate:    '',
         description: "Research, test and develop high quality signal processing solutions for cutting-edge radar applications.",
-        companyLink: '',
+        companyLink: 'www.valkyrie.com',
         companyLogo: '/assets/valkyrie.png',
-        frameLang: ['Python', 'C', 'C++']
+        frameLang: ['Python', 'C', 'C++', 'ReactJS', 'NodeJS']
     },
         {
         jobName:    'Ammortal',
@@ -45,7 +45,7 @@ const jobs: Job[] = [
         location: 'Remote (United Kingdom)',
         startDate: 'August 2022',
         endDate: 'May 2023',
-        description: 'I worked with a team of developers to build a prototype platform that provides blockchain authenticated certifications for university lecture attendance.',
+        description: 'Worked with a team of developers to build a prototype platform that provides blockchain authenticated certifications for university lecture attendance.',
         companyLink: '',
         companyLogo: '/assets/genics_logo.png',
         frameLang: ['Javascript', 'NextJS', 'ExpressJS', 'MongoDB']
