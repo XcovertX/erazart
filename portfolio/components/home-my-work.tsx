@@ -48,7 +48,7 @@ const MyWork = ({ allPosts, theme }: Props) => {
                             </h3>
                         </div>
                     </div>
-                    <div className={` w-auto h-full rounded-md mt-5 ml-10 p-5`}>
+                    <div className={` w-auto h-full rounded-md mt-5 lg:ml-10 p-5`}>
                         {HeroPost && (
                                 <HeroPost
                                     title={heroPost.title}
