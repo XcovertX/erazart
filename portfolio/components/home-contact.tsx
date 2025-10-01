@@ -6,20 +6,20 @@ type Props = {
 }
 
 const Contact = ({ theme }: Props) => {
-    const image = (
-        <CldImage
-          src={'/assets/JC_portrait_new.jpg'}
-          width={481}
-          height={640}
-          sizes=""
-          alt={`J.Covert`}
-          className=''
-        />
-      )
-    return(
-        <div className='flex flex-row justify-center mx-32 md:mx-0 w-full pb-6 pt-24'>
-            <div className={`${theme == "dark"? 'bg-emerald-600/[.9] text-zinc-100' : 'bg-amber-600/[.9] text-emerald-950'} w-auto h-3/4 sm:h-full overflow-clip flex flex-col`}>
-                {image}
+        const image = (
+                <CldImage
+                    src={'/assets/JC_portrait_new.jpg'}
+                    width={481}
+                    height={640}
+                    sizes=""
+                    alt={`J.Covert`}
+                    className='w-full h-full object-cover flex-1'
+                />
+            )
+        return(
+                <div className='flex flex-col md:flex-row justify-center w-full pb-6 pt-24 md:mx-0 mx-0'>
+                        <div className={`${theme == "dark"? 'bg-emerald-600/[.9] text-zinc-100' : 'bg-amber-600/[.9] text-emerald-950'} flex-1 min-h-[300px] md:min-h-0 h-64 md:h-auto overflow-clip flex flex-col justify-center`}>
+                                {image}
                 <div className={`${theme == "dark"? 'bg-emerald-600/[.9] text-zinc-100' : 'bg-amber-600/[.9] text-emerald-950'} md:hidden text-zinc-100 text-3xl p-5 h-1/4`}>
                     <div className=' flex flex-col justify-start items-center '>
                         <div className=''>
