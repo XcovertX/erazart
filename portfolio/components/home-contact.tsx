@@ -8,7 +8,7 @@ type Props = {
 const Contact = ({ theme }: Props) => {
     const image = (
         <CldImage
-          src={'/assets/JC_Gray.jpg'}
+          src={'/assets/JC_portrait_new.jpg'}
           width={481}
           height={640}
           sizes=""
