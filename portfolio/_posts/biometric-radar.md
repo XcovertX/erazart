@@ -1,14 +1,14 @@
 ---
 title: 'Biometric Radar Signal Processing System (Python)'
 excerpt: 'Real-time radar signal processing pipeline for biometric and motion analysis using Infineon BGT60UTR11AIP.'
-coverImage: 'biometric-radar/radar_processing_pipeline'
+coverImage: 'assets/radar'
 date: '2025-10-01T05:35:07.322Z'
 live: ''
 author:
   name: J.A. Covert
   picture: assets/james_profile_pic.png
 ogImage:
-  url: 'biometric-radar/radar_processing_pipeline'
+  url: 'assets/radar'
 images: []
 repo: https://github.com/XcovertX/biometric-radar
 ---
