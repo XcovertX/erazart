@@ -14,7 +14,7 @@ const jobs: Job[] = [
         endDate:    '',
         description: "Research, test and develop high quality signal processing solutions for cutting-edge radar applications.",
         companyLink: 'www.culligan.com',
-        companyLogo: '/assets/culligan.png',
+        companyLogo: '/assets/culligan.jpeg',
         frameLang: ['Typescript', 'NodeJS']
     },
     {
