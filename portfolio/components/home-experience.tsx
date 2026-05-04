@@ -7,11 +7,22 @@ type Props = {
 
 const jobs: Job[] = [
     {
+        jobName:    'Culligan International',
+        jobTitle:   'Lead Backend Software Engineer & IoT Architect',
+        location:   'Fredericksburg, VA',
+        startDate:  'May 2026',
+        endDate:    '',
+        description: "Research, test and develop high quality signal processing solutions for cutting-edge radar applications.",
+        companyLink: 'www.culligan.com',
+        companyLogo: '/assets/culligan.png',
+        frameLang: ['Typescript', 'NodeJS']
+    },
+    {
         jobName:    'Valkyrie Enterprises',
         jobTitle:   'Lead Software Engineer',
         location:   'Fredericksburg, VA',
         startDate:  'May 2024',
-        endDate:    '',
+        endDate:    'May 2026',
         description: "Research, test and develop high quality signal processing solutions for cutting-edge radar applications.",
         companyLink: 'www.valkyrie.com',
         companyLogo: '/assets/valkyrie.png',
