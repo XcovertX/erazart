@@ -12,7 +12,7 @@ const jobs: Job[] = [
         location:   'Fredericksburg, VA',
         startDate:  'May 2026',
         endDate:    '',
-        description: "Lead the design and development of scalable backend services and IoT architecture for Culligan's next-generation water treatment solutions, ensuring seamless integration of smart devices and cloud-based platforms to enhance customer experience and operational efficiency.",
+        description: "Lead the design and development of scalable backend services and IoT architecture for Culligan's next-generation water treatment solutions.",
         companyLink: 'www.culligan.com',
         companyLogo: '/assets/culligan.jpeg',
         frameLang: ['Typescript', 'NodeJS']
