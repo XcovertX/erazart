@@ -9,7 +9,7 @@ type Props = {
 }
 
 const ExperienceAccordian = ({ jobs }: Props) => {
-    const [currentOpen, setCurrentOpen] = useState(2);
+    const [currentOpen, setCurrentOpen] = useState(0);
 
     function handleSwitch(key){
         setCurrentOpen(key)
